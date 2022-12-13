@@ -64,6 +64,9 @@ class PreguntaFuncs():
 
     @staticmethod
     def get(session:Session,qid:int) -> Pregunta:
-        stmt = select(Pregunta).where(Pregunta.id_pregunta == qid)
-        preg = session.execute(stmt).first()
-        return preg[0]
+        """ Obtiene una instancia de pregunta activa en la sesion
+        """
+        preg = session.query(Pregunta).filter(Pregunta.id_pregunta == qid).first()
+        return preg
+    
+    

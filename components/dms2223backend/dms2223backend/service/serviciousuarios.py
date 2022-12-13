@@ -13,7 +13,9 @@ from .authservice import AuthService
 class UsuariosServicio():
     @staticmethod
     def get_or_create(schema:Schema,nombre:str) -> Usuario:
-        """ Pide un usuario, si no existe lo crea 
+        """ Pide un usuario, si no existe lo crea
+            Es necesario para asegurar que un usuario autenticado esta
+            tambien en la BDD del backend
         """
         session: Session = schema.new_session()
         usu = UsuarioFuncs.get_by_nombre(session,nombre)
@@ -26,6 +28,7 @@ class UsuariosServicio():
             )
             session.add(usu)
             session.commit()
+            session.refresh(usu)
 
         schema.remove_session()
         return usu

@@ -1,4 +1,4 @@
-""" UserServices class module.
+""" PreguntasServicio class module.
 """
 
 from typing import List, Dict, ClassVar
@@ -8,13 +8,15 @@ from dms2223backend.data.db import Schema
 from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
 from dms2223backend.data.db import Usuario, Voto, ReportePregunta
 from dms2223backend.data.resultsets.pregunta_res import PreguntaFuncs
-from dms2223backend.data.resultsets.usuario_res import UsuarioFuncs
+from dms2223backend.data.resultsets import UsuarioFuncs, RespuestaFuncs
 
 from sqlalchemy import select
 
 from dms2223backend.data.resultsets import ReporteFuncs
 
 from .authservice import AuthService
+
+import sys
 
 class PreguntasServicio():
     """ Clase "estatica" que permite el acceso a las operaciones de creacion o consulta
@@ -42,6 +44,7 @@ class PreguntasServicio():
 
         schema.remove_session()
         return resp
+
     @staticmethod
     def get_preguntas(self, schema:Schema) -> List[Pregunta]:
         """ Devuleve una lista de todas las preguntas
@@ -50,7 +53,8 @@ class PreguntasServicio():
         preguntas = PreguntaFuncs.list_all(10,session)
         schema.remove_session()
         return preguntas
-    
+
+    @staticmethod
     def get_preguntas_filtro(schema:Schema,campo:type,valor:str|int) -> List[Pregunta]:
         session: Session = schema.new_session()
         stmt = select(Pregunta).where(campo == valor)
@@ -64,10 +68,9 @@ class PreguntasServicio():
         """
         session: Session = schema.new_session()
 
-        usu = UsuarioFuncs.get_or_create(
-            session=session,
-            nombre=datos["autor"])
-        session.refresh(usu)
+        usu = session.query(Usuario).filter_by(nombre=datos["autor"]).first()
+        if not(usu):
+            usu = Usuario(nombre=datos["autor"])
 
         preg:Pregunta = Pregunta(
             titulo=datos["titulo"],
@@ -127,6 +130,7 @@ class PreguntasServicio():
         schema.remove_session()    
         return answers
 
+    @staticmethod
     def get_all_reports(schema:Schema) -> list[Dict]:
         """ Transforma los reportes en una lista
         """
@@ -145,14 +149,15 @@ class PreguntasServicio():
         schema.remove_session()  
         return reports
 
+    @staticmethod
     def set_report(schema:Schema,reporte:Dict) -> Dict:
         session: Session = schema.new_session()
 
         p = PreguntaFuncs.get(session,reporte["qid"])
-        usu = UsuarioFuncs.get_or_create(
-            session=session,
-            nombre=reporte["autor"])
-        session.refresh(usu)
+
+        usu = session.query(Usuario).filter_by(nombre=reporte["autor"]).first()
+        if not(usu):
+            usu = Usuario(nombre=reporte["autor"])
 
         rep:ReportePregunta = ReportePregunta(
             pregunta=p,
@@ -171,3 +176,63 @@ class PreguntasServicio():
         }
         schema.remove_session()
         return resp
+    
+    @staticmethod
+    def create_respuesta(schema:Schema,respuesta:Dict) -> Dict:
+        session: Session = schema.new_session()
+        
+        p = PreguntaFuncs.get(session=session,qid=respuesta["qid"])
+        u = UsuarioFuncs.get(session=session,nombre=respuesta["autor"])
+        if not(u):
+            u = Usuario(nombre=respuesta["autor"])
+
+        answ:Respuesta = Respuesta(
+            contenido=respuesta["contenido"],
+            pregunta = p,
+            autor=u
+        )
+
+        res = RespuestaFuncs.create(
+            session=session,
+            resp=answ
+            )
+        
+        resp:Dict = {
+            "body":res.contenido,
+            "comments":res.comentarios,
+            "id":res.id_respuesta,
+            "owner":{"username":res.autor.nombre},
+            "qid":respuesta["qid"],
+            "timestamp":res.fecha,
+            "user_votes": {},
+            "votes":0
+        }
+
+        schema.remove_session()
+        return resp
+
+    @staticmethod
+    def get_reporte_pregunta(schema:Schema,qid:int) -> Dict:
+        """ !TODO : No era necesaria y no esta probada
+        """
+        session: Session = schema.new_session()
+
+        pregunta:Pregunta = PreguntaFuncs.get(
+            session=session,
+            qid=qid
+        )
+
+        lista_reportes:List[Dict] = []
+
+        for reporte in pregunta.reportes:
+            lista_reportes.append({
+                "id":reporte.id_reporte,
+                "owner":{"username":reporte.autor.nombre},
+                "qid":qid,
+                "reason":reporte.razon_reporte,
+                "status":reporte.estado,
+                "timestamp":reporte.fecha
+            })
+
+        schema.remove_session()
+        return lista_reportes

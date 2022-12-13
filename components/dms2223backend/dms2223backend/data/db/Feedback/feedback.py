@@ -9,7 +9,7 @@ class Feedback(Base):
     __tablename__='feedback'
 
     id_feedback = Column(Integer, primary_key=True)
-    descripcion = Column(Text)
+    descripcion = Column(Text, unique=True, index=True)
     color_asociado = Column(String(100))
 
     def __init__(self,
