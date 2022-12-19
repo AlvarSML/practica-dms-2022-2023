@@ -17,7 +17,8 @@ class Respuesta(Elemento):
         back_populates="respuestas", 
         primaryjoin="Respuesta.id_pregunta == Pregunta.id_pregunta")
 
-    comentarios = relationship("Comentario", 
+    comentarios = relationship(
+        "Comentario", 
         primaryjoin="Respuesta.id_respuesta == Comentario.id_respuesta")
 
     reportes = relationship("ReporteRespuesta",

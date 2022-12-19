@@ -95,5 +95,5 @@ def put_preg_report(qid:int) -> Tuple[List[Dict],Optional[int]]:
         Modifica el estado de un reporte a una pregunta
     """
     with current_app.app_context():
-        resp:Dict = PreguntasServicio.get_reporte_pregunta(qrid)
+        resp:Dict = PreguntasServicio.get_reporte_pregunta(qid)
     return (resp, HTTPStatus.OK)

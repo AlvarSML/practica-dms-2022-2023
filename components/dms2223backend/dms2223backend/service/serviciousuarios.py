@@ -2,7 +2,6 @@ from typing import List, Dict, ClassVar
 from sqlalchemy.orm.session import Session  # type: ignore
 from dms2223backend.data.db import Schema
 
-from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
 from dms2223backend.data.db import Usuario, Voto
 from dms2223backend.data.resultsets import UsuarioFuncs
 

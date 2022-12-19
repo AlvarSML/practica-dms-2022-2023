@@ -10,6 +10,7 @@ from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy import select # type: ignore
 
 class ReporteFuncs():
+
     @staticmethod
     def get_question_reps(session:Session):
         stmt = select(ReportePregunta)
@@ -20,6 +21,16 @@ class ReporteFuncs():
     
     @staticmethod
     def create_question_reps(session:Session,reporte:ReportePregunta)->ReportePregunta:
+        session.add(reporte)
+        session.commit()
+        session.refresh(reporte)
+        return reporte
+
+    @staticmethod
+    def create_rep(session:Session,reporte:Reporte) -> Reporte:
+        """ Añade un reporte a la session, de cualquier tipo
+            Principio de liskov
+        """
         session.add(reporte)
         session.commit()
         session.refresh(reporte)

@@ -7,8 +7,6 @@ from datetime import datetime
 
 from dms2223backend.data.db import Feedback, Pregunta, Respuesta, Comentario
 
-from dms2223backend.service import RespuestasServicio
-
 from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy import select # type: ignore
 
@@ -25,10 +23,10 @@ class FeedBackFuncs():
             .first()
         return feedback
 
-    def create(session:Session, fback:Feedback) -> Feedback:
+    def create(session:Session, feedback:Feedback) -> Feedback:
         """ Crea un tipo nuevo de feedback y lo devuelve
         """
-        session.add(fback)
+        session.add(feedback)
         session.commit()
-        session.refresh(fback)
-        return(fback)
+        session.refresh(feedback)
+        return(feedback)

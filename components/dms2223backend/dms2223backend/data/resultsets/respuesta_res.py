@@ -1,11 +1,9 @@
 from typing import List, Dict, Optional
 from datetime import datetime
 
-from dms2223backend.data.db.Usuario import Usuario
+
 from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
 from dms2223backend.data.db.Voto import Voto
-
-from dms2223backend.service import RespuestasServicio
 
 from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy import select # type: ignore

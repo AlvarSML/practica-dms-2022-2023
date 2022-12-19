@@ -10,7 +10,7 @@ from flask import current_app
 from sqlalchemy.orm.session import Session # type: ignore
 
 from dms2223backend.data.resultsets.pregunta_res import PreguntaRes, PreguntaFuncs
-from dms2223backend.service import RespuestaServicio
+from dms2223backend.service import RespuestasServicio
 from dms2223backend.data.db import Pregunta, Respuesta
 
 from flask import current_app
@@ -30,16 +30,21 @@ def set_respuesta_comentario(aid:int, body: Dict, token_info: Dict) -> Tuple[Dic
     """
     with current_app.app_context():
         comm:Dict = {
-            "contenido": body["body"],
+            "body": body["body"],
             "feedback": body["sentiment"],
             "aid": aid,
             "autor":token_info["user_token"]["username"]
         }
-    pass
+
+        comment = RespuestasServicio.set_comment(
+            schema=current_app.db,
+            comentario=comm
+        )
+
+    return (comment, HTTPStatus.CREATED)
 
 def set_respuesta_reporte(aid:int,body: Dict, token_info: Dict):
     """ Crea un reporte para una respuesta
-        TODO
     """
     with current_app.app_context():
         rep:Dict = {
@@ -48,11 +53,12 @@ def set_respuesta_reporte(aid:int,body: Dict, token_info: Dict):
             "autor":token_info["user_token"]["username"]
         }
 
-        report = RespuestaServicio.set_report(
+        report = RespuestasServicio.set_report(
             schema=current_app.db,
             reporte=rep
         )
-    pass
+
+    return (report, HTTPStatus.CREATED)
 
 def get_reportes():
     """ Obtiene todos los reportes a todas las respuestas

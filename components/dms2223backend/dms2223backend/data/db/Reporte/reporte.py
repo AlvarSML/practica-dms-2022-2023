@@ -67,7 +67,6 @@ class ReporteRespuesta(Reporte):
     def __init__(
         self,
         autor:Usuario,
-        tipo:str,
         razon_reporte:str,
         respuesta: Respuesta
         ):

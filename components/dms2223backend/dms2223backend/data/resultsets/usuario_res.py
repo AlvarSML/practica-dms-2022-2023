@@ -31,6 +31,8 @@ class UsuarioFuncs():
     def create(session:Session, usu:Usuario) -> Usuario:
         """ Se solicita un usuario, si no existe se crea
         """
+        session.add(usu)
+        session.commit()
         session.refresh(usu)
         return usu
     

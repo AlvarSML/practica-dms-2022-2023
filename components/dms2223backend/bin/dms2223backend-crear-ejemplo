@@ -80,17 +80,21 @@ session.add(fneg)
 session.add(fneu)
 session.commit()
 
+
+session.refresh(fpos)
+session.refresh(fneg)
+
 c1 = Comentario(
     contenido="Hmmm bien hecho",
     autor=us1,
-    feedback=2,
+    feedback=fpos,
     respuesta=r1
 )
 
 c2 = Comentario(
-    contenido="Hmmm bien hecho",
+    contenido="Hmmm mal hecho",
     autor=us1,
-    feedback=1,
+    feedback=fneg,
     respuesta=r1
 )
 
