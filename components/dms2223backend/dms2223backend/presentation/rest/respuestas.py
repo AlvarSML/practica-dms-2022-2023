@@ -11,8 +11,8 @@ from sqlalchemy.orm.session import Session # type: ignore
 
 from dms2223backend.data.resultsets import PreguntaFuncs, ReporteFuncs
 
-from dms2223backend.service import RespuestasServicio
-from dms2223backend.data.db import Pregunta, Respuesta, Estado_moderacion, ReporteRespuesta
+from dms2223backend.service import RespuestasServicio, VotosServicio
+from dms2223backend.data.db import Pregunta, Respuesta, Estado_moderacion, ReporteRespuesta, Voto
 
 from flask import current_app
 
@@ -54,8 +54,7 @@ def set_respuesta_reporte(aid:int,body: Dict, token_info: Dict):
     return (report, HTTPStatus.CREATED)
 
 def get_reportes(**kwargs:Dict) -> Tuple[List[Dict], HTTPStatus]:
-    """ Obtiene todos los reportes a todas las respuestas
-        TODO: La respuesta es un 205 que seria mejor    
+    """ Obtiene todos los reportes a todas las respuestas  
     """ 
     with current_app.app_context():
         status:List = []
@@ -72,14 +71,30 @@ def get_reportes(**kwargs:Dict) -> Tuple[List[Dict], HTTPStatus]:
 
     return (reportes, HTTPStatus.OK)
 
-def cambia_estado_reporte(arid: int, body: Dict) -> Tuple[Dict, HTTPStatus]:
+def cambia_estado_reporte(arid: int, body: Dict, token_info: Dict) -> Tuple[Dict, HTTPStatus]:
     """ Modifica el estado de un reporte
-        TODO
+        TODO: respuesta 205
     """
-    return 0
+    with current_app.app_context():
+        reporte:Dict = RespuestasServicio.set_estado(
+            schema=current_app.db,
+            reporte={
+                "arid":arid,
+                "autor":token_info["user_token"]["username"],
+                "estado":body["status"].lower()
+            }
+        )
+    return (reporte, HTTPStatus.OK)
 
-def vota_respuesta():
+def vota_respuesta(aid:int, token_info: Dict) -> Tuple[Dict, HTTPStatus]:
     """ Devuelve una lista de los votos a una respuesta
-        TODO
+        TODO: todos los votos son positivos de momento
     """
-    pass
+    with current_app.app_context():
+        elem = VotosServicio.set_voto(
+            schema=current_app.db,
+            id=aid,
+            user=token_info["user_token"]["username"]
+        )
+
+    return (0, HTTPStatus.OK)

@@ -38,7 +38,9 @@ def get_preg_id(qid:int) -> Tuple[Dict,Optional[int]]:
     """
     with current_app.app_context():
         resp:Dict = PreguntasServicio.get_pregunta(
-            schema=current_app.db,qid=qid)
+            schema=current_app.db,
+            id=qid
+            )
     return (resp, HTTPStatus.OK)
 
 def get_preg_answers(qid:int) -> Tuple[List[Dict],Optional[int]]:

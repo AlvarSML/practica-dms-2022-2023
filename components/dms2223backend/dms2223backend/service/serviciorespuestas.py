@@ -25,6 +25,8 @@ class RespuestasServicio():
 
     @staticmethod
     def build_report(raw:Dict) -> ReporteRespuesta:
+        """ Crea un reporte desde un diccinario con las dependencias
+        """
         rep:ReporteRespuesta = ReporteRespuesta(
             respuesta=raw["aid"],
             razon_reporte=raw["razon_reporte"],
@@ -169,23 +171,29 @@ class RespuestasServicio():
         """ Cambia el estado de un reporte a una respuesta
         """
         session: Session = schema.new_session()
-    
 
+        # Se obtiene el reporte a modificar
         reporte_nuevo:ReporteRespuesta = ReporteFuncs.get_rep(
             session=session,
             tipo=ReporteRespuesta,
-            rid=reporte["rid"]
+            rid=reporte["arid"]
         )
 
+        # Se modifica el estado
         reporte_nuevo = ReporteFuncs.set_state(
             session=session,
             reporte=reporte_nuevo,
             estado=reporte["estado"]
         )
 
+        # Se convierte el objeto a diccionario
         reporte_resp:Dict = RespuestasServicio.build_dict_report(reporte_nuevo)
 
         session.flush()
         schema.remove_session()  
         return reporte_resp
 
+    def set_voto() -> List[Dict]:
+        """ Se vota una respuesta, si ya esta votada se desvota
+        """
+        pass

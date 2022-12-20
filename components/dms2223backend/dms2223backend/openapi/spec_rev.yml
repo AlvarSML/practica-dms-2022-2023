@@ -43,32 +43,6 @@ paths:
               schema:
                 type: string
                 example: '¡Hola, Mundo!'
-  /questions/{idusu}:
-    get: 
-      summary: Se obtienen las preguntas de un usuario
-      description: Se obtienen todos los datos de las preguntas de un usuario
-      operationId: dms2223backend.presentation.rest.inicio.preguntas_usuario
-      parameters:
-        - $ref: '#/components/parameters/IdentificadorPregunta'
-      responses:
-        '200':
-          description: Lista de preguntas
-          content:
-            'application/json':
-              schema:
-                $ref: '#/components/schemas/PreguntaModelo'
-              example:
-                id_pregunta: 123
-                titulo: 'Titulo de la pregunta'
-                contenido: 'Texto mas extenso de la pregunta'
-                autor: 123
-                fecha: 131289798312
-                visibilidad: true
-      tags:
-        - pregunta
-      security:
-        - user_token: []
-          api_key: []
   /questions:
     get:
       summary: Gets the existing questions
@@ -1150,28 +1124,7 @@ components:
     EmptyContentModel:
       type: string
       nullable: true
-    # Pregunta completa para devolver [Alvar]
-    PreguntaModelo:
-      type: object
-      properties:
-        idpreg:
-          type: integer
-        titulo:
-          type: string
-        contenido:
-          type: string
-        fecha:
-          type: integer
-        autor:
-          type: integer
-        visibilidad:
-          type: boolean
-      required:
-        - idpreg
-        - titulo
-        - fecha
-        - autor
-    # Modelo de voto para devolver de forma individual [Alvar]
+
     VoteModel:
       type: object
       properties:
@@ -1197,13 +1150,6 @@ components:
         - username
         - uid
   parameters:
-    IdentificadorPregunta:
-      name: idpreg
-      description: Identificador de una pregunta.
-      in: path
-      schema:
-        type: integer
-      required: true
     IdentificadorRespuesta:
       name: idresp
       description: Identificador de una respuesta.
@@ -1274,7 +1220,6 @@ components:
       schema:
         type: integer
       required: true
-
   responses:
     Empty:
       description: An empty content.

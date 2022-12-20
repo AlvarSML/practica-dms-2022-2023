@@ -33,7 +33,8 @@ def preguntas_usuario(idusu:int) -> Tuple[List[Pregunta],Optional[int]]:
 
 
 def list_preguntas() -> Tuple[List[Dict],Optional[int]]:
+    """ No funciona
+    """
     with current_app.app_context():
-        s_preguntas:PreguntasServicio = PreguntasServicio()
-        list_quest:List = s_preguntas.get_preguntas(current_app.db)
+        list_quest:List = PreguntasServicio.get_preguntas(schema=current_app.db)
     return (list_quest,HTTPStatus.OK)

@@ -9,7 +9,7 @@ from ..base import Base #Base declarativa
 
 from sqlalchemy.orm import relationship
 
-class tipo_voto(enum.Enum):
+class Tipo_voto(enum.Enum):
     positivo = 1
     negativo = 0
 
@@ -18,9 +18,19 @@ class Voto(Base):
 
     id_voto = Column(Integer, primary_key=True)
     id_elemento = Column(Integer, ForeignKey("elemento.id_elemento"))
-    autor = Column(Integer, ForeignKey("usuario.id_usuario"))
+    id_autor = Column(Integer, ForeignKey("usuario.id_usuario"),index=True)
 
-    tipo = Column(Enum(tipo_voto))
+    tipo = Column(Enum(Tipo_voto))
     
+    autor = relationship("Elemento")
     elemento = relationship("Elemento", back_populates="votos")
 
+    def __init__(
+        self,
+        elemento:Elemento,
+        autor:Usuario,
+        tipo:Tipo_voto = Tipo_voto.positivo
+        ):
+        self.elemento = elemento
+        self.autor=autor
+        self.tipo = tipo

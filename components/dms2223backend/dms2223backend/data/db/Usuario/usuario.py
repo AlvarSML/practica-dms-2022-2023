@@ -8,7 +8,7 @@ class Usuario(Base):
     __tablename__ = 'usuario'
 
     id_usuario = Column(Integer, primary_key=True)
-    nombre = Column(String(50) ,nullable=False, unique=True)
+    nombre = Column(String(50) ,nullable=False, unique=True, index=True)
 
     elementos = relationship('Elemento', back_populates="autor")
     preguntas = relationship('Pregunta', primaryjoin="Usuario.id_usuario == Pregunta.id_autor")

@@ -61,5 +61,5 @@ class ReporteFuncs():
     def get_rep(session:Session,tipo:type ,rid:int) -> Reporte:
         """ Obtiene un reporte segun su id
         """
-        return session.query(tipo).filter_by(tipo.id_reporte == rid).first()
+        return session.query(tipo).filter(tipo.id_reporte == rid).first()
 

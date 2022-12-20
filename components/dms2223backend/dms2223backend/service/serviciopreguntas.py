@@ -29,8 +29,10 @@ class PreguntasServicio():
             en lista de pregunta, no contiene los votos de las respuestas 
         """
         session: Session = schema.new_session()
-        stmt = select(Pregunta).where(Pregunta.id_pregunta == id)
-        preg = session.execute(stmt).first()
+        preg = PreguntaFuncs.get(
+            session=session,
+            qid=id
+            )
 
         resp:Dict = {
             "qid":preg.id_pregunta,
@@ -46,7 +48,7 @@ class PreguntasServicio():
         return resp
 
     @staticmethod
-    def get_preguntas(self, schema:Schema) -> List[Pregunta]:
+    def get_preguntas(schema:Schema) -> List[Pregunta]:
         """ Devuleve una lista de todas las preguntas
         """
         session: Session = schema.new_session()
