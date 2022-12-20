@@ -2,7 +2,7 @@
 
 from dms2223backend.data.config import BackendConfiguration
 from dms2223backend.data.db import Base, Schema
-from dms2223backend.data.db import Usuario, Pregunta, Reporte, ReportePregunta, Respuesta, Comentario, Voto, Feedback
+from dms2223backend.data.db import Usuario, Pregunta, Reporte, ReportePregunta, Respuesta, Comentario, Voto, Feedback, Estado_moderacion
 
 from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy import select, Table, Column, Integer, String, MetaData # type: ignore
@@ -110,6 +110,9 @@ r1 = ReportePregunta(
 
 session.add(r1)
 session.commit()
+session.flush()
+
+r1.estado = Estado_moderacion.REJECTED
 
 def print_tabla(tabla):
     stmt = select('*').select_from(tabla)

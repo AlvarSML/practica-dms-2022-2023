@@ -3,7 +3,7 @@ from datetime import datetime
 
 from dms2223backend.data.db.Usuario import Usuario
 from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
-from dms2223backend.data.db import Reporte, ReportePregunta, ReporteRespuesta, ReporteComentario
+from dms2223backend.data.db import Reporte, ReportePregunta, ReporteRespuesta, ReporteComentario, Estado_moderacion
 from dms2223backend.data.db.Voto import Voto
 
 from sqlalchemy.orm.session import Session  # type: ignore
@@ -21,6 +21,8 @@ class ReporteFuncs():
     
     @staticmethod
     def create_question_reps(session:Session,reporte:ReportePregunta)->ReportePregunta:
+        """ Crea un reporte a una pregunta especificamente
+        """
         session.add(reporte)
         session.commit()
         session.refresh(reporte)
@@ -28,10 +30,30 @@ class ReporteFuncs():
 
     @staticmethod
     def create_rep(session:Session,reporte:Reporte) -> Reporte:
-        """ Añade un reporte a la session, de cualquier tipo
-            Principio de liskov
+        """ Añade un reporte a la session, de cualquier tipo (no se si es aconsejable)
+            Principio de liskov*
+          !  Como el id es de un elemento se meta lo que se meta deberia funcionar
         """
         session.add(reporte)
         session.commit()
         session.refresh(reporte)
         return reporte
+
+    @staticmethod
+    def get_reps(session:Session,tipo:type) -> List[Reporte]:
+        """ Obtiene todos los reportes de un tipo
+        """
+        reps = session.query(tipo).all()
+        return reps
+
+    @staticmethod
+    def set_state(session:Session,reporte:Reporte,estado:Estado_moderacion) -> Reporte:
+        """ Cambia el estado de cualquier reporte 
+            Lsikov
+        """
+        reporte.estado = estado
+        session.commit()
+        session.refresh(reporte)
+        return reporte
+
+

@@ -11,11 +11,11 @@ from dms2223backend.data.db.Elemento.comentario import Comentario
 from ..base import Base #Base declarativa
 from sqlalchemy.orm import relationship
 
-class estado_moderacion(enum.Enum):
-    pendiente = 0
-    aceptado = 1
-    rechazado = 2
-    descartado = 3 # Ni se ha leido
+class Estado_moderacion(enum.Enum):
+    PENDING = 0
+    ACCEPTED = 1
+    REJECTED = 2
+    DISCARDED = 3 # Ni se ha leido
 
 class Reporte(Base):
     __tablename__= 'reporte'
@@ -27,7 +27,7 @@ class Reporte(Base):
 
     razon_reporte = Column(Text)
     resultado_moderacion = Column(String(100))  
-    estado = Column(Enum(estado_moderacion), default=estado_moderacion.pendiente)
+    estado = Column(Enum(Estado_moderacion), default=Estado_moderacion.PENDING)
 
     def __init__(self,
         autor:Usuario,

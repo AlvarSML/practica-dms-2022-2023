@@ -84,7 +84,7 @@ class RespuestasServicio():
         """
         session: Session = schema.new_session()
 
-        # Obtencion de datos previos
+        # Obtencion de datos previos inyeccion, de depnendencias
 
         resp = RespuestaFuncs.get(
             session=session,
