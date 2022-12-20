@@ -12,10 +12,10 @@ from ..base import Base #Base declarativa
 from sqlalchemy.orm import relationship
 
 class Estado_moderacion(enum.Enum):
-    PENDING = 0
-    ACCEPTED = 1
-    REJECTED = 2
-    DISCARDED = 3 # Ni se ha leido
+    pending = 0
+    accepted = 1
+    rejected = 2
+    discarded = 3 # Ni se ha leido
 
 class Reporte(Base):
     __tablename__= 'reporte'
@@ -27,7 +27,7 @@ class Reporte(Base):
 
     razon_reporte = Column(Text)
     resultado_moderacion = Column(String(100))  
-    estado = Column(Enum(Estado_moderacion), default=Estado_moderacion.PENDING)
+    estado = Column(Enum(Estado_moderacion), default=Estado_moderacion.pending, index=True)
 
     def __init__(self,
         autor:Usuario,

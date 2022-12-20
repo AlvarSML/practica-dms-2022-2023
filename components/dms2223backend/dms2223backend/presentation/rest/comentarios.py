@@ -29,10 +29,10 @@ def reporta_comentario():
     """
     pass
 
-def get_reportes():
+def get_reportes(aid:int, body:Dict, token_info:Dict):
     """ Obtiene todos los reportes de todos los comentarios
     """
-    pass
+    return 0
 
 def cambia_estado_reporte():
     """ Modifica el estado de un reporte a un comentario

@@ -40,10 +40,11 @@ class ReporteFuncs():
         return reporte
 
     @staticmethod
-    def get_reps(session:Session,tipo:type) -> List[Reporte]:
+    def get_reps(session:Session,tipo:type,estados:List[Estado_moderacion]) -> List[Reporte]:
         """ Obtiene todos los reportes de un tipo
+            Permite expandir los estados de moderacion
         """
-        reps = session.query(tipo).all()
+        reps = session.query(tipo).filter(tipo.estado.in_(estados)).all()
         return reps
 
     @staticmethod
@@ -56,4 +57,9 @@ class ReporteFuncs():
         session.refresh(reporte)
         return reporte
 
+    @staticmethod
+    def get_rep(session:Session,tipo:type ,rid:int) -> Reporte:
+        """ Obtiene un reporte segun su id
+        """
+        return session.query(tipo).filter_by(tipo.id_reporte == rid).first()
 

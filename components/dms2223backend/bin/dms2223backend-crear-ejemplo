@@ -112,7 +112,7 @@ session.add(r1)
 session.commit()
 session.flush()
 
-r1.estado = Estado_moderacion.REJECTED
+r1.estado = Estado_moderacion.rejected
 
 def print_tabla(tabla):
     stmt = select('*').select_from(tabla)

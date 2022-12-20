@@ -8,7 +8,7 @@ from dms2223backend.data.db import Schema
 
 
 from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
-from dms2223backend.data.db import ReporteRespuesta
+from dms2223backend.data.db import ReporteRespuesta, Estado_moderacion
 
 
 from dms2223backend.data.resultsets import RespuestaFuncs, FeedBackFuncs, \
@@ -22,6 +22,29 @@ class RespuestasServicio():
     """ Clase "estatica" que permite el acceso a las operaciones de creacion o consulta
         derivados de respuesta
     """
+
+    @staticmethod
+    def build_report(raw:Dict) -> ReporteRespuesta:
+        rep:ReporteRespuesta = ReporteRespuesta(
+            respuesta=raw["aid"],
+            razon_reporte=raw["razon_reporte"],
+            autor=raw["user"]
+        )
+        return rep
+    
+    @staticmethod
+    def build_dict_report(reporte:ReporteRespuesta) -> Dict:
+        """ Construye el diccionario de un reporte de respuesta
+        """
+        rep:Dict = {
+            "id":reporte.id_reporte,
+            "qid":reporte.id_respuesta,
+            "reason":reporte.razon_reporte,
+            "status":reporte.estado.name,
+            "owner":{"username":reporte.autor.nombre},
+            "timestamp":reporte.fecha
+        }
+        return rep
 
     @staticmethod
     def set_comment(schema:Schema,comentario:Dict) -> Dict:
@@ -120,3 +143,49 @@ class RespuestasServicio():
 
         schema.remove_session()
         return reporte_dict
+
+    @staticmethod
+    def get_reports(schema:Schema, estados:List[Estado_moderacion]) -> List[Dict]:
+        """ Transforma los reportes en una lista
+        """
+        session: Session = schema.new_session()
+        reports:List = []
+
+        res = ReporteFuncs.get_reps(
+            session=session,
+            tipo=ReporteRespuesta,
+            estados=estados
+            )
+
+        for rep in res:
+            reports.append(RespuestasServicio.build_dict_report(rep))
+        
+        session.flush()
+        schema.remove_session()  
+        return reports
+
+    @staticmethod
+    def set_estado(schema:Schema, reporte:Dict) -> Dict:
+        """ Cambia el estado de un reporte a una respuesta
+        """
+        session: Session = schema.new_session()
+    
+
+        reporte_nuevo:ReporteRespuesta = ReporteFuncs.get_rep(
+            session=session,
+            tipo=ReporteRespuesta,
+            rid=reporte["rid"]
+        )
+
+        reporte_nuevo = ReporteFuncs.set_state(
+            session=session,
+            reporte=reporte_nuevo,
+            estado=reporte["estado"]
+        )
+
+        reporte_resp:Dict = RespuestasServicio.build_dict_report(reporte_nuevo)
+
+        session.flush()
+        schema.remove_session()  
+        return reporte_resp
+
