@@ -34,3 +34,11 @@ class Voto(Base):
         self.elemento = elemento
         self.autor=autor
         self.tipo = tipo
+
+    def __repr__(self) -> str:
+        return  f"Voto\
+        (id_voto={self.id_voto!r}, \
+        elemento=, \
+        autor={self.autor.nombre!r}, \
+        tipo={self.tipo.name!r},\
+        )"

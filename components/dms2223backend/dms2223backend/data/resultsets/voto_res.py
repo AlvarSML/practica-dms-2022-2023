@@ -12,36 +12,35 @@ class VotoFuncs():
     def get(session:Session,elemento:Elemento,usuario_nombre:str) -> Voto:
         """ Obtiene un voto de un usuario en un elemento si existe
         """
-        elem:Elemento = elemento.votos\
+        voto:Voto = elemento.votos\
             .join(Voto.autor)\
             .filter(Usuario.nombre == usuario_nombre)\
             .first()
 
-        return elem
-    
-    def toggle_vote(session:Session,voto:Voto) -> Voto:
-        """ cambia el estado de un voto
-            TODO: Limpiar returns
-        """
-        # 1. se intenta conseguir el voto
-        nvoto:Voto = VotoFuncs.get(
-            session=session,
-            elemento=voto.elemento,
-            usuario_nombre=voto.autor.nombre)
+        return voto
 
-        if nvoto:
-            # 2a. Si ya existe el voto se elimina
-            session.delete(nvoto)
-            session.commit()
-            return None
-        else:
-            # 2b. Si no existe se crea uno nuevo
-            session.add(voto)
-            session.commit()
-            session.refresh(voto)
-            return voto      
+    def create(session:Session, voto:Voto) -> Voto:
+        """ Crea un voto nuevo
+        """
+        session.add(voto)
+        session.commit()
+        session.refresh(voto)
+        return voto
+    
+    def exists(session:Session, elemento:Elemento, usuario_nombre:str) -> int:
+        """ Compruueba si un voto existe
+        """
+        voto = elemento.votos.filter_by(autor=usuario_nombre).first()
+        return voto.id_voto    
+    
+    def delete(session:Session, voto:Voto) -> int:
+        """ Elimina un voto
+        """
+        session.delete(voto)
+        session.commit()
+        return 0
         
     def get_all(session:Session, elemento:Elemento) -> List[Voto]:
         """ Obtiene todos los votos de un elemento
         """
-        return elemento.votos.all()
+        return elemento.votos.filter().all()

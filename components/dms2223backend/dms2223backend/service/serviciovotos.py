@@ -13,7 +13,7 @@ class VotosServicio():
             "id":voto.id_voto,
             "element":voto.id_elemento,
             "user":voto.autor.nombre,
-            "type":voto.tipo
+            "type":voto.tipo.name
         }
 
     def set_voto(schema:Schema, id:int, user:str) -> List[Dict]:
@@ -35,27 +35,39 @@ class VotosServicio():
             nombre=user
         )
 
-        # Construccion del voto a emitir
-        voto:Voto = Voto(
-            elemento = elem,
-            tipo=Tipo_voto.positivo,
-            autor=autor
-        )
-
         # Se busca si el voto se ha emitido ya
-        res:Voto = VotoFuncs.toggle_vote(
+        voto_existente:Voto = VotoFuncs.get(
             session=session,
-            voto=voto
+            elemento=elem,
+            usuario_nombre=autor.nombre
         )
 
+        print("# voto_existente",file=sys.stderr)
+        print(voto_existente,file=sys.stderr)
+
+        # Si existe se elimina
+        
+        if voto_existente:
+            VotoFuncs.delete(
+                session=session,
+                voto=voto_existente
+            )
+        else:
+            VotoFuncs.create(
+                session=session,
+                voto=Voto(
+                    elemento = elem,
+                    tipo=Tipo_voto.positivo,
+                    autor=autor
+                )
+            )
+        
         session.refresh(elem)
         votos:List[Voto] = VotoFuncs.get_all(
             session=session,
             elemento=elem
         )
 
-        print("elemento",file=sys.stderr)
-        print(elem,file=sys.stderr)
 
         votos:List[Dict] = [VotosServicio.build_vote_dict(v) for v in votos]
 

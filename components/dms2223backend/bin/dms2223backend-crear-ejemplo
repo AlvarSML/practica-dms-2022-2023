@@ -116,12 +116,15 @@ v1 = Voto(
     autor=us1
 )
 
-v1 = Voto(
+v2 = Voto(
     elemento=r1,
     autor=us2
 )
 
+session.add(v1)
+session.add(v2)
 
+session.commit()
 session.flush()
 
 r1.estado = Estado_moderacion.rejected
@@ -140,4 +143,4 @@ print_tabla(Usuario)
 print_tabla(Respuesta)
 print_tabla(Comentario)
 print_tabla(ReportePregunta)
-
+print_tabla(Voto)
