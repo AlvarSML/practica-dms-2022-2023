@@ -22,6 +22,18 @@ class RespuestasServicio():
     """ Clase "estatica" que permite el acceso a las operaciones de creacion o consulta
         derivados de respuesta
     """
+    @staticmethod
+    def build_dict_ans(ans:Respuesta) -> Dict:
+        nans:Dict = {
+            "id":ans.id_respuesta,
+            "qid":ans.id_pregunta,
+            "timestamp":ans.fecha,
+            "body":ans.contenido,
+            "owner":{"username":ans.autor.nombre},
+            "votes":ans.votos.count()
+        }
+
+        return nans
 
     @staticmethod
     def build_report(raw:Dict) -> ReporteRespuesta:

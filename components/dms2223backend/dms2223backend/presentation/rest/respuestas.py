@@ -12,7 +12,8 @@ from sqlalchemy.orm.session import Session # type: ignore
 from dms2223backend.data.resultsets import PreguntaFuncs, ReporteFuncs
 
 from dms2223backend.service import RespuestasServicio, VotosServicio
-from dms2223backend.data.db import Pregunta, Respuesta, Estado_moderacion, ReporteRespuesta, Voto
+from dms2223backend.data.db import Pregunta, Respuesta, Estado_moderacion,\
+     ReporteRespuesta, Voto, Elemento
 
 from flask import current_app
 
@@ -91,10 +92,11 @@ def vota_respuesta(aid:int, token_info: Dict) -> Tuple[Dict, HTTPStatus]:
         TODO: todos los votos son positivos de momento
     """
     with current_app.app_context():
-        elem = VotosServicio.set_voto(
+        votos:List = VotosServicio.set_voto(
             schema=current_app.db,
             id=aid,
             user=token_info["user_token"]["username"]
         )
 
-    return (0, HTTPStatus.OK)
+
+    return (votos, HTTPStatus.CREATED)

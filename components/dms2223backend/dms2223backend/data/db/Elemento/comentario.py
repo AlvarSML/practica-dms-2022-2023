@@ -16,7 +16,8 @@ class Comentario(Elemento):
 
     feedback = relationship(
         "Feedback",
-        foreign_keys=[id_feedback])
+        foreign_keys=[id_feedback],
+        overlaps="comentarios")
 
     respuesta = relationship(
         "Respuesta", 

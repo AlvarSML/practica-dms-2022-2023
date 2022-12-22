@@ -22,7 +22,7 @@ class Voto(Base):
 
     tipo = Column(Enum(Tipo_voto))
     
-    autor = relationship("Elemento")
+    autor = relationship("Usuario")
     elemento = relationship("Elemento", back_populates="votos")
 
     def __init__(

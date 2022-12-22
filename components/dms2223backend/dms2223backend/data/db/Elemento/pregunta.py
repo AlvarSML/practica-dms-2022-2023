@@ -33,10 +33,12 @@ class Pregunta(Elemento):
         self.titulo = titulo
 
     def __repr__(self) -> str:        
-        return  f"Pregunta(id_pregunta={self.id_pregunta!r}, \
+        return  f"Pregunta(\
+        id_pregunta={self.id_pregunta!r}, \
         titulo={self.titulo!r}, \
         contenido={self.contenido!r}, \
         fecha={self.fecha!r}, \
         autor={self.autor!r},\
         visibilidad={str(self.visibilidad)!r} \
+        votos={str(self.votos)}\
         )"

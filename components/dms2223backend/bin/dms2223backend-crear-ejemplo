@@ -102,14 +102,26 @@ session.add(c1)
 session.add(c2)
 session.commit()
 
-r1 = ReportePregunta(
+re1 = ReportePregunta(
     pregunta=p1,
     autor=us1,
     razon_reporte="no me gusta"
 )
 
-session.add(r1)
+session.add(re1)
 session.commit()
+
+v1 = Voto(
+    elemento=r1,
+    autor=us1
+)
+
+v1 = Voto(
+    elemento=r1,
+    autor=us2
+)
+
+
 session.flush()
 
 r1.estado = Estado_moderacion.rejected

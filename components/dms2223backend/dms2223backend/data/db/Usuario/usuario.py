@@ -11,9 +11,10 @@ class Usuario(Base):
     nombre = Column(String(50) ,nullable=False, unique=True, index=True)
 
     elementos = relationship('Elemento', back_populates="autor")
-    preguntas = relationship('Pregunta', primaryjoin="Usuario.id_usuario == Pregunta.id_autor")
-    respuestas = relationship('Respuesta',  primaryjoin="Usuario.id_usuario == Respuesta.id_autor")
-    comentarios = relationship('Comentario',  primaryjoin="Usuario.id_usuario == Comentario.id_autor")
+
+    preguntas = relationship('Pregunta', primaryjoin="Usuario.id_usuario == Pregunta.id_autor", overlaps="elementos")
+    respuestas = relationship('Respuesta',  primaryjoin="Usuario.id_usuario == Respuesta.id_autor", overlaps="elementos")
+    comentarios = relationship('Comentario',  primaryjoin="Usuario.id_usuario == Comentario.id_autor", overlaps="elementos")
 
     reportesPregs = relationship('ReportePregunta',  primaryjoin="Usuario.id_usuario == ReportePregunta.id_autor")
     reportesResps = relationship('ReporteRespuesta',  primaryjoin="Usuario.id_usuario == ReporteRespuesta.id_autor")

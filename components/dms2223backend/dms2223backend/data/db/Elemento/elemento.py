@@ -14,7 +14,11 @@ class Elemento(Base):
     
     id_autor = Column(Integer, ForeignKey(Usuario.id_usuario))
 
-    autor = relationship("Usuario",back_populates="elementos")
+    autor = relationship(
+        "Usuario",
+        back_populates="elementos",
+        overlaps="comentarios,preguntas,respuestas")
+        
     votos = relationship(
         "Voto",
         back_populates="elemento",
