@@ -8,6 +8,7 @@ import sys
 
 class VotosServicio():
 
+    @staticmethod
     def build_vote_dict(voto:Voto) -> Dict:
         return {
             "id":voto.id_voto,
@@ -16,6 +17,7 @@ class VotosServicio():
             "type":voto.tipo.name
         }
 
+    @staticmethod
     def set_voto(schema:Schema, id:int, user:str) -> List[Dict]:
         """ Intento de generalizar
             TODO: pasar a la nueva capa

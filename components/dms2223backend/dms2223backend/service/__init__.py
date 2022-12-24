@@ -5,3 +5,4 @@ from .authservice import AuthService
 from .serviciopreguntas import PreguntasServicio
 from .serviciovotos import VotosServicio
 from .serviciousuarios import UsuariosServicio
+from .servicioreportes import ReportesServicio

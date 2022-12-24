@@ -74,7 +74,6 @@ def get_reportes(**kwargs:Dict) -> Tuple[List[Dict], HTTPStatus]:
 
 def cambia_estado_reporte(arid: int, body: Dict, token_info: Dict) -> Tuple[Dict, HTTPStatus]:
     """ Modifica el estado de un reporte
-        TODO: respuesta 205
     """
     with current_app.app_context():
         reporte:Dict = RespuestasServicio.set_estado(
@@ -97,6 +96,4 @@ def vota_respuesta(aid:int, token_info: Dict) -> Tuple[Dict, HTTPStatus]:
             id=aid,
             user=token_info["user_token"]["username"]
         )
-
-
     return (votos, HTTPStatus.CREATED)
