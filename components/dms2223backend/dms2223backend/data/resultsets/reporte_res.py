@@ -9,6 +9,8 @@ from dms2223backend.data.db.Voto import Voto
 from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy import select # type: ignore
 
+import sys
+
 class ReporteFuncs():
 
     @staticmethod
@@ -44,6 +46,7 @@ class ReporteFuncs():
         """ Obtiene todos los reportes de un tipo
             Permite expandir los estados de moderacion
         """
+        print(tipo,file=sys.stderr)
         reps = session.query(tipo).filter(tipo.estado.in_(estados)).all()
         return reps
 

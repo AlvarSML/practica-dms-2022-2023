@@ -29,6 +29,13 @@ class Reporte(Base):
     resultado_moderacion = Column(String(100))  
     estado = Column(Enum(Estado_moderacion), default=Estado_moderacion.pending, index=True)
 
+    type = Column(String(50)) #Especifica el tipo de reporte que es
+
+    __mapper_args__ = {
+        "polymorphic_identity": "reporte",
+        "polymorphic_on": type,
+    }
+
     def __init__(self,
         autor:Usuario,
         razon_reporte:str
@@ -45,6 +52,10 @@ class ReportePregunta(Reporte):
         back_populates="reportesPregs",
         primaryjoin="Reporte.id_autor == Usuario.id_usuario")
     
+    __mapper_args__ = {
+        "polymorphic_identity": "reporte_pregunta",
+    }
+
     def __init__(
         self,
         autor:Usuario,
@@ -63,6 +74,10 @@ class ReporteRespuesta(Reporte):
     autor = relationship("Usuario",
         back_populates="reportesResps",
         primaryjoin="Reporte.id_autor == Usuario.id_usuario")
+
+    __mapper_args__ = {
+        "polymorphic_identity": "reporte_respuesta",
+    }
 
     def __init__(
         self,
@@ -84,6 +99,10 @@ class ReporteComentario(Reporte):
         back_populates="reportesComs",
         primaryjoin="Reporte.id_autor == Usuario.id_usuario")
     
+    __mapper_args__ = {
+        "polymorphic_identity": "reporte_comentario",
+    }
+
     def __init__(
         self,
         autor:Usuario,

@@ -2,7 +2,9 @@
 
 from dms2223backend.data.config import BackendConfiguration
 from dms2223backend.data.db import Base, Schema
-from dms2223backend.data.db import Usuario, Pregunta, Reporte, ReportePregunta, Respuesta, Comentario, Voto, Feedback, Estado_moderacion
+from dms2223backend.data.db import Usuario, Pregunta, Reporte, ReportePregunta,\
+     Respuesta, Comentario, Voto, Feedback, Estado_moderacion, ReporteComentario,\
+     ReporteRespuesta
 
 from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy import select, Table, Column, Integer, String, MetaData # type: ignore
@@ -106,6 +108,12 @@ re1 = ReportePregunta(
     pregunta=p1,
     autor=us1,
     razon_reporte="no me gusta"
+)
+
+re2 = ReporteComentario(
+    comentario=c1,
+    autor=us1,
+    razon_reporte="mal comentario"
 )
 
 session.add(re1)

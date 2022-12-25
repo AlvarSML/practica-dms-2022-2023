@@ -11,15 +11,33 @@ from sqlalchemy import select, inspect
 
 import sys
 
+
+
 class ReportesServicio():
 
+    # Tablas de traduccion para automatizar los reportes
+
+    dict_fk_equiv:Dict = {
+        ReporteComentario:"cid",
+        ReporteRespuesta:"aid",
+        ReportePregunta:"qid"
+    }
+
+    dict_id_equiv:Dict = {
+        ReporteComentario:"comentario",
+        ReporteRespuesta:"respuesta",
+        ReportePregunta:"pregunta"
+    }
+
     @staticmethod
-    def build_dict_report(reporte:Reporte,id_type:str,id_elem_type:str) -> Dict:
+    def build_dict_report(reporte:Reporte, id_type:str, id_elem_type:str) -> Dict:
         """ Genera un diccionario generico de reporte
         """
+        print(reporte.comentario,file=sys.stderr)
+
         return  {
             "id":reporte.id_reporte,
-            id_type:getattr(reporte, id_elem_type),
+            id_type:id_elem_type,
             "reason":reporte.razon_reporte,
             "status":reporte.estado.name,
             "owner":{"username":reporte.autor.nombre},
@@ -27,12 +45,16 @@ class ReportesServicio():
         }
     
     @staticmethod
-    def get_reports(schema:Schema,rep_type:type ,estados:List[Estado_moderacion]):
+    def get_reports(schema:Schema, rep_type:type ,estados:List[Estado_moderacion]):
         """ Funcion generica para obtener una lista de reportes
+            Nescisita saber el tipo de reporte que se quiere y la equivalencia de id,
+            que esta *hardcodeado*
         """
         session:Session = schema.new_session()
-        # Puede ser problematico en el futuro
-        pk:str = inspect(rep_type).columns.foreign_keys[0]
+
+        # se usan tablas de traduccion para obtener los ids equivalentes
+        fk:str = ReportesServicio.dict_fk_equiv[rep_type]
+        attr:str = ReportesServicio.dict_id_equiv[rep_type]
         reports:List = []
 
         res = ReporteFuncs.get_reps(
@@ -44,8 +66,8 @@ class ReportesServicio():
         for rep in res:
             reports.append(ReportesServicio.build_dict_report(
                 reporte=rep,
-                id_type=pk,
-                id_elem_type=''
+                id_type=fk,
+                id_elem_type=attr
                 ))
         
         session.flush()
