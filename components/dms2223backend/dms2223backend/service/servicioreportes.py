@@ -33,11 +33,10 @@ class ReportesServicio():
     def build_dict_report(reporte:Reporte, id_type:str, id_elem_type:str) -> Dict:
         """ Genera un diccionario generico de reporte
         """
-        print(reporte.comentario,file=sys.stderr)
 
         return  {
             "id":reporte.id_reporte,
-            id_type:id_elem_type,
+            id_type:getattr(reporte, id_elem_type).id_elemento,
             "reason":reporte.razon_reporte,
             "status":reporte.estado.name,
             "owner":{"username":reporte.autor.nombre},
