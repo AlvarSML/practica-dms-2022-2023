@@ -4,7 +4,8 @@ from dms2223backend.data.db import Reporte, Schema
 from dms2223backend.data.db import ReporteRespuesta, Reporte, ReportePregunta,\
      ReporteComentario, Estado_moderacion
 
-from dms2223backend.data.resultsets import UsuarioFuncs, RespuestaFuncs, ReporteFuncs, ComentarioFuncs
+from dms2223backend.data.resultsets import UsuarioFuncs, RespuestaFuncs, ReporteFuncs,\
+     ComentarioFuncs, PreguntaFuncs
 
 from typing import List, Dict, ClassVar
 from sqlalchemy import select, inspect
@@ -16,6 +17,10 @@ import sys
 class ReportesServicio():
 
     # Tablas de traduccion para automatizar los reportes
+    # se añaden porque los id de las clases son distintos 
+    # a los que queremos devolver.
+    # En caso de añadir un nuevo tipo de reporte se deberia
+    # modificar
 
     dict_fk_equiv:Dict = {
         ReporteComentario:"cid",
@@ -33,7 +38,6 @@ class ReportesServicio():
     def build_dict_report(reporte:Reporte, id_type:str, id_elem_type:str) -> Dict:
         """ Genera un diccionario generico de reporte
         """
-
         return  {
             "id":reporte.id_reporte,
             id_type:getattr(reporte, id_elem_type).id_elemento,
@@ -150,7 +154,7 @@ class ReportesServicio():
         return reporte_dict
 
     @staticmethod
-    def set_comment_answer(schema:Schema,reporte:Dict) -> Dict:
+    def set_report_comment(schema:Schema,reporte:Dict) -> Dict:
         """ Construye un reporte para introducirlo en la bdd
             TODO: que exista el comentario
         """
@@ -183,7 +187,7 @@ class ReportesServicio():
 
         reporte_dict:Dict = {
             "id":res.id_reporte,
-            "cid":res.id_respuesta,
+            "cid":res.id_comentario,
             "reason":res.razon_reporte,
             "status":res.estado.name,
             "owner":{"username":res.autor.nombre},
@@ -193,4 +197,78 @@ class ReportesServicio():
         schema.remove_session()
         return reporte_dict
 
-    
+    @staticmethod
+    def set_report_question(schema:Schema,reporte:Dict) -> Dict:
+        """ Construye un reporte para introducirlo en la bdd
+            TODO: que exista el comentario
+        """
+        session: Session = schema.new_session()
+
+        # Obtencion de datos previos inyeccion, de depnendencias
+
+        quest = PreguntaFuncs.get(
+            session=session,
+            qid=reporte["qid"])
+
+        usuario = UsuarioFuncs.get_or_create(
+            session=session,
+            nombre=reporte["autor"])
+
+        # Construccion de respuesta
+
+        rep:ReportePregunta = ReportePregunta(
+            pregunta=quest,
+            razon_reporte=reporte["razon_reporte"],
+            autor=usuario
+        )
+
+        # Se introduce el reporte en la bdd
+
+        res:ReportePregunta = ReporteFuncs.create_rep(
+            session=session,
+            reporte=rep
+        )
+
+        reporte_dict:Dict = {
+            "id":res.id_reporte,
+            "qid":res.id_pregunta,
+            "reason":res.razon_reporte,
+            "status":res.estado.name,
+            "owner":{"username":res.autor.nombre},
+            "timestamp":res.fecha
+        }
+
+        schema.remove_session()
+        return reporte_dict
+
+    @staticmethod
+    def set_estado(schema:Schema, reporte:Dict) -> Dict:
+        """ Cambia el estado de un reporte a una respuesta
+        """
+        session: Session = schema.new_session()
+
+        # Se obtiene el reporte a modificar
+        reporte_nuevo:Reporte = ReporteFuncs.get_rep(
+            session=session,
+            tipo=Reporte,
+            rid=reporte["rid"]
+        )
+
+        print(reporte_nuevo,file=sys.stderr)
+
+        # Se modifica el estado
+        reporte_nuevo = ReporteFuncs.set_state(
+            session=session,
+            reporte=reporte_nuevo,
+            estado=reporte["estado"]
+        )
+
+        # Se convierte el objeto a diccionario
+        reporte_resp:Dict = ReportesServicio.build_dict_report(
+            reporte=reporte_nuevo, 
+            id_type="cid", 
+            id_elem_type="comentario")
+
+        session.flush()
+        schema.remove_session()  
+        return reporte_resp

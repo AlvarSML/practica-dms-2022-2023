@@ -33,7 +33,7 @@ def reporta_comentario(cid:int, body:Dict, token_info:Dict):
     """ Reporta un comentario
     """
     with current_app.app_context():
-        report:Dict = ReportesServicio.set_report_answer(
+        report:Dict = ReportesServicio.set_report_comment(
             schema=current_app.db,
             reporte={
                 "cid":cid,
@@ -61,7 +61,17 @@ def get_reportes(**kwargs:Dict) -> Tuple[List[Dict], HTTPStatus]:
 
     return (reportes, HTTPStatus.OK)
 
-def cambia_estado_reporte():
+def cambia_estado_reporte(crid: int, body: Dict, token_info: Dict):
     """ Modifica el estado de un reporte a un comentario
     """
+    with current_app.app_context():
+        reporte:Dict = ReportesServicio.set_estado(
+            schema=current_app.db,
+            reporte={
+                "rid":crid,
+                "autor":token_info["user_token"]["username"],
+                "estado":body["status"].lower()
+            }
+        )
+    return (reporte, HTTPStatus.OK)
     pass

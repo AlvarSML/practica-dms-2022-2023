@@ -15,6 +15,9 @@ class ReporteFuncs():
 
     @staticmethod
     def get_question_reps(session:Session):
+        """ Obtiene todos los reportes a preguntas
+            ! Deprecado
+        """
         stmt = select(ReportePregunta)
         reps:List[ReportePregunta] = []
         for rep in session.execute(stmt):
@@ -64,5 +67,6 @@ class ReporteFuncs():
     def get_rep(session:Session,tipo:type ,rid:int) -> Reporte:
         """ Obtiene un reporte segun su id
         """
+        print(tipo,file=sys.stderr)
         return session.query(tipo).filter(tipo.id_reporte == rid).first()
 
