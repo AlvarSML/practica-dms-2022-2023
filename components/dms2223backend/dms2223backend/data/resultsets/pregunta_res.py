@@ -69,4 +69,3 @@ class PreguntaFuncs():
         preg = session.query(Pregunta).filter(Pregunta.id_pregunta == qid).first()
         return preg
     
-    

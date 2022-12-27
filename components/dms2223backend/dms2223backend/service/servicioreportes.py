@@ -16,6 +16,8 @@ import sys
 
 class ReportesServicio():
 
+    # TODO: Ocultar elemento cuando se acepte el reporte
+
     # Tablas de traduccion para automatizar los reportes
     # se añaden porque los id de las clases son distintos 
     # a los que queremos devolver.
@@ -122,6 +124,9 @@ class ReportesServicio():
             session=session,
             aid=reporte["aid"])
 
+        if resp is None:
+            return None
+
         usuario = UsuarioFuncs.get_or_create(
             session=session,
             nombre=reporte["autor"])
@@ -165,6 +170,9 @@ class ReportesServicio():
         comm = ComentarioFuncs.get(
             session=session,
             cid=reporte["cid"])
+
+        if comm is None:
+            return None
 
         usuario = UsuarioFuncs.get_or_create(
             session=session,
@@ -210,6 +218,9 @@ class ReportesServicio():
             session=session,
             qid=reporte["qid"])
 
+        if quest is None:
+            return None
+
         usuario = UsuarioFuncs.get_or_create(
             session=session,
             nombre=reporte["autor"])
@@ -242,8 +253,8 @@ class ReportesServicio():
         return reporte_dict
 
     @staticmethod
-    def set_estado(schema:Schema, reporte:Dict) -> Dict:
-        """ Cambia el estado de un reporte a una respuesta
+    def set_estado(schema:Schema, reporte:Dict, tipo:type) -> Dict:
+        """ Cambia el estado de un reporte a una
         """
         session: Session = schema.new_session()
 
@@ -254,7 +265,8 @@ class ReportesServicio():
             rid=reporte["rid"]
         )
 
-        print(reporte_nuevo,file=sys.stderr)
+        if reporte_nuevo is None: # Comprobar que exista
+            return None
 
         # Se modifica el estado
         reporte_nuevo = ReporteFuncs.set_state(
@@ -264,10 +276,13 @@ class ReportesServicio():
         )
 
         # Se convierte el objeto a diccionario
+        fk:str = ReportesServicio.dict_fk_equiv[tipo]
+        attr:str = ReportesServicio.dict_id_equiv[tipo]
+
         reporte_resp:Dict = ReportesServicio.build_dict_report(
             reporte=reporte_nuevo, 
-            id_type="cid", 
-            id_elem_type="comentario")
+            id_type=fk, 
+            id_elem_type=attr)
 
         session.flush()
         schema.remove_session()  

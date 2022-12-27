@@ -129,6 +129,16 @@ v2 = Voto(
     autor=us2
 )
 
+v3 = Voto(
+    elemento=c1,
+    autor=us2
+)
+
+v4 = Voto(
+    elemento=c2,
+    autor=us1
+)
+
 session.add(v1)
 session.add(v2)
 

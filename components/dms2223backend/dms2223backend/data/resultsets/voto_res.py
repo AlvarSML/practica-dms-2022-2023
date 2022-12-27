@@ -1,4 +1,4 @@
-from dms2223backend.data.db import Usuario,Elemento,Voto
+from dms2223backend.data.db import Usuario,Elemento,Voto, Tipo_voto
 from typing import List, Dict, Optional
 from datetime import datetime
 
@@ -44,3 +44,13 @@ class VotoFuncs():
         """ Obtiene todos los votos de un elemento
         """
         return elemento.votos.filter().all()
+    
+    def get_type(session:Session, elemento:Elemento, tipo_voto:Tipo_voto) -> List[Voto]:
+        """ Obtiene el numero de votos de un tipo concreto
+        """
+        return elemento.votos.filter_by(tipo=tipo_voto).all()
+
+    def get_type_count(session:Session, elemento:Elemento, tipo_voto:Tipo_voto) -> List[Voto]:
+        """ Obtiene el numero de votos de un tipo concreto
+        """
+        return elemento.votos.filter_by(tipo=tipo_voto).count()

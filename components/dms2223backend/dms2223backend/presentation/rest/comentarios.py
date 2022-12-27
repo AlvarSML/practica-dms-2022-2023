@@ -74,4 +74,3 @@ def cambia_estado_reporte(crid: int, body: Dict, token_info: Dict):
             }
         )
     return (reporte, HTTPStatus.OK)
-    pass

@@ -6,9 +6,9 @@ from sqlalchemy.orm.session import Session  # type: ignore
 from dms2223backend.data.db import Schema
 
 from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
-from dms2223backend.data.db import Usuario, Voto, ReportePregunta
+from dms2223backend.data.db import Usuario, Voto, Tipo_voto ,ReportePregunta
 from dms2223backend.data.resultsets.pregunta_res import PreguntaFuncs
-from dms2223backend.data.resultsets import UsuarioFuncs, RespuestaFuncs
+from dms2223backend.data.resultsets import UsuarioFuncs, RespuestaFuncs, VotoFuncs
 
 from sqlalchemy import select
 
@@ -16,7 +16,6 @@ from dms2223backend.data.resultsets import ReporteFuncs
 
 from .authservice import AuthService
 
-import sys
 
 class PreguntasServicio():
     """ Clase "estatica" que permite el acceso a las operaciones de creacion o consulta
@@ -34,12 +33,27 @@ class PreguntasServicio():
             qid=id
             )
 
+        if preg is None:
+            return None
+        
+        votos_pos:int = VotoFuncs.get_type_count(
+            session=session,
+            elemento=preg,
+            tipo_voto=Tipo_voto.positivo
+        )
+
+        votos_neg:int = VotoFuncs.get_type_count(
+            session=session,
+            elemento=preg,
+            tipo_voto=Tipo_voto.negativo
+        )
+
         resp:Dict = {
             "qid":preg.id_pregunta,
             "title":preg.titulo,
             "tiemstamp":preg.fecha,
-            "pos_votes":-1,
-            "neg_votes":-1,
+            "pos_votes":votos_pos,
+            "neg_votes":votos_neg,
             "body":preg.contenido,
             "owner":{"username":preg.autor.nombre}
         }
@@ -101,6 +115,9 @@ class PreguntasServicio():
         session: Session = schema.new_session()
         res = PreguntaFuncs.get(session=session,qid=qid)
         
+        if res is None:
+            return None
+
         session.refresh(res)
 
         answers:List[Dict] = []
@@ -108,17 +125,26 @@ class PreguntasServicio():
         for answer in res.respuestas:
             session.refresh(answer)
 
+            # Se convierten los comentarios en diccionarios
+            # Se necesitan los votos de cada comentario
             comentarios:List = []
             for comm in answer.comentarios:
+                votos:List = [{com.autor.nombre:com.tipo.name} for com in VotoFuncs.get_all(session=session,elemento=comm)]
                 comentarios.append({
                     "id":comm.id_comentario,
                     "aid":answer.id_respuesta,
                     "timestamp":comm.fecha,
                     "body":comm.contenido,
                     "owner":{"username":comm.autor.nombre},
-                    "votes":3,
+                    "user_votes": votos,
+                    "votes":len(votos),
                     "sentiment":"POSITIVE"
                 })
+
+            # Se convierten los votos en diccionarios
+            # Los votos no se cargan por defecto, hay que especificarlo
+            votos:List = [{voto.autor.nombre:voto.tipo.name} for voto in VotoFuncs.get_all(session=session,elemento=answer)]
+
 
             answers.append({
                 "id":answer.id_respuesta,
@@ -126,7 +152,9 @@ class PreguntasServicio():
                 "timestamp":answer.fecha,
                 "body":answer.contenido,
                 "owner":{"username":answer.autor.nombre},
-                "comments":comentarios
+                "comments":comentarios,
+                "user_votes":votos,
+                "votes":len(votos)
             })
 
         schema.remove_session()    
@@ -184,9 +212,12 @@ class PreguntasServicio():
         session: Session = schema.new_session()
         
         p = PreguntaFuncs.get(session=session,qid=respuesta["qid"])
-        u = UsuarioFuncs.get(session=session,nombre=respuesta["autor"])
-        if not(u):
-            u = Usuario(nombre=respuesta["autor"])
+        u = UsuarioFuncs.get_or_create(
+            session=session,
+            nombre=respuesta["autor"])
+
+        if p is None:
+            return None
 
         answ:Respuesta = Respuesta(
             contenido=respuesta["contenido"],
@@ -209,6 +240,8 @@ class PreguntasServicio():
             "user_votes": {},
             "votes":0
         }
+
+
 
         schema.remove_session()
         return resp
