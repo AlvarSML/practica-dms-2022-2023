@@ -72,6 +72,9 @@ class RespuestasServicio():
         resp = RespuestaFuncs.get(
             session=session,
             aid=comentario["aid"])
+        
+        if resp is None:
+            return None
 
         usuario = UsuarioFuncs.get_or_create(
             session=session,
@@ -127,6 +130,9 @@ class RespuestasServicio():
             session=session,
             aid=reporte["aid"])
 
+        if resp is None:
+            return None
+
         usuario = UsuarioFuncs.get_or_create(
             session=session,
             nombre=reporte["autor"])
@@ -161,6 +167,7 @@ class RespuestasServicio():
     @staticmethod
     def get_reports(schema:Schema, estados:List[Estado_moderacion]) -> List[Dict]:
         """ Transforma los reportes en una lista
+            ! Deprcado
         """
         session: Session = schema.new_session()
         reports:List = []
@@ -181,6 +188,7 @@ class RespuestasServicio():
     @staticmethod
     def set_estado(schema:Schema, reporte:Dict) -> Dict:
         """ Cambia el estado de un reporte a una respuesta
+            ! Deprcado
         """
         session: Session = schema.new_session()
 
@@ -204,8 +212,3 @@ class RespuestasServicio():
         session.flush()
         schema.remove_session()  
         return reporte_resp
-
-    def set_voto() -> List[Dict]:
-        """ Se vota una respuesta, si ya esta votada se desvota
-        """
-        pass

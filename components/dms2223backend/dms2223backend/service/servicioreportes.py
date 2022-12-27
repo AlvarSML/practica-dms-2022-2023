@@ -265,7 +265,7 @@ class ReportesServicio():
             rid=reporte["rid"]
         )
 
-        if reporte_nuevo is None: # Comprobar que exista
+        if not isinstance(reporte_nuevo,tipo): # Comprobar que exista del tipo correcto
             return None
 
         # Se modifica el estado

@@ -59,6 +59,7 @@ def get_preg_answers(qid:int) -> Tuple[List[Dict],Optional[int]]:
                 schema=current_app.db,qid=qid)
         except:
             logging.exception(f"No se ha podido obtener la pregunta {qid}")
+            return ({},HTTPStatus.INTERNAL_SERVER_ERROR)
         finally:
             if resp is None:
                 reporte = f"The question with qid {qid} does not exist."
@@ -83,6 +84,7 @@ def set_preg_answer(qid:int,body: Dict, token_info: Dict) -> Tuple[Dict,Optional
             )
         except:
             logging.exception(f"No se ha podido obtener la pregunta {qid}")
+            return ({},HTTPStatus.INTERNAL_SERVER_ERROR)
         finally:
             if asnw_reated is None:
                 reporte = f"The question with qid {qid} does not exist."
