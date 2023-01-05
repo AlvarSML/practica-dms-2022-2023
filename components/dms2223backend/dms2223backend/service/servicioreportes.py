@@ -264,8 +264,10 @@ class ReportesServicio():
             tipo=Reporte,
             rid=reporte["rid"]
         )
-
-        if not isinstance(reporte_nuevo,tipo): # Comprobar que exista del tipo correcto
+        
+        # Comprobar que exista del tipo correcto
+        # * Se deberia sustituir por una excepcion
+        if not isinstance(reporte_nuevo,tipo): 
             return None
 
         # Se modifica el estado
@@ -281,7 +283,7 @@ class ReportesServicio():
         attr:str = ReportesServicio.dict_id_equiv[tipo]
 
         # Se modifica la visibilidad de un elemento si es necesario
-        if reporte["estado"] == Estado_moderacion.accepted:
+        if reporte["estado"] == "accepted":
             ElementoFuncs.set_hidden(
                 session=session,
                 elemento=getattr(reporte_nuevo, attr)
