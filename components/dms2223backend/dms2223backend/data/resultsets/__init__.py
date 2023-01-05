@@ -7,3 +7,4 @@ from .respuesta_res import RespuestaFuncs
 from .feedback_res import FeedBackFuncs
 from .comentario_res import ComentarioFuncs
 from .voto_res import VotoFuncs
+from .elemento_res import ElementoFuncs

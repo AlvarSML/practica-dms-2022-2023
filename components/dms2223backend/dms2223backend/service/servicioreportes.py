@@ -5,7 +5,7 @@ from dms2223backend.data.db import ReporteRespuesta, Reporte, ReportePregunta,\
      ReporteComentario, Estado_moderacion
 
 from dms2223backend.data.resultsets import UsuarioFuncs, RespuestaFuncs, ReporteFuncs,\
-     ComentarioFuncs, PreguntaFuncs
+     ComentarioFuncs, PreguntaFuncs, ElementoFuncs
 
 from typing import List, Dict, ClassVar
 from sqlalchemy import select, inspect
@@ -276,8 +276,16 @@ class ReportesServicio():
         )
 
         # Se convierte el objeto a diccionario
+        # * No es lo mas optimo
         fk:str = ReportesServicio.dict_fk_equiv[tipo]
         attr:str = ReportesServicio.dict_id_equiv[tipo]
+
+        # Se modifica la visibilidad de un elemento si es necesario
+        if reporte["estado"] == Estado_moderacion.accepted:
+            ElementoFuncs.set_hidden(
+                session=session,
+                elemento=getattr(reporte_nuevo, attr)
+                )
 
         reporte_resp:Dict = ReportesServicio.build_dict_report(
             reporte=reporte_nuevo, 
