@@ -12,7 +12,8 @@ class Pregunta(Elemento):
     id_pregunta = Column(Integer, ForeignKey("elemento.id_elemento") ,primary_key=True)
     titulo = Column(String(200))
 
-    respuestas = relationship("Respuesta", 
+    respuestas = relationship(
+        "Respuesta", 
         primaryjoin="Pregunta.id_pregunta == Respuesta.id_pregunta"
         )
 

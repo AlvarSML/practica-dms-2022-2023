@@ -14,8 +14,7 @@ from sqlalchemy import select
 
 from dms2223backend.data.resultsets import ReporteFuncs
 
-from .authservice import AuthService
-
+import logging
 
 class PreguntasServicio():
     """ Clase "estatica" que permite el acceso a las operaciones de creacion o consulta
@@ -113,49 +112,51 @@ class PreguntasServicio():
         """ Construye la lista de respuestas (y comentarios) a una pregunta
         """
         session: Session = schema.new_session()
-        res = PreguntaFuncs.get(session=session,qid=qid)
+        preg = PreguntaFuncs.get(session=session,qid=qid)
         
-        if res is None:
+        if preg is None:
+            logging.exception(f"No se ha podido obtener la pregunta {qid}")
             return None
 
-        session.refresh(res)
+        session.refresh(preg)
 
         answers:List[Dict] = []
 
-        for answer in res.respuestas:
+        for answer in preg.respuestas:
             session.refresh(answer)
+            if answer.visibilidad:
+                # Se convierten los comentarios en diccionarios
+                # Se necesitan los votos de cada comentario
+                comentarios:List = []
+                for comm in answer.comentarios:
+                    if comm.visibilidad:
+                        votos:List = [{com.autor.nombre:com.tipo.name} for com in VotoFuncs.get_all(session=session,elemento=comm)]
+                        comentarios.append({
+                            "id":comm.id_elemento,
+                            "aid":answer.id_elemento,
+                            "timestamp":comm.fecha,
+                            "body":comm.contenido,
+                            "owner":{"username":comm.autor.nombre},
+                            "user_votes": votos,
+                            "votes":len(votos),
+                            "sentiment":"POSITIVE"
+                        })
 
-            # Se convierten los comentarios en diccionarios
-            # Se necesitan los votos de cada comentario
-            comentarios:List = []
-            for comm in answer.comentarios:
-                votos:List = [{com.autor.nombre:com.tipo.name} for com in VotoFuncs.get_all(session=session,elemento=comm)]
-                comentarios.append({
-                    "id":comm.id_comentario,
-                    "aid":answer.id_respuesta,
-                    "timestamp":comm.fecha,
-                    "body":comm.contenido,
-                    "owner":{"username":comm.autor.nombre},
-                    "user_votes": votos,
-                    "votes":len(votos),
-                    "sentiment":"POSITIVE"
+                # Se convierten los votos en diccionarios
+                # Los votos no se cargan por defecto, hay que especificarlo
+                votos:List = [{voto.autor.nombre:voto.tipo.name} for voto in VotoFuncs.get_all(session=session,elemento=answer)]
+
+
+                answers.append({
+                    "id":answer.id_elemento,
+                    "qid":qid,
+                    "timestamp":answer.fecha,
+                    "body":answer.contenido,
+                    "owner":{"username":answer.autor.nombre},
+                    "comments":comentarios,
+                    "user_votes":votos,
+                    "votes":len(votos)
                 })
-
-            # Se convierten los votos en diccionarios
-            # Los votos no se cargan por defecto, hay que especificarlo
-            votos:List = [{voto.autor.nombre:voto.tipo.name} for voto in VotoFuncs.get_all(session=session,elemento=answer)]
-
-
-            answers.append({
-                "id":answer.id_respuesta,
-                "qid":qid,
-                "timestamp":answer.fecha,
-                "body":answer.contenido,
-                "owner":{"username":answer.autor.nombre},
-                "comments":comentarios,
-                "user_votes":votos,
-                "votes":len(votos)
-            })
 
         schema.remove_session()    
         return answers

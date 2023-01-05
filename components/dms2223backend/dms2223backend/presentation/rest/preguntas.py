@@ -54,6 +54,7 @@ def get_preg_answers(qid:int) -> Tuple[List[Dict],Optional[int]]:
     """ Devuelve una lista de respuestas a una pregunta
     """
     with current_app.app_context():
+        resp = None
         try:
             resp:Dict = PreguntasServicio.get_answers(
                 schema=current_app.db,qid=qid)
