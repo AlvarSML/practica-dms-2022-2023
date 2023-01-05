@@ -11,13 +11,21 @@ class Comentario(Elemento):
     __tablename__='comentario'
 
     id_comentario= Column(Integer, ForeignKey("elemento.id_elemento") ,primary_key=True)
-
     id_respuesta = Column(Integer, ForeignKey("respuesta.id_respuesta"))
-    feedback = Column(Integer,ForeignKey("feedback.id_feedback"))
+    id_feedback = Column(Integer, ForeignKey("feedback.id_feedback"))
 
-    respuesta = relationship("Respuesta", back_populates="comentarios", foreign_keys=[id_respuesta])
+    feedback = relationship(
+        "Feedback",
+        foreign_keys=[id_feedback],
+        overlaps="comentarios")
 
-    reportes = relationship("ReporteComentario",
+    respuesta = relationship(
+        "Respuesta", 
+        back_populates="comentarios", 
+        foreign_keys=[id_respuesta])
+
+    reportes = relationship(
+        "ReporteComentario",
         primaryjoin="Comentario.id_comentario == ReporteComentario.id_comentario"
         )
 
@@ -28,11 +36,11 @@ class Comentario(Elemento):
     def __init__(self,
         contenido:str,
         autor:int,
-        feedback:int,
+        feedback:Feedback,
         respuesta: Respuesta
         ):
         super().__init__(contenido=contenido,autor=autor)
-        self.feedback = feedback
+        self.feedback = feedback #TODO añadir relaccion
         self.respuesta = respuesta
 
     def __repr__(self) -> str:        

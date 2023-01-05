@@ -43,32 +43,6 @@ paths:
               schema:
                 type: string
                 example: '¡Hola, Mundo!'
-  /questions/{idusu}:
-    get: 
-      summary: Se obtienen las preguntas de un usuario
-      description: Se obtienen todos los datos de las preguntas de un usuario
-      operationId: dms2223backend.presentation.rest.inicio.preguntas_usuario
-      parameters:
-        - $ref: '#/components/parameters/IdentificadorPregunta'
-      responses:
-        '200':
-          description: Lista de preguntas
-          content:
-            'application/json':
-              schema:
-                $ref: '#/components/schemas/PreguntaModelo'
-              example:
-                id_pregunta: 123
-                titulo: 'Titulo de la pregunta'
-                contenido: 'Texto mas extenso de la pregunta'
-                autor: 123
-                fecha: 131289798312
-                visibilidad: true
-      tags:
-        - pregunta
-      security:
-        - user_token: []
-          api_key: []
   /questions:
     get:
       summary: Gets the existing questions
@@ -487,6 +461,394 @@ paths:
         - user
       security:
         - api_key: []
+  /answers/{aid}/votes:
+    post:
+      summary: Upvote an answer
+      description: |
+        This operation will cast a vote on an answer.
+
+        The user voting will be automatically retrieved from the user token
+        against the authorization server.
+      operationId: dms2223backend.presentation.rest.respuestas.vota_respuesta
+      parameters:
+        - $ref: '#/components/parameters/AnswerIdPathParam'
+      responses:
+        '201':
+          $ref: '#/components/responses/VoteCast'
+        '404':
+          description: The answer does not exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
+              example: 'The answer with aid 50 does not exist.'
+        '409':
+          $ref: '#/components/responses/VoteAlreadyCast'
+      tags:
+        - discussion
+        - answers
+        - votes
+      security:
+        - user_token: []
+          api_key: []
+  /answers/{aid}/comments:
+    post:
+      summary: Comments an answer
+      description: |
+        This operation creates a comment for an existing answer.
+
+        The owner of the comment will be automatically retrieved from the user
+        token against the authorization server.
+      operationId: dms2223backend.presentation.rest.respuestas.set_respuesta_comentario
+      parameters:
+        - $ref: '#/components/parameters/AnswerIdPathParam'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/CommentCreationModel'
+            example:
+              body: Evaluation criteria may be relaxed due to the tight number of members
+              sentiment: POSITIVE
+      responses:
+        '201':
+          description: The created comment.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CommentFullModel'
+              example:
+                id: 2
+                aid: 1
+                timestamp: 1665575389
+                body: Evaluation criteria may be relaxed due to the tight number of members
+                sentiment: POSITIVE
+                owner:
+                  username: user4
+                votes: 0
+                user_votes: {}
+        '404':
+          description: The answer does not exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
+              example: 'The answer with aid 50 does not exist.'
+      tags:
+        - discussion
+        - answers
+        - comments
+      security:
+        - user_token: []
+          api_key: []
+  /answers/{aid}/reports:
+    post:
+      summary: Reports an answer
+      description: |
+        This operation will report an answer to be reviewed by a moderator.
+
+        The owner of the report will be automatically retrieved from the
+        user token against the authorization server.
+      operationId: dms2223backend.presentation.rest.respuestas.set_respuesta_reporte
+      parameters:
+        - $ref: '#/components/parameters/AnswerIdPathParam'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/AnswerReportCreationModel'
+            example:
+              reason: Unrelated to the question
+      responses:
+        '201':
+          description: The created report.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/AnswerReportFullModel'
+              example:
+                id: 1
+                aid: 7
+                reason: Unrelated to the question
+                status: PENDING
+                owner:
+                  username: user4
+                timestamp: 1665922785
+        '404':
+          description: The answer does not exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
+              example: 'The answer with aid 50 does not exist.'
+      tags:
+        - discussion
+        - moderation
+        - answers
+        - reports
+      security:
+        - user_token: []
+          api_key: []
+  /answers/reports:
+    get:
+      summary: Get a list of answer reports.
+      description: |
+        This operation gets a listing of answer reports.
+
+        Several parameters can be used to filter out the reports according to
+        their status.
+      operationId: dms2223backend.presentation.rest.respuestas.get_reportes
+      parameters:
+        - name: pending
+          description: |
+            Set to `false` to exclude the pending reports from the listing.
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: accepted
+          description: |
+            Set to `false` to exclude the accepted reports from the listing.
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: rejected
+          description: |
+            Set to `false` to exclude the rejected reports from the listing.
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Listing of answer reports
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/AnswerReportsListModel'
+              example:
+                - id: 1
+                  aid: 7
+                  reason: Unrelated to the question
+                  status: ACCEPTED
+                  owner:
+                    username: user4
+                  timestamp: 1665922785
+      tags:
+        - moderation
+        - answers
+        - reports
+      security:
+        - user_token: []
+          api_key: []
+  /answers/reports/{arid}:
+    put:
+      summary: Change the status of an answer report
+      description: |
+        Use this operation to change the status of an answer report.
+
+        When a report on an answer is accepted, the linked answer should be
+        hidden so neither the answer nor its comments are visible.
+      operationId: dms2223backend.presentation.rest.respuestas.cambia_estado_reporte
+      parameters:
+        - $ref: '#/components/parameters/AnswerReportIdPathParam'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/ReportStatusChangeModel'
+            example:
+              status: REJECTED
+      responses:
+        '204':
+          $ref: '#/components/responses/ReportStatusChanged'
+        '404':
+          description: The answer report does not exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
+              example: 'The answer report with arid 25 does not exist.'
+      tags:
+        - moderation
+        - answers
+        - reports
+      security:
+        - user_token: []
+          api_key: []
+  /comments/{cid}/votes:
+    post:
+      summary: Upvote a comment
+      description: |
+        This operation will cast a vote on a comment.
+
+        The user voting will be automatically retrieved from the user token
+        against the authorization server.
+      operationId: dms2223backend.presentation.rest.comentarios.vota_comentario
+      parameters:
+        - $ref: '#/components/parameters/CommentIdPathParam'
+      responses:
+        '201':
+          $ref: '#/components/responses/VoteCast'
+        '404':
+          description: The comment does not exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
+              example: 'The comment with cid 75 does not exist.'
+        '409':
+          $ref: '#/components/responses/VoteAlreadyCast'
+      tags:
+        - discussion
+        - comments
+        - votes
+      security:
+        - user_token: []
+          api_key: []
+  /comments/{cid}/reports:
+    post:
+      summary: Reports a comment
+      description: |
+        This operation will report a comment to be reviewed by a moderator.
+
+        The owner of the report will be automatically retrieved from the
+        user token against the authorization server.
+      operationId: dms2223backend.presentation.rest.comentarios.reporta_comentario
+      parameters:
+        - $ref: '#/components/parameters/CommentIdPathParam'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/CommentReportCreationModel'
+            example:
+              reason: Ambiguous sentiment
+      responses:
+        '201':
+          description: The created report.
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CommentReportFullModel'
+              example:
+                id: 1
+                cid: 7
+                reason: Ambiguous sentiment
+                status: PENDING
+                owner:
+                  username: user4
+                timestamp: 1665922785
+        '404':
+          description: The comment does not exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
+              example: 'The comment with cid 75 does not exist.'
+      tags:
+        - discussion
+        - moderation
+        - comments
+        - reports
+      security:
+        - user_token: []
+          api_key: []
+  /comments/reports:
+    get:
+      summary: Get a list of comment reports.
+      description: |
+        This operation gets a listing of comment reports.
+
+        Several parameters can be used to filter out the reports according to
+        their status.
+      operationId: dms2223backend.presentation.rest.comentarios.get_reportes
+      parameters:
+        - name: pending
+          description: |
+            Set to `false` to exclude the pending reports from the listing.
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: accepted
+          description: |
+            Set to `false` to exclude the accepted reports from the listing.
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: rejected
+          description: |
+            Set to `false` to exclude the rejected reports from the listing.
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Listing of comment reports
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CommentReportsListModel'
+              example:
+                - id: 1
+                  cid: 7
+                  reason: Ambiguous sentiment
+                  status: ACCEPTED
+                  owner:
+                    username: user4
+                  timestamp: 1665922785
+      tags:
+        - moderation
+        - comments
+        - reports
+      security:
+        - user_token: []
+          api_key: []
+  /comments/reports/{crid}:
+    put:
+      summary: Change the status of a comment report
+      description: |
+        Use this operation to change the status of a comment report.
+
+        When a report on a comment is accepted, the linked comment should be
+        hidden so it will not be visible.
+      operationId: dms2223backend.presentation.rest.comentarios.cambia_estado_reporte
+      parameters:
+        - $ref: '#/components/parameters/CommentReportIdPathParam'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/ReportStatusChangeModel'
+            example:
+              status: ACCEPTED
+      responses:
+        '204':
+          $ref: '#/components/responses/ReportStatusChanged'
+        '404':
+          description: The comment report does not exist.
+          content:
+            'text/plain':
+              schema:
+                type: string
+              example: 'The comment report with crid 25 does not exist.'
+      tags:
+        - moderation
+        - comments
+        - reports
+      security:
+        - user_token: []
+          api_key: []
 
 components:
   schemas:
@@ -762,28 +1124,7 @@ components:
     EmptyContentModel:
       type: string
       nullable: true
-    # Pregunta completa para devolver [Alvar]
-    PreguntaModelo:
-      type: object
-      properties:
-        idpreg:
-          type: integer
-        titulo:
-          type: string
-        contenido:
-          type: string
-        fecha:
-          type: integer
-        autor:
-          type: integer
-        visibilidad:
-          type: boolean
-      required:
-        - idpreg
-        - titulo
-        - fecha
-        - autor
-    # Modelo de voto para devolver de forma individual [Alvar]
+
     VoteModel:
       type: object
       properties:
@@ -809,13 +1150,6 @@ components:
         - username
         - uid
   parameters:
-    IdentificadorPregunta:
-      name: idpreg
-      description: Identificador de una pregunta.
-      in: path
-      schema:
-        type: integer
-      required: true
     IdentificadorRespuesta:
       name: idresp
       description: Identificador de una respuesta.
@@ -886,7 +1220,6 @@ components:
       schema:
         type: integer
       required: true
-
   responses:
     Empty:
       description: An empty content.

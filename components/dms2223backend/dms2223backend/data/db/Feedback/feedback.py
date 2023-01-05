@@ -1,16 +1,20 @@
 from sqlalchemy import Column,String,Text,Boolean,DateTime,ForeignKey, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
-from dms2223backend.data.db.Usuario.usuario import Usuario
-from dms2223backend.data.db.Elemento.elemento import Elemento
+
 from ..base import Base #Base declarativa
+from sqlalchemy.orm import relationship
 
 class Feedback(Base):
     __tablename__='feedback'
 
     id_feedback = Column(Integer, primary_key=True)
-    descripcion = Column(Text)
+    descripcion = Column(Text, unique=True, index=True)
     color_asociado = Column(String(100))
+
+    comentarios = relationship(
+        "Comentario", 
+        primaryjoin="Feedback.id_feedback == Comentario.id_feedback")
 
     def __init__(self,
         descripcion:str,

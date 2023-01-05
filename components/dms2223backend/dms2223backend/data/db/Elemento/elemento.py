@@ -14,8 +14,15 @@ class Elemento(Base):
     
     id_autor = Column(Integer, ForeignKey(Usuario.id_usuario))
 
-    autor = relationship("Usuario",back_populates="elementos")
-    votos = relationship("Voto",back_populates="elemento")
+    autor = relationship(
+        "Usuario",
+        back_populates="elementos",
+        overlaps="comentarios,preguntas,respuestas")
+        
+    votos = relationship(
+        "Voto",
+        back_populates="elemento",
+        lazy='dynamic')
 
     contenido = Column(Text)
     visibilidad = Column(Boolean, default=True) #En caso de true es visible en caso de false esta oculto

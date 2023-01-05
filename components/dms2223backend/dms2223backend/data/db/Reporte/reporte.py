@@ -11,11 +11,11 @@ from dms2223backend.data.db.Elemento.comentario import Comentario
 from ..base import Base #Base declarativa
 from sqlalchemy.orm import relationship
 
-class estado_moderacion(enum.Enum):
-    pendiente = 0
-    aceptado = 1
-    rechazado = 2
-    descartado = 3 # Ni se ha leido
+class Estado_moderacion(enum.Enum):
+    pending = 0
+    accepted = 1
+    rejected = 2
+    discarded = 3 # Ni se ha leido
 
 class Reporte(Base):
     __tablename__= 'reporte'
@@ -27,7 +27,14 @@ class Reporte(Base):
 
     razon_reporte = Column(Text)
     resultado_moderacion = Column(String(100))  
-    estado = Column(Enum(estado_moderacion), default=estado_moderacion.pendiente)
+    estado = Column(Enum(Estado_moderacion), default=Estado_moderacion.pending, index=True)
+
+    type = Column(String(50)) #Especifica el tipo de reporte que es
+
+    __mapper_args__ = {
+        "polymorphic_identity": "reporte",
+        "polymorphic_on": type,
+    }
 
     def __init__(self,
         autor:Usuario,
@@ -45,6 +52,10 @@ class ReportePregunta(Reporte):
         back_populates="reportesPregs",
         primaryjoin="Reporte.id_autor == Usuario.id_usuario")
     
+    __mapper_args__ = {
+        "polymorphic_identity": "reporte_pregunta",
+    }
+
     def __init__(
         self,
         autor:Usuario,
@@ -64,10 +75,13 @@ class ReporteRespuesta(Reporte):
         back_populates="reportesResps",
         primaryjoin="Reporte.id_autor == Usuario.id_usuario")
 
+    __mapper_args__ = {
+        "polymorphic_identity": "reporte_respuesta",
+    }
+
     def __init__(
         self,
         autor:Usuario,
-        tipo:str,
         razon_reporte:str,
         respuesta: Respuesta
         ):
@@ -85,6 +99,10 @@ class ReporteComentario(Reporte):
         back_populates="reportesComs",
         primaryjoin="Reporte.id_autor == Usuario.id_usuario")
     
+    __mapper_args__ = {
+        "polymorphic_identity": "reporte_comentario",
+    }
+
     def __init__(
         self,
         autor:Usuario,

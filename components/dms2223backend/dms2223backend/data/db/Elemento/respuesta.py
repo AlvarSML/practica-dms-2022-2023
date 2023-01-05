@@ -17,7 +17,8 @@ class Respuesta(Elemento):
         back_populates="respuestas", 
         primaryjoin="Respuesta.id_pregunta == Pregunta.id_pregunta")
 
-    comentarios = relationship("Comentario", 
+    comentarios = relationship(
+        "Comentario", 
         primaryjoin="Respuesta.id_respuesta == Comentario.id_respuesta")
 
     reportes = relationship("ReporteRespuesta",
@@ -37,9 +38,11 @@ class Respuesta(Elemento):
         self.pregunta = pregunta
     
     def __repr__(self) -> str:        
-        return  f"Pregunta(id_respuesta={self.id_respuesta!r}, \
+        return  f"Respuesta\
+        (id_respuesta={self.id_respuesta!r}, \
         contenido={self.contenido!r}, \
         fecha={self.fecha!r}, \
         autor={self.autor!r},\
         visibilidad={str(self.visibilidad)!r} \
+            votos={str(self.votos)}\
         )"

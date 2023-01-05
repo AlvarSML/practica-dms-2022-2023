@@ -12,7 +12,8 @@ class Pregunta(Elemento):
     id_pregunta = Column(Integer, ForeignKey("elemento.id_elemento") ,primary_key=True)
     titulo = Column(String(200))
 
-    respuestas = relationship("Respuesta", 
+    respuestas = relationship(
+        "Respuesta", 
         primaryjoin="Pregunta.id_pregunta == Respuesta.id_pregunta"
         )
 
@@ -33,10 +34,12 @@ class Pregunta(Elemento):
         self.titulo = titulo
 
     def __repr__(self) -> str:        
-        return  f"Pregunta(id_pregunta={self.id_pregunta!r}, \
+        return  f"Pregunta(\
+        id_pregunta={self.id_pregunta!r}, \
         titulo={self.titulo!r}, \
         contenido={self.contenido!r}, \
         fecha={self.fecha!r}, \
         autor={self.autor!r},\
         visibilidad={str(self.visibilidad)!r} \
+        votos={str(self.votos)}\
         )"

@@ -32,19 +32,16 @@ class PreguntaFuncs():
         """
 
         listaPreguntas: List[PreguntaRes] = []
-        stmt = select(Pregunta)
+        pregs = session.query(Pregunta).filter(Pregunta.visibilidad).all()   
 
-        if (max):
-            stmt = stmt.limit(max)        
-
-        for preg in session.execute(stmt):
+        for preg in pregs:
             p = {
-                "qid": preg[0].id_pregunta,
-                "title": preg[0].titulo,
-                "timestamp": preg[0].fecha,
-                "autor" : preg[0].autor.nombre,
-                "pos_votes": 0,
-                "neg_votes": 0
+                "qid": preg.id_pregunta,
+                "title": preg.titulo,
+                "timestamp": preg.fecha,
+                "autor" : preg.autor.nombre,
+                "pos_votes": preg.votos.count() # * Siempre que solo haya votos positivos
+                #,"vis":preg.visibilidad
             }
             listaPreguntas.append(p)
 
@@ -64,6 +61,8 @@ class PreguntaFuncs():
 
     @staticmethod
     def get(session:Session,qid:int) -> Pregunta:
-        stmt = select(Pregunta).where(Pregunta.id_pregunta == qid)
-        preg = session.execute(stmt).first()
-        return preg[0]
+        """ Obtiene una instancia de pregunta activa en la sesion
+        """
+        preg = session.query(Pregunta).filter(Pregunta.id_pregunta == qid).first()
+        return preg
+    
