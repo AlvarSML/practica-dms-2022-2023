@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 
 from dms2223frontend.data.clases.pregunta import Pregunta
-from flask import Flask, request
+from flask import Flask, request, current_app
 import inspect
 import os
 from typing import Dict
@@ -25,10 +25,12 @@ auth_service: AuthService = AuthService(
 
 backend_service_cfg: Dict = cfg.get_backend_service()
 backend_service: BackendService = BackendService(
-    backend_service_cfg['host'], backend_service_cfg['port'],
+    host = backend_service_cfg['host'], 
+    port = backend_service_cfg['port'],
     apikey_header='X-ApiKey-Backend',
     apikey_secret=backend_service_cfg['apikey_secret']
 )
+
 
 app = Flask(
     __name__,
@@ -50,7 +52,9 @@ app.secret_key = bytes(cfg.get_app_secret_key(), 'ascii')
 # Alvar [4/11/2022]
 @app.route("/", methods=['GET'])
 def get_default():
-    return CommonEndpoints.get_inicio()
+    return CommonEndpoints.get_inicio(
+        back_service=backend_service
+        )
     #return CommonEndpoints.get_home(auth_service)
 
 @app.route("/login", methods=['GET'])

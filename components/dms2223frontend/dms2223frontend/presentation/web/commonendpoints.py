@@ -2,9 +2,9 @@
 """
 
 from typing import Text, Union
-from flask import redirect, url_for, session, render_template
+from flask import redirect, url_for, session, render_template, current_app
 from werkzeug.wrappers import Response
-from dms2223frontend.data.rest.authservice import AuthService
+from dms2223frontend.data.rest import AuthService, BackendService
 from .webauth import WebAuth
 
 from dms2223frontend.data.clases.pregunta import Pregunta
@@ -14,7 +14,7 @@ class CommonEndpoints():
     """ Monostate class responsible of handling the common web endpoint requests.
     """
     @staticmethod
-    def get_home(auth_service: AuthService) -> Union[Response, Text]:
+    def get_home(auth_service: AuthService, back_service:BackendService) -> Union[Response, Text]:
         """ Handles the GET requests to the home endpoint.
 
         Args:
@@ -31,12 +31,7 @@ class CommonEndpoints():
 
         #Lista de preguntas hardcodeada
         #Cambiar por una peticion que solicite la lista
-        pregs=[
-            Pregunta("Contenido 1","1",datetime.now(),34,35,"Yo","Titulo 1"),
-            Pregunta("Contenido 2","2",datetime.now(),34,35,"Yo","Titulo 2"),
-            Pregunta("Contenido 3","3",datetime.now(),34,35,"Yo","Titulo 3"),
-            Pregunta("Contenido 4","4",datetime.now(),34,35,"Yo","Titulo 4")
-        ]
+        pregs=back_service.get_questions()
 
         return render_template('home.html', 
             name=name, 
@@ -44,17 +39,13 @@ class CommonEndpoints():
             preguntas=pregs)
 
     @staticmethod
-    def get_inicio():
+    def get_inicio(back_service:BackendService):
         """ Genstiona el acceso a inicio sin ningun tipo de login necesario
         
         """
 
-        pregs=[
-            Pregunta("Contenido 1","1",datetime.now(),34,35,"Yo","Titulo 1"),
-            Pregunta("Contenido 2","2",datetime.now(),34,35,"Yo","Titulo 2"),
-            Pregunta("Contenido 3","3",datetime.now(),34,35,"Yo","Titulo 3"),
-            Pregunta("Contenido 4","4",datetime.now(),34,35,"Yo","Titulo 4")
-        ]
+        pregs=back_service.get_questions(token=session.get('token'))
+        current_app.logger.info(pregs.get_content())
 
         return render_template('inicio/inicio.html',
-            preguntas=pregs)
+            preguntas=pregs.get_content())

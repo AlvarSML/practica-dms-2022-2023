@@ -9,4 +9,4 @@ auth_service:
 backend_service:
   host: '172.10.1.20'
   port: 5000
-  apikey_secret: 'This is another frontend API key'
+  apikey_secret: '1234'

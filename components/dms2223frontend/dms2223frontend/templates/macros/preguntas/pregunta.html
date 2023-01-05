@@ -7,10 +7,10 @@
 {% endmacro %}
 
 <!--Macro de los datos de pregunta(quien pregunto, fecha...)-->
-{% macro datosPregunta(usuario,fecha_creacion) %}
+{% macro datosPregunta(usuario,timestamp) %}
 <div class="datosPregunta">
     <p>Preguntado por:{{usuario}}</p>
-    <p>Fecha de la pregunta:{{ fecha_creacion.strftime('%d-%m-%Y') }}</p>
+    <p>Fecha de la pregunta:{{ timestamp }}</p>
 </div>
 {% endmacro %}
 
@@ -29,7 +29,7 @@
 {% macro pregunta(pregunta) %}
 <div class="questiondiv">
     {{tituloPregunta(pregunta.tituloPregunta,pregunta.id)}}
-    {{datosPregunta(pregunta.autor,pregunta.fecha_creacion)}}
+    {{datosPregunta(pregunta.autor,pregunta.timestamp)}}
     {{cuepoPregunta(pregunta.contenidoPregunta)}}
 </div>
 {% endmacro %}
@@ -38,6 +38,6 @@
 {% macro pregunta_simple(pregunta) %}
 <div class="questiondiv">
     {{tituloPregunta(pregunta.tituloPregunta,pregunta.id)}}
-    {{datosPregunta(pregunta.autor,pregunta.fecha_creacion)}}
+    {{datosPregunta(pregunta.autor,pregunta.timestamp)}}
 </div>
 {% endmacro %}

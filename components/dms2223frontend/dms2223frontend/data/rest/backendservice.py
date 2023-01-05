@@ -1,10 +1,11 @@
 """ BackendService class module.
 """
-
+from typing import Optional
 import requests
 from dms2223common.data import Role
 from dms2223common.data.rest import ResponseData
 
+from flask import current_app
 
 class BackendService():
     """ REST client to connect to the backend service.
@@ -14,7 +15,7 @@ class BackendService():
         host: str, port: int,
         api_base_path: str = '/api/v1',
         apikey_header: str = 'X-ApiKey-Backend',
-        apikey_secret: str = ''
+        apikey_secret: str = '' # ! Solo para resarrollo
         ):
         """ Constructor method.
 
@@ -36,4 +37,28 @@ class BackendService():
     def __base_url(self) -> str:
         return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
 
-    # TODO: Implement
+    def get_questions(self, token: Optional[str]):
+        """ Obtiene una lista de todas las preguntas
+            No es necesario introducir un token para ver solo las preguntas
+        """
+        resp_data: ResponseData = ResponseData()
+
+        current_app.logger.warning(self.__apikey_secret)
+        current_app.logger.warning(self.__apikey_header)
+
+        response: requests.Response = requests.get(
+            self.__base_url() + f'/questions',
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        resp_data.set_successful(response.ok)
+        if resp_data.is_successful():
+            resp_data.set_content(response.json())
+        else:
+            resp_data.add_message(response.content.decode('ascii'))
+            resp_data.set_content([])
+        return resp_data
+
