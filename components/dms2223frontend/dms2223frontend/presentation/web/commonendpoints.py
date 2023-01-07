@@ -31,12 +31,12 @@ class CommonEndpoints():
 
         #Lista de preguntas hardcodeada
         #Cambiar por una peticion que solicite la lista
-        pregs=back_service.get_questions()
+        pregs=back_service.get_questions(token=session.get('token'))
 
         return render_template('home.html', 
             name=name, 
             roles=session['roles'],
-            preguntas=pregs)
+            preguntas=pregs.get_content())
 
     @staticmethod
     def get_inicio(back_service:BackendService):

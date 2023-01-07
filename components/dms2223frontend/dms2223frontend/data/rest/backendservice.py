@@ -61,4 +61,24 @@ class BackendService():
             resp_data.add_message(response.content.decode('ascii'))
             resp_data.set_content([])
         return resp_data
+    
+    def get_question(self, token: Optional[str], qid:int):
+        """ Obtiene una sola pregunta con sus respuestas y comentarios
+        """
+        resp_data: ResponseData = ResponseData()
+        response: requests.Response = requests.get(
+            self.__base_url() + f'/questions/{qid}',
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        resp_data.set_successful(response.ok)
+        if resp_data.is_successful():
+            resp_data.set_content(response.json())
+        else:
+            resp_data.add_message(response.content.decode('ascii'))
+            resp_data.set_content([])
+        return resp_data
 

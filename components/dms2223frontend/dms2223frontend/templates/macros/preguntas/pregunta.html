@@ -14,10 +14,6 @@
 </div>
 {% endmacro %}
 
-<!--Implementacion de los botones de votacion-->
-{{ voteUp_button }}
-{{ voteDown_button }}
-
 <!--Macro del cuerpo de la pregunta-->
 {% macro cuepoPregunta(descripcion) %}
 <div class="questiontext">
@@ -28,16 +24,16 @@
 <!--Macro de la pregunta completa-->
 {% macro pregunta(pregunta) %}
 <div class="questiondiv">
-    {{tituloPregunta(pregunta.tituloPregunta,pregunta.id)}}
-    {{datosPregunta(pregunta.autor,pregunta.timestamp)}}
-    {{cuepoPregunta(pregunta.contenidoPregunta)}}
+    {{tituloPregunta(pregunta.title,pregunta.qid)}}
+    {{datosPregunta(pregunta.owner.username,pregunta.timestamp)}}
+    {{cuepoPregunta(pregunta.body)}}
 </div>
 {% endmacro %}
 
 <!--Macro de la pregunta completa-->
 {% macro pregunta_simple(pregunta) %}
 <div class="questiondiv">
-    {{tituloPregunta(pregunta.tituloPregunta,pregunta.id)}}
-    {{datosPregunta(pregunta.autor,pregunta.timestamp)}}
+    {{ tituloPregunta(pregunta.title,pregunta.qid) }}
+    {{ datosPregunta(pregunta.autor,pregunta.timestamp) }}
 </div>
 {% endmacro %}

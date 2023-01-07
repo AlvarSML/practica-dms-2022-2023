@@ -71,7 +71,10 @@ def get_logout():
 
 @app.route("/home", methods=['GET'])
 def get_home():
-    return CommonEndpoints.get_home(auth_service)
+    return CommonEndpoints.get_home(
+        auth_service=auth_service,
+        back_service=backend_service
+        )
 
 @app.route("/discussion", methods=['GET'])
 def get_discussion():
@@ -118,7 +121,10 @@ def get_crear_preguntas():
 # Alvar [16/11/2022]
 @app.route("/pregunta/<id_preg>",methods=['GET'])
 def get_pregunta(id_preg):
-    return PreguntasEndpoints.get_pregunta(auth_service,id_preg)
+    return PreguntasEndpoints.get_pregunta(
+        auth_service=auth_service,
+        back_service=backend_service,
+        id_preg=id_preg)
 
 
 if __name__ == '__main__':

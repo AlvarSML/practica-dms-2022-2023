@@ -6,49 +6,36 @@ from dms2223frontend.data.clases.respuesta import Respuesta
 from dms2223frontend.data.rest.authservice import AuthService
 
 from typing import Text, Union
-from flask import redirect, url_for, session, render_template
+from flask import redirect, url_for, session, render_template,current_app
 from werkzeug.wrappers import Response
 from dms2223common.data import Role
 from .webauth import WebAuth
 from datetime import datetime
 
+from dms2223frontend.data.rest import BackendService
 
 class PreguntasEndpoints():
     @staticmethod
-    def get_pregunta(auth_service: AuthService, id_preg: str) -> Union[Response, Text]:
-        preg = Pregunta(
-            "Que dia es hoy",
-            id_preg,
-            datetime.now(),
-            34,
-            35,
-            "Yo",
-            "Titulo"
+    def get_pregunta(auth_service: AuthService, back_service:BackendService, id_preg: str) -> Union[Response, Text]:
+
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.ADMINISTRATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+
+        preg = back_service.get_question(
+            token = session.get('token'),
+            qid=id_preg
         )
 
-        resps = [
-            Respuesta(
-                autor="Persona1",
-                id_preg=id_preg,
-                id_resp="1",
-                contenido="Respuesta buena",
-                fecha=datetime.now(),
-                votos_negativos=30,
-                votos_positivos=2,
-                num_comentarios=1
-                ),
-            Respuesta(
-                autor="Persona1",
-                id_preg=id_preg,
-                id_resp="1",
-                contenido="Respuesta Mala",
-                fecha=datetime.now(),
-                votos_negativos=3,
-                votos_positivos=20,
-                num_comentarios=12
-                ),
-        ]
-        return render_template('pregunta.html', pregunta_env=preg, respuestas_env=resps)
+        current_app.logger.info(preg.get_content())
+
+        return render_template(
+            'pregunta.html',
+            name = name,
+            pregunta_env = preg.get_content(), 
+            respuestas_env = [])
      
     """ Monostate class responsible of handling the session web endpoint requests.
     """
