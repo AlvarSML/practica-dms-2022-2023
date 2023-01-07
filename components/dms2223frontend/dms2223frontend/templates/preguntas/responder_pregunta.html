@@ -1,0 +1,19 @@
+{% extends "base_logged_in.html" %}
+{% from "macros/buttons.html" import button, submit_button %}
+{% from "macros/preguntas/formulario_respuesta.html" import form_respuesta %}
+{% from 'macros/preguntas/pregunta.html' import pregunta_sinboton %}
+
+{% block title %}Nueva pregunta{% endblock %}
+
+{% block contentheading %}
+<div>
+    {{pregunta_sinboton(pregunta_env)}}
+</div>
+{% endblock %}
+
+{% block maincontent %}
+<div id="preguntas-form">
+    <h3>Tu respuesta:</h3>
+    {{ form_respuesta(pregunta_env.qid) }}
+</div>
+{% endblock %}

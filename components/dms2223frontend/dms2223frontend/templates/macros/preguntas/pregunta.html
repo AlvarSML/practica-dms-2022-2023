@@ -33,6 +33,16 @@
 </div>
 {% endmacro %}
 
+<!--Macro de la pregunta completa sin opcion de responder-->
+{% macro pregunta_sinboton(pregunta) %}
+<div class="questiondiv">
+    {{tituloPregunta(pregunta.title,pregunta.qid)}}
+    {{cuepoPregunta(pregunta.body)}}
+
+    {{datosPregunta(pregunta.owner.username,pregunta.timestamp)}}
+</div>
+{% endmacro %}
+
 <!--Macro de la pregunta completa-->
 {% macro pregunta_simple(pregunta) %}
 <div class="questiondiv">

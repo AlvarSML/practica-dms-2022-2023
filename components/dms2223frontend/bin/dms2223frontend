@@ -123,7 +123,7 @@ def get_crear_preguntas():
 
 @app.route("/crear_pregunta", methods=['POST'])
 def post_crear_preguntas():
-    current_app.logger.warning("crear_pregunta")
+    current_app.logger.debug("crear_pregunta")
     return PreguntasEndpoints.post_new_question(
         auth_service=auth_service,
         back_service=backend_service
@@ -139,19 +139,21 @@ def get_pregunta(id_preg):
         id_preg=id_preg)
 
 @app.route("/pregunta/<id_preg>/crear_respuesta",methods=['GET'])
-def crear_pregunta(id_preg):
+def crear_respuesta_get(id_preg):
     """ TODO formulario de respuesta
     """
-    return PreguntasEndpoints.get_crear_pregunta(
+    return PreguntasEndpoints.get_crear_respuesta(
         auth_service=auth_service,
         back_service=backend_service,
-        id_preg=id_preg)
+        qid=id_preg)
 
 @app.route("/pregunta/<id_preg>/crear_respuesta",methods=['POST'])
 def crear_pregunta_post(id_preg):
-    """ TODO creacion de respuesta
-    """
-    pass
+    current_app.logger.debug("crear_pregunta")
+    return PreguntasEndpoints.post_new_answer(
+        auth_service=auth_service,
+        back_service=backend_service
+    )
 
 @app.route("/respuesta/<id_resp>/crear_comentario",methods=['GET'])
 def crear_comentario(id_preg):

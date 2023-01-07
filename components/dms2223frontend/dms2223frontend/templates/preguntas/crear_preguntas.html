@@ -1,9 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_logged_in.html" %}
 {% from "macros/buttons.html" import button, submit_button %}
 {% from "macros/preguntas/formulario_pregunta.html" import form_pregunta %}
 
 {% block title %}Nueva pregunta{% endblock %}
-{% block pagecontent %}
+{% block contentheading %}Nueva Pregunta{% endblock %}
+{% block maincontent %}
     <div id="preguntas-form">
         <h3>Tu pregunta:</h3>
         {{ form_pregunta() }}

@@ -64,10 +64,10 @@ class PreguntasEndpoints():
         return render_template('preguntas/crear_preguntas.html', name=name, roles=session['roles'])
 
     @staticmethod
-    def post_new_question(back_service: BackendService, auth_service: AuthService) -> Union[Response, Text]:
+    def post_quest(back_service: BackendService, auth_service: AuthService) -> Union[Response, Text]:
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        """ # ! DEBUG
+        """ # ! DEBUG no deberia estar en el front end
         if Role.DISCUSSION.name not in session['roles']:
             return redirect(url_for('get_home'))
         """
@@ -75,15 +75,58 @@ class PreguntasEndpoints():
         title = request.form.get('qtitle')
         body = request.form.get('qbody')
 
-        new_question = back_service.post_question(
+        quest = back_service.post_question(
             token = session.get('token'),
             title=title, 
             body=body)
 
-        current_app.logger.debug(new_question.get_messages())
-        current_app.logger.debug(new_question.get_content())
+        current_app.logger.debug(quest.get_messages())
+        current_app.logger.debug(quest.get_content())
 
-        if not new_question:
-            return redirect(url_for('get_new_question'))
+        if not quest:
+            return redirect(url_for('get_quest'))
+
+        return redirect(url_for('get_home'))
+
+
+    def get_crear_respuesta(back_service: BackendService, auth_service: AuthService, qid:int):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.ADMINISTRATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+
+        preg = back_service.get_question(
+            token = session.get('token'),
+            qid=qid
+        )
+
+
+        current_app.logger.info(preg.get_content())
+
+
+        return render_template(
+            'preguntas/responder_pregunta.html',
+            name = name,
+            pregunta_env = preg.get_content())
+
+    def post_new_answer(back_service: BackendService, auth_service: AuthService):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        """ # ! DEBUG no deberia estar en el front end
+        if Role.DISCUSSION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        """
+
+        qid = request.form.get('qid')
+        body = request.form.get('abody')
+
+        ans = back_service.post_answer(
+            token = session.get('token'),
+            qid=qid, 
+            body=body)
+        
+        if not ans:
+            return redirect(url_for('get_quest'))
 
         return redirect(url_for('get_home'))
