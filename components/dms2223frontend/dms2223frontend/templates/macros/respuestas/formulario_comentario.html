@@ -1,0 +1,30 @@
+{% macro form_comentario(respuesta_anterior) %}
+{% from "macros/buttons.html" import submit_button, button %}
+<script src="/static/scripts/editor_texto.js" ></script>
+
+<div class="contenedor_comentario">
+    <form action="/respuesta/<id_resp>/crear_comentario" method="post">
+        <input type="hidden" name="aid" id="aid" value="{{respuesta_anterior}}">
+        <div id="editor_respuesta">
+            <div class="marco_texto">
+            <textarea 
+                id="texti" 
+                class="texto_formulario" 
+                name="abody"
+                rows="10"
+                cols="100"
+                placeholder="Tu comentario aqui"></textarea>
+            </div>
+
+            <label for="sentiment">Choose colour</label>
+            <select name="sentiment">
+                {% for sentiment in sentiments %}
+                    <option value="{{ sentiment }}" >{{ sentiment }}</option>
+                {% endfor %}     
+            </select>
+            {{ submit_button('bluebg', 'Responder') }}
+        </div>
+    </form>
+</div>
+{% endmacro %}
+

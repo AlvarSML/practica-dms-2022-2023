@@ -17,8 +17,8 @@
 
     <div class="container2cols">
         <div class="controlesRespuesta"> 
-            {{ submit_button('greengb','Responder') }}
-            {{ submit_button('redgb','Reportar respuesta') }}
+            {{ button("greenbg","/respuesta/"+(respuesta.id|string)+"/crear_comentario","Comentar",()) }}
+            {{ button("redbg","/respuesta/"+(respuesta.id|string)+"/reportar","Reportar",()) }}
         </div>    
 
         <div class="metadatosRespuesta">

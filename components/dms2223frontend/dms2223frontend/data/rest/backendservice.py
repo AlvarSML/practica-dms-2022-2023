@@ -94,7 +94,7 @@ class BackendService():
         """ Obtiene las respuestas a una pregunta con los comentarios
         """
         return self.__get_data(token=token,url=f'/questions/{qid}/answers')
-
+    
     def post_question(self, token: Optional[str], title:str, body:str):
         """ Manda la peticion para crear una pregutna nueva
         """

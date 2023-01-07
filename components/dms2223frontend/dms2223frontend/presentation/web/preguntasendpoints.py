@@ -130,3 +130,44 @@ class PreguntasEndpoints():
             return redirect(url_for('get_quest'))
 
         return redirect(url_for('get_home'))
+
+    def get_crear_comentario(
+        back_service: BackendService, 
+        auth_service: AuthService, 
+        aid:int):
+
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.ADMINISTRATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+
+
+        return render_template(
+            'preguntas/comentar_respuesta.html',
+            name = name)
+
+
+    def post_new_comment(back_service: BackendService, auth_service: AuthService):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        """ # ! DEBUG no deberia estar en el front end
+        if Role.DISCUSSION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        """
+
+        aid = request.form.get('aid')
+        body = request.form.get('cbody')
+        sentiment = request.form.get('sentiment')
+
+        comm = back_service.post_answer(
+            token = session.get('token'),
+            aid=aid, 
+            body=body,
+            sentiment=sentiment)
+        
+        if not comm:
+            return redirect(url_for('get_quest'))
+
+        return redirect(url_for('get_home'))
+

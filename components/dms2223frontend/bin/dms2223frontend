@@ -156,16 +156,24 @@ def crear_pregunta_post(id_preg):
     )
 
 @app.route("/respuesta/<id_resp>/crear_comentario",methods=['GET'])
-def crear_comentario(id_preg):
+def crear_comentario_get(id_resp):
     """ TODO formulario de comentario
     """
-    pass
+    return PreguntasEndpoints.get_crear_comentario(
+        auth_service=auth_service,
+        back_service=backend_service,
+        aid=id_resp)
+
 
 @app.route("/respuesta/<id_resp>/crear_comentario",methods=['POST'])
 def crear_comentario_post(id_preg):
     """ TODO creacion de comentario
     """
-    pass
+    current_app.logger.debug("crear_comentario")
+    return PreguntasEndpoints.post_new_commment(
+        auth_service=auth_service,
+        back_service=backend_service
+    )
 
 
 if __name__ == '__main__':
