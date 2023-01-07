@@ -116,7 +116,19 @@ def get_respuesta(id_respuesta):
 
 @app.route("/crear_pregunta", methods=['GET'])
 def get_crear_preguntas():
-    return PreguntasEndpoints.get_crear_preguntas(auth_service)
+    return PreguntasEndpoints.get_crear_pregunta(
+        auth_service=auth_service,
+        back_service=backend_service
+    )
+
+@app.route("/crear_pregunta", methods=['POST'])
+def post_crear_preguntas():
+    current_app.logger.warning("crear_pregunta")
+    return PreguntasEndpoints.post_new_question(
+        auth_service=auth_service,
+        back_service=backend_service
+    )
+
 
 # Alvar [16/11/2022]
 @app.route("/pregunta/<id_preg>",methods=['GET'])
@@ -127,25 +139,28 @@ def get_pregunta(id_preg):
         id_preg=id_preg)
 
 @app.route("/pregunta/<id_preg>/crear_respuesta",methods=['GET'])
-def get_pregunta(id_preg):
+def crear_pregunta(id_preg):
     """ TODO formulario de respuesta
     """
-    pass
+    return PreguntasEndpoints.get_crear_pregunta(
+        auth_service=auth_service,
+        back_service=backend_service,
+        id_preg=id_preg)
 
 @app.route("/pregunta/<id_preg>/crear_respuesta",methods=['POST'])
-def get_pregunta(id_preg):
+def crear_pregunta_post(id_preg):
     """ TODO creacion de respuesta
     """
     pass
 
 @app.route("/respuesta/<id_resp>/crear_comentario",methods=['GET'])
-def get_pregunta(id_preg):
+def crear_comentario(id_preg):
     """ TODO formulario de comentario
     """
     pass
 
 @app.route("/respuesta/<id_resp>/crear_comentario",methods=['POST'])
-def get_pregunta(id_preg):
+def crear_comentario_post(id_preg):
     """ TODO creacion de comentario
     """
     pass

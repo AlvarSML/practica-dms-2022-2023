@@ -1,6 +1,6 @@
 """ BackendService class module.
 """
-from typing import Optional
+from typing import Optional, Dict
 import requests
 from dms2223common.data import Role
 from dms2223common.data.rest import ResponseData
@@ -34,26 +34,19 @@ class BackendService():
         self.__apikey_header: str = apikey_header
         self.__apikey_secret: str = apikey_secret
 
-    def __base_url(self) -> str:
-        return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
-
-    def get_questions(self, token: Optional[str]):
-        """ Obtiene una lista de todas las preguntas
-            No es necesario introducir un token para ver solo las preguntas
+    def __get_data(self,token:Optional[str],url:str) -> ResponseData:
+        """ Funcion template para hacer consultas de un diccionario determindao
         """
         resp_data: ResponseData = ResponseData()
-
-        current_app.logger.warning(self.__apikey_secret)
-        current_app.logger.warning(self.__apikey_header)
-
         response: requests.Response = requests.get(
-            self.__base_url() + f'/questions',
+            self.__base_url() + url,
             headers={
                 'Authorization': f'Bearer {token}',
                 self.__apikey_header: self.__apikey_secret
             },
             timeout=60
         )
+
         resp_data.set_successful(response.ok)
         if resp_data.is_successful():
             resp_data.set_content(response.json())
@@ -62,42 +55,85 @@ class BackendService():
             resp_data.set_content([])
         return resp_data
     
-    def get_question(self, token: Optional[str], qid:int):
-        """ Obtiene una sola pregunta con sus respuestas y comentarios
-        """
-        resp_data: ResponseData = ResponseData()
-        response: requests.Response = requests.get(
-            self.__base_url() + f'/questions/{qid}',
+    def __post_data(self,token:Optional[str],url:str,json:dict) -> ResponseData:
+        response_data: ResponseData = ResponseData()
+        response: requests.Response = requests.post(
+            self.__base_url() + url,
+            json=json,
             headers={
                 'Authorization': f'Bearer {token}',
                 self.__apikey_header: self.__apikey_secret
             },
             timeout=60
         )
-        resp_data.set_successful(response.ok)
-        if resp_data.is_successful():
-            resp_data.set_content(response.json())
+
+        current_app.logger.debug(json)
+
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
         else:
-            resp_data.add_message(response.content.decode('ascii'))
-            resp_data.set_content([])
-        return resp_data
+            response_data.add_message(response.content.decode('ascii'))
+        return response_data
+
+    def __base_url(self) -> str:
+        return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
+
+    def get_questions(self, token: Optional[str]):
+        """ Obtiene una lista de todas las preguntas
+            No es necesario introducir un token para ver solo las preguntas
+        """
+        return self.__get_data(token=token,url=f'/questions')
+    
+    def get_question(self, token: Optional[str], qid:int):
+        """ Obtiene una sola pregunta con sus respuestas y comentarios
+        """
+        return self.__get_data(token=token,url=f'/questions/{qid}')
 
     def get_answers(self, token: Optional[str], qid:int):
         """ Obtiene las respuestas a una pregunta con los comentarios
         """
-        resp_data: ResponseData = ResponseData()
-        response: requests.Response = requests.get(
-            self.__base_url() + f'/questions/{qid}/answers',
-            headers={
-                'Authorization': f'Bearer {token}',
-                self.__apikey_header: self.__apikey_secret
-            },
-            timeout=60
+        return self.__get_data(token=token,url=f'/questions/{qid}/answers')
+
+    def post_question(self, token: Optional[str], title:str, body:str):
+        """ Manda la peticion para crear una pregutna nueva
+        """
+        json:Dict = {
+            'title':title,
+            'body':body
+        }
+
+        return self.__post_data(
+            token=token,
+            url=f'/questions',
+            json=json
         )
-        resp_data.set_successful(response.ok)
-        if resp_data.is_successful():
-            resp_data.set_content(response.json())
-        else:
-            resp_data.add_message(response.content.decode('ascii'))
-            resp_data.set_content([])
-        return resp_data
+    
+    def post_answer(self, token: Optional[str], qid:int, body:str):
+        """ Manda la peticion para crear una respuesta nueva
+        """
+        json:Dict = {
+            'qid':qid,
+            'body':body
+        }
+
+        return self.__post_data(
+            token=token,
+            url=f'/questions/{qid}/answers',
+            json=json
+        )
+    
+    def post_comment(self, token: Optional[str], aid:int, body:str, sentiment:str):
+        """ Manda la peticion para crear un comentario nueva
+        """
+        json:Dict = {
+            'aid':aid,
+            'body':body,
+            'sentiment':sentiment
+        }
+
+        return self.__post_data(
+            token=token,
+            url=f'/answers/{aid}/comments',
+            json=json
+        )

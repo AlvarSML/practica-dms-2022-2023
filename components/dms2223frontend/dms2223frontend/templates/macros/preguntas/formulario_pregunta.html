@@ -1,0 +1,29 @@
+{% macro form_pregunta() %}
+{% from "macros/buttons.html" import submit_button, button %}
+<script src="/static/scripts/editor_texto.js" ></script>
+
+<div class="contenedor_pregutna">
+    <form action="/crear_pregunta" method="post">
+        <div id="editor_respuesta">
+            <input 
+                type="text" 
+                id="qtitle" 
+                name="qtitle" 
+                placeholder="Pregunta">  
+
+            <div class="marco_texto">
+                    
+            <textarea 
+                id="texti" 
+                class="texto_formulario" 
+                name="qbody"
+                rows="10"
+                cols="100"
+                placeholder="Tu respuesta aqui"></textarea>
+            </div>
+            {{ submit_button('bluebg', 'Responder') }}
+        </div>
+    </form>
+</div>
+{% endmacro %}
+

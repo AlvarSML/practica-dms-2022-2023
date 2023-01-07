@@ -1,16 +1,11 @@
 {% extends "base.html" %}
 {% from "macros/buttons.html" import button, submit_button %}
+{% from "macros/preguntas/formulario_pregunta.html" import form_pregunta %}
 
-{% block title %}Log in{% endblock %}
+{% block title %}Nueva pregunta{% endblock %}
 {% block pagecontent %}
     <div id="preguntas-form">
-        <h2 class="aligncenter">Realiza una pregunta</h2><br>
-        <form action="/action_page.php" id="formulario">
-            <label for="titulo">Titulo de la pregunta:</label><br>
-            <input type="text" id="titulo" name="titulo" size="100"><br><br>
-            <label for="detalles">¿Cuales son los detalles de la pregunta?:</label><br>
-            <textarea id="detalles" rows="10" cols="117" name="detalles" form="formulario"></textarea><br><br>
-            <p class="aligncenter">{{ submit_button('greenbg', 'Enviar Pregunta') }}</p>
-        </form> 
+        <h3>Tu pregunta:</h3>
+        {{ form_pregunta() }}
     </div>
 {% endblock %}

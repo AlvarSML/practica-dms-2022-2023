@@ -6,7 +6,8 @@ from dms2223frontend.data.clases.respuesta import Respuesta
 from dms2223frontend.data.rest.authservice import AuthService
 
 from typing import Text, Union
-from flask import redirect, url_for, session, render_template,current_app
+from flask import (redirect, url_for, session, 
+    render_template,current_app, request)
 from werkzeug.wrappers import Response
 from dms2223common.data import Role
 from .webauth import WebAuth
@@ -46,7 +47,7 @@ class PreguntasEndpoints():
     """ Monostate class responsible of handling the session web endpoint requests.
     """
     @staticmethod
-    def get_crear_preguntas(auth_service: AuthService) -> Union[Response, Text]:
+    def get_crear_pregunta(auth_service: AuthService,  back_service:BackendService) -> Union[Response, Text]:
         """ Handles the GET requests to the home endpoint.
 
         Args:
@@ -62,3 +63,27 @@ class PreguntasEndpoints():
         name = session['user']
         return render_template('preguntas/crear_preguntas.html', name=name, roles=session['roles'])
 
+    @staticmethod
+    def post_new_question(back_service: BackendService, auth_service: AuthService) -> Union[Response, Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        """ # ! DEBUG
+        if Role.DISCUSSION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        """
+
+        title = request.form.get('qtitle')
+        body = request.form.get('qbody')
+
+        new_question = back_service.post_question(
+            token = session.get('token'),
+            title=title, 
+            body=body)
+
+        current_app.logger.debug(new_question.get_messages())
+        current_app.logger.debug(new_question.get_content())
+
+        if not new_question:
+            return redirect(url_for('get_new_question'))
+
+        return redirect(url_for('get_home'))
