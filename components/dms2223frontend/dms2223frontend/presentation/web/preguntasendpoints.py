@@ -29,13 +29,19 @@ class PreguntasEndpoints():
             qid=id_preg
         )
 
+        resps = back_service.get_answers(
+            token = session.get('token'),
+            qid=id_preg
+        )
+
         current_app.logger.info(preg.get_content())
+        current_app.logger.info(resps.get_content())
 
         return render_template(
             'pregunta.html',
             name = name,
             pregunta_env = preg.get_content(), 
-            respuestas_env = [])
+            respuestas_env = resps.get_content())
      
     """ Monostate class responsible of handling the session web endpoint requests.
     """

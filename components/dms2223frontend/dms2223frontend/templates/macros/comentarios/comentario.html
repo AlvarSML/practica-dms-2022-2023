@@ -4,16 +4,16 @@
     <div class="comentario_div">
         <div class="datos_comentario container2cols">
             <div id="votos">
-                {{ voto_positivo_button(comentario.votos_positivos) }}
-                {{ voto_negativo_button(comentario.votos_negativos) }}
+                {{ voto_positivo_button(comentario.votes) }}
+                {{ voto_negativo_button(comentario.neg_votes) }}
             </div>
             <div class="contenido_comentario">
-                <p class="texto_comentario">{{comentario.contenido_comentario}}</p>
+                <p class="texto_comentario">{{comentario.body}}</p>
             </div>
         </div>
         <div class="metadatos_comentario">
-            <p class="autor_comentario">{{comentario.autor}}</p>
-            <p>{{comentario.fecha_creacion.strftime('%Y-%m-%d')}}</p>
+            <p class="autor_comentario">{{comentario.owner.username}}</p>
+            <p>{{comentario.timestamp}}</p>
         </div>
     </div>
 {% endmacro %}

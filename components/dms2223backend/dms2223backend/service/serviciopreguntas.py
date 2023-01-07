@@ -50,7 +50,7 @@ class PreguntasServicio():
         resp:Dict = {
             "qid":preg.id_pregunta,
             "title":preg.titulo,
-            "tiemstamp":preg.fecha,
+            "timestamp":preg.fecha,
             "pos_votes":votos_pos,
             "neg_votes":votos_neg,
             "body":preg.contenido,
@@ -98,7 +98,7 @@ class PreguntasServicio():
         resp:Dict = {
             "qid":res.id_pregunta,
             "title":res.titulo,
-            "tiemstamp":res.fecha,
+            "timestamp":res.fecha,
             "pos_votes":-1,
             "neg_votes":-1,
             "body":res.contenido,

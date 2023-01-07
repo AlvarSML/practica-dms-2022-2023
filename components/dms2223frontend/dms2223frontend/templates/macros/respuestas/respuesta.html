@@ -1,32 +1,35 @@
 {% from 'macros/respuestas/inputs.html' import input %}
 {% from "macros/buttons.html" import button, submit_button, voto_positivo_button, voto_negativo_button %}
-
+{% from "macros/comentarios/container_comentarios.html" import contenedor_comentarios %}
 
 {% macro respuesta(respuesta) %}
 <div class="respuesta_div">
     <div class="container2cols">
         <div id="votos">
-            {{ voto_positivo_button(respuesta.votos_positivos) }}
-            {{ voto_negativo_button(respuesta.votos_negativos) }}
+            {{ voto_positivo_button(respuesta.votes) }}
+            {{ voto_negativo_button(respuesta.neg_votes) }}
         </div>
 
         <div id="question_text_container">   
-            <p class="respuesta_texto">{{ respuesta.contenidoRespuesta }}</p>
+            <p class="respuesta_texto">{{ respuesta.body }}</p>
         </div>
     </div>
 
     <div class="container2cols">
         <div class="controlesRespuesta"> 
             {{ submit_button('greengb','Responder') }}
-            <p><a href="/respuesta/{{respuesta.id}}">Comentarios({{respuesta.num_comentarios}})</a></p>
             {{ submit_button('redgb','Reportar respuesta') }}
         </div>    
 
         <div class="metadatosRespuesta">
-            <p>{{ respuesta.autor }}</p>
-            <p>{{ respuesta.fecha_creacion.strftime('%Y-%m-%d') }}</p>        
+            <p>{{ respuesta.owner.username }}</p>
+            <p>{{ respuesta.timestamp }}</p>        
         </div>
+
     </div>
     
+    <div class="comentarios">
+        {{ contenedor_comentarios(respuesta.comments) }}
+    </div>
 </div>
 {% endmacro %}
