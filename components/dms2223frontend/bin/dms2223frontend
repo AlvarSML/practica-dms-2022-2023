@@ -126,6 +126,30 @@ def get_pregunta(id_preg):
         back_service=backend_service,
         id_preg=id_preg)
 
+@app.route("/pregunta/<id_preg>/crear_respuesta",methods=['GET'])
+def get_pregunta(id_preg):
+    """ TODO formulario de respuesta
+    """
+    pass
+
+@app.route("/pregunta/<id_preg>/crear_respuesta",methods=['POST'])
+def get_pregunta(id_preg):
+    """ TODO creacion de respuesta
+    """
+    pass
+
+@app.route("/respuesta/<id_resp>/crear_comentario",methods=['GET'])
+def get_pregunta(id_preg):
+    """ TODO formulario de comentario
+    """
+    pass
+
+@app.route("/respuesta/<id_resp>/crear_comentario",methods=['POST'])
+def get_pregunta(id_preg):
+    """ TODO creacion de comentario
+    """
+    pass
+
 
 if __name__ == '__main__':
     app.run(

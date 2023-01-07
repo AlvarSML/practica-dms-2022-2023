@@ -1,5 +1,5 @@
 <!--Imports de los botones de votacion-->
-{% from 'macros/buttons.html' import voteUp_button, voteDown_button %}
+{% from 'macros/buttons.html' import button, voteUp_button, voteDown_button %}
 
 <!--Pregunta en formato de titulo-->
 {% macro tituloPregunta(titulo,id_pregunta) %}
@@ -27,7 +27,9 @@
     {{tituloPregunta(pregunta.title,pregunta.qid)}}
     {{cuepoPregunta(pregunta.body)}}
 
-    {{datosPregunta(pregunta.owner.username,pregunta.timestamp)}}    
+    {{datosPregunta(pregunta.owner.username,pregunta.timestamp)}}
+      
+    {{ button("greenbg","/pregunta/"+(pregunta.qid|string)+"/crear_respuesta","Responder",()) }}
 </div>
 {% endmacro %}
 

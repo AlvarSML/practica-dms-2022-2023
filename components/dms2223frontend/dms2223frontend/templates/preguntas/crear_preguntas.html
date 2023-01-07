@@ -1,5 +1,6 @@
-{% extends "templates/base.html" %}
-{% from "macros/buttons.html" import button, submit_button, reset_button %}
+{% extends "base.html" %}
+{% from "macros/buttons.html" import button, submit_button %}
+
 {% block title %}Log in{% endblock %}
 {% block pagecontent %}
     <div id="preguntas-form">
@@ -9,8 +10,7 @@
             <input type="text" id="titulo" name="titulo" size="100"><br><br>
             <label for="detalles">¿Cuales son los detalles de la pregunta?:</label><br>
             <textarea id="detalles" rows="10" cols="117" name="detalles" form="formulario"></textarea><br><br>
-            <p class="aligncenter">{{ submit_button('greenbg', 'Enviar Pregunta') }}</p>-->
-            <p class="aligncenter">{{ reset_button('graybg', 'Vaciar Campos') }}</p><br>
+            <p class="aligncenter">{{ submit_button('greenbg', 'Enviar Pregunta') }}</p>
         </form> 
     </div>
 {% endblock %}
