@@ -1,0 +1,9 @@
+{% from 'macros/reportes/reporte.html' import reporte %}
+
+{% macro contenedor_reportes(tipo,reportes,tipo_id,statuses) %}
+<div id="contenedor_preguntas">
+{% for rep in reportes %}
+    {{ reporte(tipo,tipo_id,rep,statuses) }}
+{% endfor %}
+</div>
+{% endmacro %}

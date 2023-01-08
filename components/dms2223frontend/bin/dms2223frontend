@@ -83,7 +83,9 @@ def get_discussion():
 
 @app.route("/moderator", methods=['GET'])
 def get_moderator():
-    return ModeratorEndpoints.get_moderator(auth_service)
+    return ModeratorEndpoints.get_moderator(
+        auth_service=auth_service,
+        back_service=backend_service)
 
 @app.route("/admin", methods=['GET'])
 def get_admin():
@@ -222,29 +224,35 @@ def reportes_preguntas_get():
 
 @app.route("/respuestas/reportes", methods=['GET'])
 def reportes_respuestas_get():
-    ModeratorEndpoints.get_reps_respuestas(
+    return ModeratorEndpoints.get_reps_respuestas(
         auth_service=auth_service,
         back_service=backend_service)
 
 
 @app.route("/cmentarios/reportes", methods=['GET'])
 def reportes_comentarios_get():
-    ModeratorEndpoints.get_reps_comentarios(
+    return ModeratorEndpoints.get_reps_comentarios(
         auth_service=auth_service,
         back_service=backend_service)
 
 
-@app.route("/pregunta/reportes/<id_rep>", methods=['PUT'])
-def cambio_estado_rep_pregunta_put():
-    return 0
+@app.route("/pregunta/reportes/<id_rep>", methods=['POST'])
+def cambio_estado_rep_pregunta_put(id_rep):
+    return ModeratorEndpoints.put_estado_preg(
+        auth_service=auth_service,
+        back_service=backend_service)
 
-@app.route("/respuesta/reportes/<id_rep>", methods=['PUT'])
-def cambio_estado_rep_respuesta_put():
-    return 0
+@app.route("/respuesta/reportes/<id_rep>", methods=['POST'])
+def cambio_estado_rep_respuesta_put(id_rep):
+    return ModeratorEndpoints.put_estado_resp(
+        auth_service=auth_service,
+        back_service=backend_service)
 
-@app.route("/cmentario/reportes/<id_rep>", methods=['PUT'])
-def cambio_estado_rep_comentario_put():
-    return 0
+@app.route("/comentario/reportes/<id_rep>", methods=['POST'])
+def cambio_estado_rep_comentario_put(id_rep):
+    return ModeratorEndpoints.put_estado_comm(
+        auth_service=auth_service,
+        back_service=backend_service)
 
 if __name__ == '__main__':
     app.run(

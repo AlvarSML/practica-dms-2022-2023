@@ -2,35 +2,20 @@
 """
     
 from typing import Text, Union
-from flask import redirect, url_for, session, render_template, current_app
+from flask import redirect, url_for, session, render_template, current_app, request
 from werkzeug.wrappers import Response
 from dms2223common.data import Role
 from dms2223frontend.data.rest.authservice import AuthService
 from dms2223frontend.data.rest.backendservice import BackendService
 from .webauth import WebAuth
-
+from dms2223common.data.rest import ResponseData
+from dms2223frontend.data.rest.backendservice import BackendService
 
 class ModeratorEndpoints():
     """ Monostate class responsible of handing the moderator web endpoint requests.
     """
     @staticmethod
-    def get_moderator(auth_service: AuthService) -> Union[Response, Text]:
-        """ Handles the GET requests to the moderator root endpoint.
-
-        Args:
-            - auth_service (AuthService): The authentication service.
-
-        Returns:
-            - Union[Response,Text]: The generated response to the request.
-        """
-        if not WebAuth.test_token(auth_service):
-            return redirect(url_for('get_login'))
-        if Role.MODERATION.name not in session['roles']:
-            return redirect(url_for('get_home'))
-        name = session['user']
-        return render_template('moderator.html', name=name, roles=session['roles'])
-
-    def get_reportes(auth_service: AuthService, back_service:BackendService):
+    def get_moderator(auth_service: AuthService, back_service:BackendService):
         """ Obtener todos los repores de preguntas
         """
         if not WebAuth.test_token(auth_service):
@@ -51,11 +36,91 @@ class ModeratorEndpoints():
             token=session.get('token')
         )
 
+        current_app.logger.debug(reps_preg.get_messages())
 
         return render_template(
-            'reportes_preguntas.html',
+            'moderator.html',
             name = name,
             reportes_preguntas = reps_preg.get_content(),
             reportes_respuestas = reps_resp.get_content(),
             reportes_comentarios = reps_comm.get_content(),
-            )
+            statuses={
+                "accepted":"ACCEPTED",
+                "pending":"PENDING",                
+                "rejected":"REJECTED"
+            }
+        )
+
+    @staticmethod
+    def put_estado_preg(auth_service: AuthService, back_service:BackendService):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.MODERATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+
+        rid = request.form.get('id')
+        status = request.form.get('status')
+
+        response: ResponseData = back_service.put_question_report(
+            token=session.get('token'),
+            qrid=rid, 
+            status=status)
+        
+        current_app.logger.debug("cabio estado rpreg")
+        current_app.logger.debug(response.get_messages())
+
+        return ModeratorEndpoints.get_moderator(
+            auth_service=auth_service,
+            back_service=back_service
+        )
+    
+
+    @staticmethod
+    def put_estado_resp(auth_service: AuthService, back_service:BackendService):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.MODERATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+
+        rid = request.form.get('id')
+        status = request.form.get('status')
+
+        response: ResponseData = back_service.put_answer_report(
+            token=session.get('token'),
+            arid=rid, 
+            status=status)
+
+        current_app.logger.debug("cabio estado rresp")
+        current_app.logger.debug(response.get_messages())
+
+        return ModeratorEndpoints.get_moderator(
+            auth_service=auth_service,
+            back_service=back_service
+        )
+
+    @staticmethod
+    def put_estado_comm(auth_service: AuthService, back_service:BackendService):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.MODERATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+
+        rid = request.form.get('id')
+        status = request.form.get('status')
+
+        response: ResponseData = back_service.put_comment_report(
+            token=session.get('token'),
+            crid=rid, 
+            status=status)
+        
+        current_app.logger.debug("cabio estado rcomm")
+        current_app.logger.debug(response.get_messages())
+
+        return ModeratorEndpoints.get_moderator(
+            auth_service=auth_service,
+            back_service=back_service
+        )
+
+
+
+

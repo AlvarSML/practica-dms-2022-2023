@@ -75,6 +75,28 @@ class BackendService():
         else:
             response_data.add_message(response.content.decode('ascii'))
         return response_data
+    
+    def __put_data(self,token:Optional[str],url:str,json:dict) -> ResponseData:
+        response_data: ResponseData = ResponseData()
+        response: requests.Response = requests.put(
+            self.__base_url() + url,
+            json=json,
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+
+        current_app.logger.debug(json)
+        current_app.logger.debug(response_data.is_successful())
+
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content({"codigo":204})
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+        return response_data
 
     def __base_url(self) -> str:
         return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
@@ -139,10 +161,40 @@ class BackendService():
         )
     
     def get_reps_preguntas(self, token: Optional[str]):
-        return self.__get_data(token=token,url=f'/questions/reports')
+        return self.__get_data(token=token,url=f'/questions/reports?pending=true&accepted=false&rejected=false')
 
     def get_reps_respuestas(self, token: Optional[str]):
-        return self.__get_data(token=token,url=f'/answers/reports')
+        return self.__get_data(token=token,url=f'/answers/reports?pending=true&accepted=false&rejected=false')
 
     def get_reps_comentarios(self, token: Optional[str]):
-        return self.__get_data(token=token,url=f'/comments/reports')
+        return self.__get_data(token=token,url=f'/comments/reports?pending=true&accepted=false&rejected=false')
+
+    def put_question_report(self, token: Optional[str], qrid:int, status:str):
+        json:Dict = {
+            'status':status
+        }
+        return self.__put_data(
+            token=token,
+            url=f"/questions/reports/{qrid}",
+            json=json
+        )
+    
+    def put_answer_report(self, token: Optional[str], arid:int, status:str):
+        json:Dict = {
+            'status':status
+        }
+        return self.__put_data(
+            token=token,
+            url=f"/answers/reports/{arid}",
+            json=json
+        )
+    
+    def put_comment_report(self, token: Optional[str], crid:int, status:str):
+        json:Dict = {
+            'status':status
+        }
+        return self.__put_data(
+            token=token,
+            url=f"/comments/reports/{crid}",
+            json=json
+        )

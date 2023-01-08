@@ -10,7 +10,7 @@ from flask import current_app
 from sqlalchemy.orm.session import Session # type: ignore
 
 from dms2223backend.service import PreguntasServicio, ReportesServicio
-from dms2223backend.data.db import Pregunta, ReportePregunta
+from dms2223backend.data.db import Pregunta, ReportePregunta, Estado_moderacion
 
 from flask import current_app
 
@@ -118,14 +118,23 @@ def set_preg_report(qid:int,body: Dict, token_info: Dict) -> Tuple[Dict,Optional
                 return (report, HTTPStatus.CREATED)
     return (report, HTTPStatus.CREATED)
 
-def get_all_reports() -> Tuple[List[Dict],Optional[int]]:
+def get_all_reports(**kwargs:Dict) -> Tuple[List[Dict],Optional[int]]:
     """ Devuelve todos los reportes que se han hecho a las preguntas
     """
     with current_app.app_context():
-        resp:Dict = PreguntasServicio.get_all_reports(
-            schema=current_app.db
+        status:List = []
+
+        # Permite modificaciones de los estados de moderacion
+        for estado in Estado_moderacion:
+            if estado.name in kwargs and kwargs[estado.name]:
+                status.append(estado.name)
+
+        reportes:List[ReportePregunta] = ReportesServicio.get_quest_reports(
+            schema=current_app.db,
+            estados=status
         )
-    return (resp, HTTPStatus.OK)
+
+    return (reportes, HTTPStatus.OK)
 
 def put_preg_report(qrid:int, body: Dict, token_info: Dict) -> Tuple[Dict,Optional[int]]:
     """    
