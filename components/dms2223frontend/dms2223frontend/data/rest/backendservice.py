@@ -137,3 +137,12 @@ class BackendService():
             url=f'/answers/{aid}/comments',
             json=json
         )
+    
+    def get_reps_preguntas(self, token: Optional[str]):
+        return self.__get_data(token=token,url=f'/questions/reports')
+
+    def get_reps_respuestas(self, token: Optional[str]):
+        return self.__get_data(token=token,url=f'/answers/reports')
+
+    def get_reps_comentarios(self, token: Optional[str]):
+        return self.__get_data(token=token,url=f'/comments/reports')

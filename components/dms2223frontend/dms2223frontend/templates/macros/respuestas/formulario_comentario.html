@@ -1,4 +1,4 @@
-{% macro form_comentario(respuesta_anterior) %}
+{% macro form_comentario(respuesta_anterior,sentiments) %}
 {% from "macros/buttons.html" import submit_button, button %}
 <script src="/static/scripts/editor_texto.js" ></script>
 
@@ -10,16 +10,16 @@
             <textarea 
                 id="texti" 
                 class="texto_formulario" 
-                name="abody"
+                name="cbody"
                 rows="10"
                 cols="100"
                 placeholder="Tu comentario aqui"></textarea>
             </div>
 
-            <label for="sentiment">Choose colour</label>
+            <label for="sentiment">Sentiment</label>
             <select name="sentiment">
                 {% for sentiment in sentiments %}
-                    <option value="{{ sentiment }}" >{{ sentiment }}</option>
+                    <option value="{{ sentiments[sentiment] }}" >{{ sentiment }}</option>
                 {% endfor %}     
             </select>
             {{ submit_button('bluebg', 'Responder') }}

@@ -10,7 +10,8 @@ from dms2223frontend.data.rest import AuthService, BackendService
 from dms2223frontend.presentation.web import \
     AdminEndpoints, CommonEndpoints, SessionEndpoints, \
     DiscussionEndpoints, ModeratorEndpoints
-from dms2223frontend.presentation.web import PreguntasEndpoints, RespuestasEndpoints 
+from dms2223frontend.presentation.web import PreguntasEndpoints, RespuestasEndpoints,\
+    ModeratorEndpoints
 
 
 cfg: FrontendConfiguration = FrontendConfiguration()
@@ -108,11 +109,11 @@ def get_admin_users_edit():
 def post_admin_users_edit():
     return AdminEndpoints.post_admin_users_edit(auth_service)
 
-
+"""
 @app.route("/respuesta/<id_respuesta>",methods=['GET'])
 def get_respuesta(id_respuesta):
     return RespuestasEndpoints.get_respuesta(auth_service,id_respuesta)
-
+"""
 
 @app.route("/crear_pregunta", methods=['GET'])
 def get_crear_preguntas():
@@ -140,7 +141,7 @@ def get_pregunta(id_preg):
 
 @app.route("/pregunta/<id_preg>/crear_respuesta",methods=['GET'])
 def crear_respuesta_get(id_preg):
-    """ TODO formulario de respuesta
+    """ Formulario de respuesta
     """
     return PreguntasEndpoints.get_crear_respuesta(
         auth_service=auth_service,
@@ -157,7 +158,7 @@ def crear_pregunta_post(id_preg):
 
 @app.route("/respuesta/<id_resp>/crear_comentario",methods=['GET'])
 def crear_comentario_get(id_resp):
-    """ TODO formulario de comentario
+    """ Formulario de comentario
     """
     return PreguntasEndpoints.get_crear_comentario(
         auth_service=auth_service,
@@ -166,15 +167,84 @@ def crear_comentario_get(id_resp):
 
 
 @app.route("/respuesta/<id_resp>/crear_comentario",methods=['POST'])
-def crear_comentario_post(id_preg):
-    """ TODO creacion de comentario
+def crear_comentario_post(id_resp):
+    """ Creacion de comentario
     """
     current_app.logger.debug("crear_comentario")
-    return PreguntasEndpoints.post_new_commment(
+    return PreguntasEndpoints.post_new_comment(
         auth_service=auth_service,
         back_service=backend_service
     )
 
+""" REPORTES
+"""
+
+@app.route("/pregunta/<id_preg>/reporte", methods=['GET'])
+def crear_reporte_preg_get(id_preg:int):
+    """ Formulario de creacion de reporte
+    """
+    return 0
+
+@app.route("/pregunta/<id_preg>/reporte", methods=['POST'])
+def crear_reporte_preg_post(id_preg:int):
+    """ Envio de creacion de reporte
+    """
+    return 0
+
+@app.route("/respuesta/<id_resp>/reporte", methods=['GET'])
+def crear_reporte_resp_get(id_resp:int):
+    """ Formulario de creacion de reporte
+    """
+    return 0
+
+@app.route("/respuesta/<id_resp>/reporte", methods=['POST'])
+def crear_reporte_resp_post(id_resp:int):
+    """ Envio de creacion de reporte
+    """
+    return 0
+
+@app.route("/comentario/<id_comm>/reporte", methods=['GET'])
+def crear_reporte_comm_get(id_comm:int):
+    """ Formulario de creacion de reporte
+    """
+    return 0
+
+@app.route("/comentario/<id_comm>/reporte", methods=['POST'])
+def crear_reporte_comm_post(id_comm:int):
+    """ Envio de creacion de reporte
+    """
+    return 0
+
+@app.route("/preguntas/reportes", methods=['GET'])
+def reportes_preguntas_get():
+    return 0
+
+
+@app.route("/respuestas/reportes", methods=['GET'])
+def reportes_respuestas_get():
+    ModeratorEndpoints.get_reps_respuestas(
+        auth_service=auth_service,
+        back_service=backend_service)
+
+
+@app.route("/cmentarios/reportes", methods=['GET'])
+def reportes_comentarios_get():
+    ModeratorEndpoints.get_reps_comentarios(
+        auth_service=auth_service,
+        back_service=backend_service)
+
+
+@app.route("/pregunta/reportes/<id_rep>", methods=['PUT'])
+def cambio_estado_rep_pregunta_put():
+    return 0
+
+@app.route("/respuesta/reportes/<id_rep>", methods=['PUT'])
+def cambio_estado_rep_respuesta_put():
+    return 0
+
+@app.route("/cmentario/reportes/<id_rep>", methods=['PUT'])
+def cambio_estado_rep_comentario_put():
+    return 0
 
 if __name__ == '__main__':
     app.run(

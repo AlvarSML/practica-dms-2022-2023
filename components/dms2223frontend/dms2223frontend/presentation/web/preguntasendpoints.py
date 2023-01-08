@@ -145,7 +145,12 @@ class PreguntasEndpoints():
 
         return render_template(
             'preguntas/comentar_respuesta.html',
-            name = name)
+            name = name,
+            aid=aid,
+            sentiments = {
+                "positive":"POSITIVE",
+                "negative":"NEGATIVE",
+                "neutral":"NEUTRAL"})
 
 
     def post_new_comment(back_service: BackendService, auth_service: AuthService):
@@ -160,14 +165,18 @@ class PreguntasEndpoints():
         body = request.form.get('cbody')
         sentiment = request.form.get('sentiment')
 
-        comm = back_service.post_answer(
+        comm = back_service.post_comment(
             token = session.get('token'),
             aid=aid, 
             body=body,
             sentiment=sentiment)
         
-        if not comm:
-            return redirect(url_for('get_quest'))
+        current_app.logger.debug(comm.is_successful())
+        current_app.logger.debug(comm.get_messages())
+
+
+        if not comm.is_successful():
+            return redirect(url_for('crear_comentario_get',id_resp=aid))
 
         return redirect(url_for('get_home'))
 

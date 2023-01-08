@@ -11,3 +11,5 @@ db: Schema = Schema(cfg)
 
 # UserServices.create_user('admin', 'admin', db, cfg)
 # RoleServices.grant_role('admin', Role.ADMINISTRATION, db)
+# RoleServices.grant_role('admin', Role.MODERATION, db)
+# RoleServices.grant_role('admin', Role.DISCUSSION, db)

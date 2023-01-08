@@ -1,0 +1,25 @@
+<!--Imports de los botones de votacion-->
+{% from 'macros/buttons.html' import button %}
+
+{% macro reporte(tipo,id_elem,rep_data,statuses) %}
+<div class="questiondiv">
+    <form action="/{{tipo}}/reportes/<id_rep>" method="post">
+        <h3>id {{ tipo }}: {{id_elem}} </h3>
+
+        <h4>Razon: </h4>
+        <p> {{ rep_data.reason }} </p>
+
+        <h4>Reportado por:</h4>
+        <p> {{ rep_data.owner.username }} </p>
+
+        <h4>Status:</h4>
+        <p><i>Actual: {{rep_data.status}} </i></p>
+        <select name="status">
+            {% for status in statuses %}
+                <option value="{{ statuses[status] }}" selected>{{ status }}</option>
+            {% endfor %}     
+        </select>
+        {{ submit_button('bluebg', 'Actualizar') }}
+    </form>
+</div>
+{% endmacro %}
