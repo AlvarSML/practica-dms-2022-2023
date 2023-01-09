@@ -220,3 +220,13 @@ class BackendService():
             url=url,
             json=json
         )
+    
+    def post_voto(self, token: Optional[str],tipo:str,eid:int):
+        url = f'/{tipo}/{eid}/votes'
+        current_app.logger.debug(url)
+
+        return self.__post_data(
+            token=token,
+            url=url,
+            json={}
+        )

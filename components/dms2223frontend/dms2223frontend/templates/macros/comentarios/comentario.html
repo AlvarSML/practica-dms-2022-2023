@@ -1,10 +1,10 @@
 {% from "macros/buttons.html" import button, submit_button, voto_positivo_button, voto_negativo_button %}
 
-{% macro comentario(comentario) %}
+{% macro comentario(comentario,preg_id) %}
     <div class="comentario_div" style="border-color:{{comentario.color}};">
         <div class="datos_comentario container2cols">
             <div id="votos">
-                {{ voto_positivo_button(comentario.votes) }}
+                {{ voto_positivo_button(comentario.votes,"comentario",comentario.id,preg_id) }}
                 {{ voto_negativo_button(comentario.neg_votes) }}
             </div>
             <div class="contenido_comentario">

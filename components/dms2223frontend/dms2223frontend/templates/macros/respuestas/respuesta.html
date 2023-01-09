@@ -6,7 +6,7 @@
 <div class="respuesta_div">
     <div class="container2cols">
         <div id="votos">
-            {{ voto_positivo_button(respuesta.votes) }}
+            {{ voto_positivo_button(respuesta.votes,"respuesta",respuesta.id,respuesta.qid) }}
             {{ voto_negativo_button(respuesta.neg_votes) }}
         </div>
 
@@ -29,7 +29,7 @@
     </div>
     
     <div class="comentarios">
-        {{ contenedor_comentarios(respuesta.comments) }}
+        {{ contenedor_comentarios(respuesta.comments,respuesta.qid) }}
     </div>
 </div>
 {% endmacro %}

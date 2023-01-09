@@ -14,6 +14,7 @@ from .webauth import WebAuth
 from datetime import datetime
 
 from dms2223frontend.data.rest import BackendService
+from dms2223common.data.rest import ResponseData
 
 class PreguntasEndpoints():
     @staticmethod
@@ -96,7 +97,7 @@ class PreguntasEndpoints():
             return redirect(url_for('get_home'))
         name = session['user']
 
-        preg = back_service.get_question(
+        preg: ResponseData = back_service.get_question(
             token = session.get('token'),
             qid=qid
         )
@@ -122,7 +123,7 @@ class PreguntasEndpoints():
         qid = request.form.get('qid')
         body = request.form.get('abody')
 
-        ans = back_service.post_answer(
+        ans: ResponseData = back_service.post_answer(
             token = session.get('token'),
             qid=qid, 
             body=body)
@@ -169,7 +170,7 @@ class PreguntasEndpoints():
         body = request.form.get('cbody')
         sentiment = request.form.get('sentiment')
 
-        comm = back_service.post_comment(
+        comm: ResponseData = back_service.post_comment(
             token = session.get('token'),
             aid=aid, 
             body=body,
@@ -183,4 +184,26 @@ class PreguntasEndpoints():
             return redirect(url_for('crear_comentario_get',id_resp=aid))
 
         return redirect(url_for('get_home'))
+    
+    def vota_elemento(
+        auth_service: AuthService, 
+        back_service:BackendService, 
+        eid:int,
+        pid:int,
+        tipo:str):
 
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.DISCUSSION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+
+        response: ResponseData = back_service.post_voto(
+            token=session.get('token'),
+            tipo=tipo,
+            eid=eid)
+
+        return PreguntasEndpoints.get_pregunta(
+            auth_service=auth_service,
+            back_service=back_service,
+            id_preg=pid
+        )

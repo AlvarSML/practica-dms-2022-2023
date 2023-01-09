@@ -242,6 +242,7 @@ def crear_reporte_comm_post(id_comm:int):
         back_service=backend_service
     )
 
+
 @app.route("/respuestas/reportes", methods=['GET'])
 def reportes_respuestas_get():
     return ModeratorEndpoints.get_reps_respuestas(
@@ -273,6 +274,26 @@ def cambio_estado_rep_comentario_put(id_rep):
     return ModeratorEndpoints.put_estado_comm(
         auth_service=auth_service,
         back_service=backend_service)
+
+@app.route("/respuesta/<id_resp>/voto/<id_preg>", methods=['GET'])
+def vota_respuesta(id_resp,id_preg):
+    return PreguntasEndpoints.vota_elemento(
+        auth_service=auth_service,
+        back_service=backend_service,
+        eid=id_resp,
+        pid=id_preg,
+        tipo="answers"
+    )
+
+@app.route("/comentario/<id_comm>/voto/<id_preg>", methods=['GET'])
+def vota_comentario(id_comm,id_preg):
+    return PreguntasEndpoints.vota_elemento(
+        auth_service=auth_service,
+        back_service=backend_service,
+        eid=id_comm,
+        pid=id_preg,
+        tipo="comments"
+    )
 
 if __name__ == '__main__':
     app.run(
