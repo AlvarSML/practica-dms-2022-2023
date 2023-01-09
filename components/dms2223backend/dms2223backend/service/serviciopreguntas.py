@@ -139,8 +139,8 @@ class PreguntasServicio():
                             "owner":{"username":comm.autor.nombre},
                             "user_votes": votos,
                             "votes":len(votos),
-                            "sentiment":"POSITIVE",
-                            "color":"FFF"
+                            "sentiment":comm.feedback.descripcion,
+                            "color": comm.feedback.color_asociado
                         })
 
                 # Se convierten los votos en diccionarios
