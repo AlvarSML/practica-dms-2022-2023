@@ -66,14 +66,14 @@ La base de las aplicacion son las preguntas con respuestas a modo de resolucion 
 
 
 ### 2. Consideraciones de para el desarrollo
-#### 2.1 Docker
+#### 2.1. Docker
 Por su simplicidad se han decidido modificar los ficheros de instalacion e inicio y asi permitir el desarrollo sin necesiadad de reinicios.
 Se ha asumido que los desarrolladores actuales han instalado las imagenes, por lo que se ha comentado las lineas de *"/practica-dms-2022-2023/components/dms2223auth/bin/dms2223auth-create-admin"* para que no se intente volver a crear el usuario admin.
 Si se requiriese reinstalar la maquina habria que desomentarlas o no sera posible loguearse en la aplicacion.
 
 Ademas para permitir la compatibilidad con WSL2 se ha editado *" practica-dms-2022-2023/docker/config/dev.yml" liena 33* para enlazar el puerto 8080 de Docker con el 8080 de Windows.
 
-#### 2.2 Modo debug
+#### 2.2. Modo debug
 Para agilizar el desarrollo se ha configurado Jinja/Flask para actualizarsa cada vez que se produce un cambio en el frontend, asi no sera necesario reiniciar el servicio o la maquina docker cada vez que haga un cambio a la web. 
 Para ello se ha modificado:
 
@@ -89,6 +89,12 @@ app.config.update(
 Esto permite la recarga automatica de templates y codigo de las peticiones del mismo archivo. 
 Es recomendable eliminar estas lineas en un futuro despliegue.
 
+#### 2.3. Datos de prueba
+Tanto para el servicio de autenticacion como para el de backend se ha creado un archivo python que genera unos datos base para pribar la palicacion.
+
+- En *components/dms2223auth/bin* está *dms2223auth-create-admin* que crea un usuario con todos los roles, se debe comentar despues de la primera ejecucion, sino provoca una excepcion indicando que el usuario ya existe.
+- En *components/dms2223backend/bin* está *dms2223backend-crear-ejemplo* donde se resetea la base de datos y se introducen unos datos base, en este caso cuando se despligue habra que eliminar su llamada de *install.sh*. 
+
 ### 3. Arquitectura de la aplicacion
 #### 3.1. Arquitectura del frontend
   El *frontend* se encarga por una parte de mostrar las los datos al usuario y
@@ -96,7 +102,7 @@ por otro hace solicitudes a servidores de datos mediante sus *API REST*. En nues
 
 Para llevar a cabo estos procesos se usan 2 capas:
   - **Capa de presentacion**: Englobaria los endpoints y sus templates asociadas, únicamente muestran informacion por el navegador y solo tiene conocimiento de la actividad del usuario, a que partes entra o donde hace click.
-  - **Capa de servicios**:  Se encarga de las comunicaciones con las APIs. Recibe peticiones de la capa de presentacion para obtener datos, tiene el conocimiento de los servicios externos que se usan. En general contruya las peticiones HTTP y comprueba las respuestas.
+  - **Capa de servicios (Origen de datos)**:  Se encarga de las comunicaciones con las APIs. Recibe peticiones de la capa de presentacion para obtener datos, tiene el conocimiento de los servicios externos que se usan. En general contruya las peticiones HTTP y comprueba las respuestas.
 
 De esta forma se pueden añadir servicios para APIs nuevas en futuras apliaciones sin tener que modificar los actuales, pero puediendo hacer uso de ellos (Se respeta el principio Open/Close). Ademas queda separada la responsabilidad del acceso a datos de la de mostrarlos (Principio Single Responsibility)
 
@@ -115,6 +121,12 @@ Las capas son:
 
 La division en 3 capas permite que cada una haga de fachada de las anteriores y asi se simplifica enormemente el desarrollo, ya que facilmente se pueden crear clases en cada capa para añadir funcionalidades sin afectar al resto del programa.
 
+<div style="text-align: center;">
+
+![Propuesta de datos](/imagenes/diagrama_capas.png "Diagrama propuesto")
+
+</div>
+
 #### 3.3 La Base de Datos
 Realmente el diseño actual de servicios implica que por cada servidor REST habria una BDD distinta y tenemos una para *Auth* y otra para *Backend* pero como no se ha modificado *Auth* no se va a entrar en detalle.
 
@@ -128,12 +140,6 @@ Vamos a distinguir 3 partes importantes en cuanto a las decisiones de diseño, l
 - **Elementos**: Se ha decidido usar el polimorfismo para preguntas, respuestas y comentarios debido a que todos comparten una parte importante de informacion, como el autor, la fecha de creacion y el continido pero además la interaccion con ellos es similar todos se crear, reportar y votar de la misma manera. Las implicaciones son estas: todos lo elementos tienen una id de elemento que lo hace unico, si hay una pregunta con id 1 no habra un comentarion con id 1, si queremos votar un elemento o cambiar su visibilidad podemos usar una única funcion donde se reciban elementos aprovechando *liskov*.
 - **Reportes**: Inicialmente solo iba a existir una clase de reporte con una relaccion a elemento que sirviese para cualquier tipo de elemento pero por agilidad en las consultas, especialmente cuando hay que obtener todos los reportes a x tipo de elemento, separar los reportes en tipos simplifica las consultas pero provoca que sea mas complicado hacer funciones que sirvan para todos los tipos de elemento. A pesar del polimorfismo es sencillo trabajar sobre los campos comunes, como el estado donde las fucniones pueden recibir todos lo tipos de reporte.
 - **Votos**: El modelo de voto es similar a como era el reporte en un inicio, se relacciona con elemento y asi sera posible votar todos los tipos de elemento. Se ha decidido hacer todos lo elementos votables a pesar que las preguntas no se requiere que lo sean, siendo estrictos habria que haber creado una clase mas hija de elemento, *ElementoVotable* con el que estuviese relaccionado voto, pero se ha considerado que no implementar las funcionalidades de voto en pregunta es mas sencillo y permite mas flexibilidad a la hora de hacer cambios en un futuro si se permitiese votar las preguntas.
-
-<div style="text-align: center;">
-
-![Propuesta de datos](/imagenes/diagrama_capas.png "Diagrama propuesto")
-
-</div>
 
 ### 4. Trabajo futuro
 
