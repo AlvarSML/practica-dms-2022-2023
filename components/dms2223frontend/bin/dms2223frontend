@@ -191,7 +191,10 @@ def crear_reporte_preg_get(id_preg:int):
 def crear_reporte_preg_post(id_preg:int):
     """ Envio de creacion de reporte
     """
-    return 0
+    return ModeratorEndpoints.post_report(
+        auth_service=auth_service,
+        back_service=backend_service
+    )
 
 @app.route("/respuesta/<id_resp>/reporte", methods=['GET'])
 def crear_reporte_resp_get(id_resp:int):
@@ -221,6 +224,12 @@ def crear_reporte_comm_post(id_comm:int):
 def reportes_preguntas_get():
     return 0
 
+
+@app.route("/crear_reporte", methods=['POST'])
+def reportes_preguntas_get():
+    return ModeratorEndpoints.get_reps_respuestas(
+        auth_service=auth_service,
+        back_service=backend_service)
 
 @app.route("/respuestas/reportes", methods=['GET'])
 def reportes_respuestas_get():

@@ -198,3 +198,14 @@ class BackendService():
             url=f"/comments/reports/{crid}",
             json=json
         )
+
+    def post_report(self, token: Optional[str],reason:str,tipo:str,eid:int):
+        json:Dict = {
+            'reason':reason
+        }
+
+        return self.__post_data(
+            token=token,
+            url=f'/{tipo}/{eid}/reportes',
+            json=json
+        )

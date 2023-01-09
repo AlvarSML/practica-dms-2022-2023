@@ -1,0 +1,24 @@
+{% macro formulario_reporte() %}
+{% from "macros/buttons.html" import submit_button, button %}
+<script src="/static/scripts/editor_texto.js" ></script>
+
+<div class="contenedor_pregutna">
+    <form action="/{{tipo}}/{{elemento_id}}/report" method="post">
+        <input type="hidden" name="eid" id="eid" value="{{elemento_id}}">
+        <input type="hidden" name="tipo" id="tipo" value="{{tipo}}">
+        <p>Reportando el elemento con id: {{elemento_id}}</p>
+        <div id="editor_respuesta">
+            <textarea 
+                id="texti" 
+                class="texto_formulario" 
+                name="razon"
+                rows="10"
+                cols="100"
+                placeholder="La razon del reporte"></textarea>
+            </div>
+            {{ submit_button('bluebg', 'Responder') }}
+        </div>
+    </form>
+</div>
+{% endmacro %}
+

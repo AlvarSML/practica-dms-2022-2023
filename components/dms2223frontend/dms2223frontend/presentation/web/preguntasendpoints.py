@@ -21,7 +21,7 @@ class PreguntasEndpoints():
 
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        if Role.ADMINISTRATION.name not in session['roles']:
+        if Role.DISCUSSION.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
 
@@ -88,11 +88,11 @@ class PreguntasEndpoints():
 
         return redirect(url_for('get_home'))
 
-
+    @staticmethod
     def get_crear_respuesta(back_service: BackendService, auth_service: AuthService, qid:int):
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        if Role.ADMINISTRATION.name not in session['roles']:
+        if Role.DISCUSSION.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
 
@@ -110,6 +110,7 @@ class PreguntasEndpoints():
             name = name,
             pregunta_env = preg.get_content())
 
+    @staticmethod
     def post_new_answer(back_service: BackendService, auth_service: AuthService):
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
@@ -131,6 +132,7 @@ class PreguntasEndpoints():
 
         return redirect(url_for('get_home'))
 
+    @staticmethod
     def get_crear_comentario(
         back_service: BackendService, 
         auth_service: AuthService, 
@@ -138,7 +140,7 @@ class PreguntasEndpoints():
 
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        if Role.ADMINISTRATION.name not in session['roles']:
+        if Role.DISCUSSION.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
 
@@ -152,7 +154,7 @@ class PreguntasEndpoints():
                 "negative":"NEGATIVE",
                 "neutral":"NEUTRAL"})
 
-
+    @staticmethod
     def post_new_comment(back_service: BackendService, auth_service: AuthService):
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
@@ -180,3 +182,24 @@ class PreguntasEndpoints():
 
         return redirect(url_for('get_home'))
 
+    @staticmethod
+    def get_crear_reporte(
+        back_service: BackendService, 
+        auth_service: AuthService, 
+        aid:int):
+
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.ADMINISTRATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+
+
+        return render_template(
+            'preguntas/reportar_pregunta.html',
+            name = name,
+            aid=aid,
+            sentiments = {
+                "positive":"POSITIVE",
+                "negative":"NEGATIVE",
+                "neutral":"NEUTRAL"})

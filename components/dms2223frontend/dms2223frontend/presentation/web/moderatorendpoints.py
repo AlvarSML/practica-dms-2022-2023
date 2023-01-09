@@ -9,7 +9,7 @@ from dms2223frontend.data.rest.authservice import AuthService
 from dms2223frontend.data.rest.backendservice import BackendService
 from .webauth import WebAuth
 from dms2223common.data.rest import ResponseData
-from dms2223frontend.data.rest.backendservice import BackendService
+from dms2223frontend.presentation.web.commonendpoints import CommonEndpoints
 
 class ModeratorEndpoints():
     """ Monostate class responsible of handing the moderator web endpoint requests.
@@ -121,6 +121,31 @@ class ModeratorEndpoints():
             back_service=back_service
         )
 
+    @staticmethod
+    def post_report(auth_service: AuthService, back_service:BackendService):
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.DISCUSSION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+
+        name = session['user']
+        eid = request.form.get('eid')
+        razon = request.form.get('razon')
+        tipo = request.form.get('tipo')
+
+        response: ResponseData = back_service.post_report(
+            token=session.get('token'),
+            reason=razon, 
+            tipo=tipo,
+            eid=eid)
+
+        current_app.logger.debug("nuevo reporte")
+        current_app.logger.debug(response.get_messages())
+
+        return CommonEndpoints.get_home(
+            auth_service=auth_service,
+            back_service=back_service
+        )
 
 
 

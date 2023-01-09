@@ -1,0 +1,12 @@
+{% extends "base_logged_in.html" %}
+{% from "macros/buttons.html" import button, submit_button %}
+{% from 'macros/reportes/formulario_reporte.html' import formulario_reporte %}
+
+{% block title %}Nueva pregunta{% endblock %}
+
+{% block maincontent %}
+<div id="preguntas-form">
+    <h3>Tu reporte:</h3>
+    {{ formulario_reporte(aid,sentiments) }}
+</div>
+{% endblock %}
