@@ -1,6 +1,5 @@
-from sqlalchemy import Column,String,Text,Boolean,DateTime,ForeignKey,Integer
+from sqlalchemy import Column,String,ForeignKey,Integer
 from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
 from dms2223backend.data.db.Usuario.usuario import Usuario
 from dms2223backend.data.db.Elemento.elemento import Elemento
 from sqlalchemy.orm import relationship
@@ -13,7 +12,7 @@ class Pregunta(Elemento):
     titulo = Column(String(200))
 
     respuestas = relationship(
-        "Respuesta", 
+        "Respuesta",
         primaryjoin="Pregunta.id_pregunta == Respuesta.id_pregunta"
         )
 

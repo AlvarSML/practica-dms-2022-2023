@@ -1,7 +1,7 @@
-from sqlalchemy import Column,String,Text,Boolean,DateTime,ForeignKey, Integer
-from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
-from dms2223backend.data.db.Usuario.usuario import Usuario
+""" Clase comentario de la bdd
+"""
+
+from sqlalchemy import Column, ForeignKey, Integer
 from dms2223backend.data.db.Elemento.elemento import Elemento
 from dms2223backend.data.db.Elemento.respuesta import Respuesta
 from dms2223backend.data.db.Feedback.feedback import Feedback
@@ -40,7 +40,7 @@ class Comentario(Elemento):
         respuesta: Respuesta
         ):
         super().__init__(contenido=contenido,autor=autor)
-        self.feedback = feedback #TODO añadir relaccion
+        self.feedback = feedback
         self.respuesta = respuesta
 
     def __repr__(self) -> str:        

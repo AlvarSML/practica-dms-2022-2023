@@ -1,7 +1,6 @@
-from sqlalchemy import Column,String,Text,Boolean,DateTime,ForeignKey, Integer
-from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
-
+""" Clase feedback de la base de datos
+"""
+from sqlalchemy import Column,String,Text, Integer
 from ..base import Base #Base declarativa
 from sqlalchemy.orm import relationship
 

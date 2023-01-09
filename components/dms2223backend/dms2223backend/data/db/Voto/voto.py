@@ -1,8 +1,8 @@
+""" Calase voto de la base de datos
+"""
 import enum
-from sqlalchemy import Column,String,Text,Boolean,DateTime, \
+from sqlalchemy import Column,\
     ForeignKey,Integer,Enum
-from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
 from dms2223backend.data.db.Usuario.usuario import Usuario
 from dms2223backend.data.db.Elemento.elemento import Elemento
 from ..base import Base #Base declarativa
@@ -21,7 +21,7 @@ class Voto(Base):
     id_autor = Column(Integer, ForeignKey("usuario.id_usuario"),index=True)
 
     tipo = Column(Enum(Tipo_voto))
-    
+
     autor = relationship("Usuario")
     elemento = relationship("Elemento", back_populates="votos")
 

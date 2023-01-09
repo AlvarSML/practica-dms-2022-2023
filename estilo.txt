@@ -1,0 +1,1077 @@
+************* Module dms2223backend.data.db.schema
+components/dms2223backend/dms2223backend/data/db/schema.py:65:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/data/db/schema.py:44:8: W0238: Unused private member `Schema.__metadata` (unused-private-member)
+components/dms2223backend/dms2223backend/data/db/schema.py:9:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/data/db/schema.py:5:0: W0611: Unused registry imported from sqlalchemy.orm (unused-import)
+************* Module dms2223backend.data.db.base
+components/dms2223backend/dms2223backend/data/db/base.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module dms2223backend.data.db.declarative_base
+components/dms2223backend/dms2223backend/data/db/declarative_base.py:7:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/data/db/declarative_base.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module dms2223backend.data.db.__init__
+components/dms2223backend/dms2223backend/data/db/__init__.py:9:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/data/db/__init__.py:9:0: C0301: Line too long (101/100) (line-too-long)
+************* Module dms2223backend.data.db.Elemento.elemento
+components/dms2223backend/dms2223backend/data/db/Elemento/elemento.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Elemento/elemento.py:10:0: R0903: Too few public methods (0/1) (too-few-public-methods)
+components/dms2223backend/dms2223backend/data/db/Elemento/elemento.py:6:0: C0411: third party import "from sqlalchemy.orm import relationship" should be placed before "from ..base import Base" (wrong-import-order)
+components/dms2223backend/dms2223backend/data/db/Elemento/elemento.py:8:0: C0411: standard import "from datetime import datetime" should be placed before "from sqlalchemy import Column, String, Text, Boolean, DateTime, ForeignKey, Integer" (wrong-import-order)
+components/dms2223backend/dms2223backend/data/db/Elemento/elemento.py:6:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+************* Module dms2223backend.data.db.Elemento.comentario
+components/dms2223backend/dms2223backend/data/db/Elemento/comentario.py:23:20: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Elemento/comentario.py:24:37: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Elemento/comentario.py:46:30: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Elemento/comentario.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Elemento/comentario.py:8:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+************* Module dms2223backend.data.db.Elemento.respuesta
+components/dms2223backend/dms2223backend/data/db/Elemento/respuesta.py:15:39: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Elemento/respuesta.py:38:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Elemento/respuesta.py:9:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Elemento/respuesta.py:6:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+************* Module dms2223backend.data.db.Elemento.__init__
+components/dms2223backend/dms2223backend/data/db/Elemento/__init__.py:8:0: C0304: Final newline missing (missing-final-newline)
+************* Module dms2223backend.data.db.Elemento
+components/dms2223backend/dms2223backend/data/db/Elemento/__init__.py:1:0: C0103: Module name "Elemento" doesn't conform to snake_case naming style (invalid-name)
+************* Module dms2223backend.data.db.Elemento.pregunta
+components/dms2223backend/dms2223backend/data/db/Elemento/pregunta.py:26:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Elemento/pregunta.py:35:30: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Elemento/pregunta.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+components/dms2223backend/dms2223backend/data/db/Elemento/pregunta.py:9:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Elemento/pregunta.py:5:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+************* Module dms2223backend.data.db.Reporte.reporte
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:101:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:14:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:14:0: C0103: Class name "Estado_moderacion" doesn't conform to PascalCase naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:15:4: C0103: Class constant name "pending" doesn't conform to UPPER_CASE naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:16:4: C0103: Class constant name "accepted" doesn't conform to UPPER_CASE naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:17:4: C0103: Class constant name "rejected" doesn't conform to UPPER_CASE naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:18:4: C0103: Class constant name "discarded" doesn't conform to UPPER_CASE naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:20:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:20:0: R0903: Too few public methods (0/1) (too-few-public-methods)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:46:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:46:0: R0903: Too few public methods (0/1) (too-few-public-methods)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:70:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:70:0: R0903: Too few public methods (0/1) (too-few-public-methods)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:93:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:93:0: R0903: Too few public methods (0/1) (too-few-public-methods)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:6:0: C0411: standard import "from datetime import datetime" should be placed before "from sqlalchemy import Column, String, Text, DateTime, ForeignKey, Integer, Enum" (wrong-import-order)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:12:0: C0411: third party import "from sqlalchemy.orm import relationship" should be placed before "from ..base import Base" (wrong-import-order)
+components/dms2223backend/dms2223backend/data/db/Reporte/reporte.py:12:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+************* Module dms2223backend.data.db.Reporte.__init__
+components/dms2223backend/dms2223backend/data/db/Reporte/__init__.py:3:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/data/db/Reporte/__init__.py:3:0: C0301: Line too long (101/100) (line-too-long)
+************* Module dms2223backend.data.db.Reporte
+components/dms2223backend/dms2223backend/data/db/Reporte/__init__.py:1:0: C0103: Module name "Reporte" doesn't conform to snake_case naming style (invalid-name)
+************* Module dms2223backend.data.db.Voto.voto
+components/dms2223backend/dms2223backend/data/db/Voto/voto.py:12:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Voto/voto.py:12:0: C0103: Class name "Tipo_voto" doesn't conform to PascalCase naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/db/Voto/voto.py:13:4: C0103: Class constant name "positivo" doesn't conform to UPPER_CASE naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/db/Voto/voto.py:14:4: C0103: Class constant name "negativo" doesn't conform to UPPER_CASE naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/db/Voto/voto.py:16:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Voto/voto.py:10:0: C0411: third party import "from sqlalchemy.orm import relationship" should be placed before "from ..base import Base" (wrong-import-order)
+components/dms2223backend/dms2223backend/data/db/Voto/voto.py:10:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+************* Module dms2223backend.data.db.Voto.__init__
+components/dms2223backend/dms2223backend/data/db/Voto/__init__.py:4:0: C0304: Final newline missing (missing-final-newline)
+************* Module dms2223backend.data.db.Voto
+components/dms2223backend/dms2223backend/data/db/Voto/__init__.py:1:0: C0103: Module name "Voto" doesn't conform to snake_case naming style (invalid-name)
+************* Module dms2223backend.data.db.Usuario.usuario
+components/dms2223backend/dms2223backend/data/db/Usuario/usuario.py:8:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Usuario/usuario.py:41:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/data/db/Usuario/usuario.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Usuario/usuario.py:7:0: R0903: Too few public methods (0/1) (too-few-public-methods)
+components/dms2223backend/dms2223backend/data/db/Usuario/usuario.py:5:0: C0411: third party import "from sqlalchemy.orm import relationship" should be placed before "from ..base import Base" (wrong-import-order)
+************* Module dms2223backend.data.db.Usuario.__init__
+components/dms2223backend/dms2223backend/data/db/Usuario/__init__.py:4:0: C0304: Final newline missing (missing-final-newline)
+************* Module dms2223backend.data.db.Usuario
+components/dms2223backend/dms2223backend/data/db/Usuario/__init__.py:1:0: C0103: Module name "Usuario" doesn't conform to snake_case naming style (invalid-name)
+************* Module dms2223backend.data.db.Feedback.feedback
+components/dms2223backend/dms2223backend/data/db/Feedback/feedback.py:15:21: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/db/Feedback/feedback.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/data/db/Feedback/feedback.py:5:0: C0411: third party import "from sqlalchemy.orm import relationship" should be placed before "from ..base import Base" (wrong-import-order)
+************* Module dms2223backend.data.db.Feedback.__init__
+components/dms2223backend/dms2223backend/data/db/Feedback/__init__.py:3:0: C0304: Final newline missing (missing-final-newline)
+************* Module dms2223backend.data.db.Feedback
+components/dms2223backend/dms2223backend/data/db/Feedback/__init__.py:1:0: C0103: Module name "Feedback" doesn't conform to snake_case naming style (invalid-name)
+************* Module dms2223backend.data.config.BackendConfiguration
+components/dms2223backend/dms2223backend/data/config/BackendConfiguration.py:39:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/config/BackendConfiguration.py:148:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/config/BackendConfiguration.py:176:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/data/config/BackendConfiguration.py:1:0: C0103: Module name "BackendConfiguration" doesn't conform to snake_case naming style (invalid-name)
+************* Module dms2223backend.data.config.__init__
+components/dms2223backend/dms2223backend/data/config/__init__.py:4:0: C0304: Final newline missing (missing-final-newline)
+************* Module dms2223backend.data.resultsets.reporte_res
+components/dms2223backend/dms2223backend/data/resultsets/reporte_res.py:21:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/resultsets/reporte_res.py:52:49: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/resultsets/reporte_res.py:65:0: C0305: Trailing newlines (trailing-newlines)
+components/dms2223backend/dms2223backend/data/resultsets/reporte_res.py:9:0: C0115: Missing class docstring (missing-class-docstring)
+************* Module dms2223backend.data.resultsets.voto_res
+components/dms2223backend/dms2223backend/data/resultsets/voto_res.py:22:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/resultsets/voto_res.py:13:12: W0613: Unused argument 'session' (unused-argument)
+components/dms2223backend/dms2223backend/data/resultsets/voto_res.py:33:15: W0613: Unused argument 'session' (unused-argument)
+components/dms2223backend/dms2223backend/data/resultsets/voto_res.py:48:16: W0613: Unused argument 'session' (unused-argument)
+components/dms2223backend/dms2223backend/data/resultsets/voto_res.py:54:17: W0613: Unused argument 'session' (unused-argument)
+components/dms2223backend/dms2223backend/data/resultsets/voto_res.py:60:23: W0613: Unused argument 'session' (unused-argument)
+components/dms2223backend/dms2223backend/data/resultsets/voto_res.py:4:0: C0411: standard import "from typing import List" should be placed before "from dms2223backend.data.db import Usuario, Elemento, Voto, Tipo_voto" (wrong-import-order)
+************* Module dms2223backend.data.resultsets.respuesta_res
+components/dms2223backend/dms2223backend/data/resultsets/respuesta_res.py:1:52: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/resultsets/respuesta_res.py:3:0: W0611: Unused Optional imported from typing (unused-import)
+components/dms2223backend/dms2223backend/data/resultsets/respuesta_res.py:4:0: W0611: Unused datetime imported from datetime (unused-import)
+components/dms2223backend/dms2223backend/data/resultsets/respuesta_res.py:6:0: W0611: Unused Pregunta imported from dms2223backend.data.db.Elemento (unused-import)
+components/dms2223backend/dms2223backend/data/resultsets/respuesta_res.py:6:0: W0611: Unused Comentario imported from dms2223backend.data.db.Elemento (unused-import)
+components/dms2223backend/dms2223backend/data/resultsets/respuesta_res.py:7:0: W0611: Unused Voto imported from dms2223backend.data.db.Voto (unused-import)
+************* Module dms2223backend.data.resultsets.comentario_res
+components/dms2223backend/dms2223backend/data/resultsets/comentario_res.py:27:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/data/resultsets/comentario_res.py:6:0: W0611: Unused datetime imported from datetime (unused-import)
+************* Module dms2223backend.data.resultsets.elemento_res
+components/dms2223backend/dms2223backend/data/resultsets/elemento_res.py:19:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/data/resultsets/elemento_res.py:4:0: W0611: Unused Optional imported from typing (unused-import)
+components/dms2223backend/dms2223backend/data/resultsets/elemento_res.py:5:0: W0611: Unused datetime imported from datetime (unused-import)
+************* Module dms2223backend.data.resultsets.__init__
+components/dms2223backend/dms2223backend/data/resultsets/__init__.py:10:0: C0304: Final newline missing (missing-final-newline)
+************* Module dms2223backend.data.resultsets.pregunta_res
+components/dms2223backend/dms2223backend/data/resultsets/pregunta_res.py:10:0: R0903: Too few public methods (0/1) (too-few-public-methods)
+components/dms2223backend/dms2223backend/data/resultsets/pregunta_res.py:29:17: W0622: Redefining built-in 'max' (redefined-builtin)
+components/dms2223backend/dms2223backend/data/resultsets/pregunta_res.py:32:8: C0103: Variable name "listaPreguntas" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/resultsets/pregunta_res.py:36:12: C0103: Variable name "p" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/data/resultsets/pregunta_res.py:29:17: W0613: Unused argument 'max' (unused-argument)
+components/dms2223backend/dms2223backend/data/resultsets/pregunta_res.py:6:0: W0611: Unused Comentario imported from dms2223backend.data.db.Elemento (unused-import)
+************* Module dms2223backend.data.resultsets.usuario_res
+components/dms2223backend/dms2223backend/data/resultsets/usuario_res.py:43:35: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/data/resultsets/usuario_res.py:41:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/data/resultsets/usuario_res.py:49:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/data/resultsets/usuario_res.py:4:0: C0411: standard import "from typing import List, Optional" should be placed before "from dms2223backend.data.db import Usuario" (wrong-import-order)
+components/dms2223backend/dms2223backend/data/resultsets/usuario_res.py:5:0: C0411: standard import "from datetime import datetime" should be placed before "from dms2223backend.data.db import Usuario" (wrong-import-order)
+components/dms2223backend/dms2223backend/data/resultsets/usuario_res.py:5:0: W0611: Unused datetime imported from datetime (unused-import)
+************* Module dms2223backend.data.resultsets.feedback_res
+components/dms2223backend/dms2223backend/data/resultsets/feedback_res.py:28:0: C0325: Unnecessary parens after 'return' keyword (superfluous-parens)
+components/dms2223backend/dms2223backend/data/resultsets/feedback_res.py:5:0: W0611: Unused datetime imported from datetime (unused-import)
+components/dms2223backend/dms2223backend/data/resultsets/feedback_res.py:6:0: W0611: Unused Pregunta imported from dms2223backend.data.db (unused-import)
+components/dms2223backend/dms2223backend/data/resultsets/feedback_res.py:6:0: W0611: Unused Respuesta imported from dms2223backend.data.db (unused-import)
+components/dms2223backend/dms2223backend/data/resultsets/feedback_res.py:6:0: W0611: Unused Comentario imported from dms2223backend.data.db (unused-import)
+************* Module dms2223backend.presentation.__init__
+components/dms2223backend/dms2223backend/presentation/__init__.py:3:0: C0304: Final newline missing (missing-final-newline)
+************* Module dms2223backend.presentation.rest.comentarios
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:77:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:15:0: W0404: Reimport 'current_app' (imported line 8) (reimported)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:15:0: C0412: Imports from package flask are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:17:0: C0412: Imports from package dms2223backend are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:4:0: W0611: Unused import json (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:5:0: W0611: Unused import time (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:6:0: W0611: Unused Optional imported from typing (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:10:0: W0611: Unused Session imported from sqlalchemy.orm.session (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:17:0: W0611: Unused AuthService imported from dms2223backend.service (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/comentarios.py:19:0: W0611: Unused import requests (unused-import)
+************* Module dms2223backend.presentation.rest.respuestas
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:56:0: C0301: Line too long (101/100) (line-too-long)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:65:57: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:66:7: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:87:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:106:13: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:110:17: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:130:54: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:29:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:30:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:36:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:37:12: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:55:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:56:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:61:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:62:12: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:81:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:82:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:82:30: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:103:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:104:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:107:12: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:124:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:125:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:10:0: C0412: Imports from package dms2223backend are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:7:0: W0611: Unused Pregunta imported from dms2223backend.data.db (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:7:0: W0611: Unused Respuesta imported from dms2223backend.data.db (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:7:0: W0611: Unused Voto imported from dms2223backend.data.db (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:7:0: W0611: Unused Elemento imported from dms2223backend.data.db (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/respuestas.py:10:0: W0611: Unused AuthService imported from dms2223backend.service (unused-import)
+************* Module dms2223backend.presentation.rest.security
+components/dms2223backend/dms2223backend/presentation/rest/security.py:35:7: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/security.py:28:0: C0301: Line too long (104/100) (line-too-long)
+components/dms2223backend/dms2223backend/presentation/rest/security.py:56:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/presentation/rest/security.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+components/dms2223backend/dms2223backend/presentation/rest/security.py:1:0: W0611: Unused import json (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/security.py:2:0: W0611: Unused import time (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/security.py:3:0: W0611: Unused import logging (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/security.py:9:0: W0611: Unused UsuariosServicio imported from dms2223backend.service (unused-import)
+************* Module dms2223backend.presentation.rest.usuarios
+components/dms2223backend/dms2223backend/presentation/rest/usuarios.py:9:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module dms2223backend.presentation.rest.inicio
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:31:0: C0301: Line too long (107/100) (line-too-long)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:40:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:18:0: W0404: Reimport 'current_app' (imported line 10) (reimported)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:24:0: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:26:8: C0103: Variable name "p" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:26:8: W0612: Unused variable 'p' (unused-variable)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:29:0: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:31:8: W0612: Unused variable 'preguntas' (unused-variable)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:18:0: C0412: Imports from package flask are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:20:0: C0412: Imports from package dms2223backend are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:6:0: W0611: Unused import json (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:7:0: W0611: Unused import time (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:12:0: W0611: Unused Session imported from sqlalchemy.orm.session (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:14:0: W0611: Unused PreguntaRes imported from dms2223backend.data.resultsets.pregunta_res (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:14:0: W0611: Unused PreguntaFuncs imported from dms2223backend.data.resultsets.pregunta_res (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:20:0: W0611: Unused AuthService imported from dms2223backend.service (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/inicio.py:22:0: W0611: Unused import requests (unused-import)
+************* Module dms2223backend.presentation.rest.preguntas
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:51:44: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:93:17: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:117:17: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:140:7: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:165:81: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:166:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:15:0: W0404: Reimport 'current_app' (imported line 8) (reimported)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:43:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:47:12: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:47:15: E0601: Using variable 'resp' before assignment (used-before-assignment)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:49:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:51:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:61:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:62:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:65:12: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:67:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:69:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:86:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:87:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:90:12: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:90:15: E0601: Using variable 'asnw_reated' before assignment (used-before-assignment)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:92:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:94:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:111:8: W0702: No exception type(s) specified (bare-except)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:112:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:114:12: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:114:15: E0601: Using variable 'report' before assignment (used-before-assignment)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:116:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:118:16: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:157:15: W0703: Catching too general exception Exception (broad-except)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:157:8: C0103: Variable name "e" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:167:12: W0150: return statement in finally block may swallow exception (lost-exception)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:17:0: C0411: standard import "import sys" should be placed before "from flask import current_app" (wrong-import-order)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:18:0: C0411: standard import "import logging" should be placed before "from flask import current_app" (wrong-import-order)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:15:0: C0412: Imports from package flask are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:4:0: W0611: Unused import json (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:5:0: W0611: Unused import time (unused-import)
+components/dms2223backend/dms2223backend/presentation/rest/preguntas.py:10:0: W0611: Unused Session imported from sqlalchemy.orm.session (unused-import)
+************* Module dms2223backend.presentation.rest.__init__
+components/dms2223backend/dms2223backend/presentation/rest/__init__.py:2:0: C0304: Final newline missing (missing-final-newline)
+************* Module dms2223backend.service.serviciousuarios
+components/dms2223backend/dms2223backend/service/serviciousuarios.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+components/dms2223backend/dms2223backend/service/serviciousuarios.py:12:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/service/serviciousuarios.py:23:18: E1120: No value for argument 'usu' in staticmethod call (no-value-for-parameter)
+components/dms2223backend/dms2223backend/service/serviciousuarios.py:8:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/service/serviciousuarios.py:1:0: W0611: Unused ClassVar imported from typing (unused-import)
+components/dms2223backend/dms2223backend/service/serviciousuarios.py:5:0: W0611: Unused Voto imported from dms2223backend.data.db (unused-import)
+components/dms2223backend/dms2223backend/service/serviciousuarios.py:8:0: W0611: Unused select imported from sqlalchemy (unused-import)
+components/dms2223backend/dms2223backend/service/serviciousuarios.py:10:0: W0611: Unused AuthService imported from authservice (unused-import)
+************* Module dms2223backend.service.serviciorespuestas
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:48:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:75:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:94:9: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:96:15: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:183:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:185:31: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:213:31: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:26:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:19:0: C0411: standard import "import sys" should be placed before "from sqlalchemy.orm.session import Session" (wrong-import-order)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:17:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:4:0: W0611: Unused ClassVar imported from typing (unused-import)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:10:0: W0611: Unused Pregunta imported from dms2223backend.data.db.Elemento (unused-import)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:17:0: W0611: Unused select imported from sqlalchemy (unused-import)
+components/dms2223backend/dms2223backend/service/serviciorespuestas.py:19:0: W0611: Unused import sys (unused-import)
+************* Module dms2223backend.service.serviciopreguntas
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:27:73: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:37:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:87:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:95:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:116:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:133:0: C0301: Line too long (131/100) (line-too-long)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:148:0: C0301: Line too long (128/100) (line-too-long)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:162:31: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:181:31: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:191:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:211:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:215:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:234:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:275:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:25:36: C0103: Argument name "id" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:25:36: W0622: Redefining built-in 'id' (redefined-builtin)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:73:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:118:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:185:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:188:8: C0103: Variable name "p" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:213:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:216:8: C0103: Variable name "p" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:217:8: C0103: Variable name "u" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:17:0: C0411: standard import "import logging" should be placed before "from sqlalchemy.orm.session import Session" (wrong-import-order)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:13:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:15:0: C0412: Imports from package dms2223backend are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:4:0: W0611: Unused ClassVar imported from typing (unused-import)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:8:0: W0611: Unused Comentario imported from dms2223backend.data.db.Elemento (unused-import)
+components/dms2223backend/dms2223backend/service/serviciopreguntas.py:9:0: W0611: Unused Voto imported from dms2223backend.data.db (unused-import)
+************* Module dms2223backend.service.authservice
+components/dms2223backend/dms2223backend/service/authservice.py:131:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/service/authservice.py:4:0: W0611: Unused List imported from typing (unused-import)
+components/dms2223backend/dms2223backend/service/authservice.py:4:0: W0611: Unused Union imported from typing (unused-import)
+components/dms2223backend/dms2223backend/service/authservice.py:6:0: W0611: Unused Role imported from dms2223common.data (unused-import)
+************* Module dms2223backend.service.servicioreportes
+components/dms2223backend/dms2223backend/service/servicioreportes.py:22:57: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:51:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:77:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:79:31: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:81:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:87:11: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:93:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:267:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:270:46: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:293:34: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:294:23: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:298:31: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:299:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:19:5: W0511: TODO: Ocultar elemento cuando se acepte el reporte (fixme)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:4:0: W0404: Reimport 'Reporte' (imported line 2) (reimported)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:17:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:61:8: C0103: Variable name "fk" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:282:8: C0103: Variable name "fk" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:10:0: C0411: standard import "from typing import List, Dict, ClassVar" should be placed before "from sqlalchemy.orm.session import Session" (wrong-import-order)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:13:0: C0411: standard import "import sys" should be placed before "from sqlalchemy.orm.session import Session" (wrong-import-order)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:11:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:10:0: W0611: Unused ClassVar imported from typing (unused-import)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:11:0: W0611: Unused select imported from sqlalchemy (unused-import)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:11:0: W0611: Unused inspect imported from sqlalchemy (unused-import)
+components/dms2223backend/dms2223backend/service/servicioreportes.py:13:0: W0611: Unused import sys (unused-import)
+************* Module dms2223backend.service.serviciovotos
+components/dms2223backend/dms2223backend/service/serviciovotos.py:27:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:33:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:51:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:66:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:79:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:9:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:12:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:21:32: C0103: Argument name "id" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:21:32: W0622: Redefining built-in 'id' (redefined-builtin)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:4:0: C0411: standard import "from typing import List, Dict, ClassVar" should be placed before "from sqlalchemy.orm.session import Session" (wrong-import-order)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:7:0: C0411: standard import "import sys" should be placed before "from sqlalchemy.orm.session import Session" (wrong-import-order)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:5:0: C0412: Imports from package sqlalchemy are not grouped (ungrouped-imports)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:4:0: W0611: Unused ClassVar imported from typing (unused-import)
+components/dms2223backend/dms2223backend/service/serviciovotos.py:5:0: W0611: Unused select imported from sqlalchemy (unused-import)
+************* Module dms2223frontend.data.rest.backendservice
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:57:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:78:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:109:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:119:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:133:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:147:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:162:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:164:0: C0301: Line too long (112/100) (line-too-long)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:167:0: C0301: Line too long (110/100) (line-too-long)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:170:0: C0301: Line too long (111/100) (line-too-long)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:181:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:191:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:223:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:232:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:108:47: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:130:16: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:163:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:164:47: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:166:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:167:47: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:169:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:170:47: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:172:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:182:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:192:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:202:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:224:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/data/rest/backendservice.py:5:0: W0611: Unused Role imported from dms2223common.data (unused-import)
+************* Module dms2223frontend.presentation.web.preguntasendpoints
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:2:3: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:9:46: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:21:0: C0301: Line too long (116/100) (line-too-long)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:45:46: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:47:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:51:0: C0301: Line too long (109/100) (line-too-long)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:68:0: C0301: Line too long (101/100) (line-too-long)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:81:24: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:128:20: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:130:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:138:37: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:139:34: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:175:20: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:178:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:187:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:189:34: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:190:36: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:209:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:19:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:21:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:48:4: W0105: String statement has no effect (pointless-string-statement)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:51:55: W0613: Unused argument 'back_service' (unused-argument)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:68:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:71:8: W0105: String statement has no effect (pointless-string-statement)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:93:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:115:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:118:8: W0105: String statement has no effect (pointless-string-statement)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:137:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:138:8: W0613: Unused argument 'back_service' (unused-argument)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:159:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:165:8: W0105: String statement has no effect (pointless-string-statement)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:188:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:188:4: E0213: Method 'vota_elemento' should have "self" as first argument (no-self-argument)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:200:8: W0612: Unused variable 'response' (unused-variable)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:8:0: C0411: standard import "from typing import Text, Union" should be placed before "from dms2223frontend.data.clases.pregunta import Pregunta" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:14:0: C0411: standard import "from datetime import datetime" should be placed before "from dms2223frontend.data.clases.pregunta import Pregunta" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:16:0: C0411: third party import "from dms2223frontend.data.rest import BackendService" should be placed before "from .webauth import WebAuth" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:17:0: C0411: third party import "from dms2223common.data.rest import ResponseData" should be placed before "from .webauth import WebAuth" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:16:0: C0412: Imports from package dms2223frontend are not grouped (ungrouped-imports)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:17:0: C0412: Imports from package dms2223common are not grouped (ungrouped-imports)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:4:0: W0611: Unused Pregunta imported from dms2223frontend.data.clases.pregunta (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:5:0: W0611: Unused Respuesta imported from dms2223frontend.data.clases.respuesta (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/preguntasendpoints.py:14:0: W0611: Unused datetime imported from datetime (unused-import)
+************* Module dms2223frontend.presentation.web.respuestasendpoints
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:30:0: C0301: Line too long (110/100) (line-too-long)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:31:0: C0301: Line too long (107/100) (line-too-long)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:33:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:15:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:17:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:17:22: W0613: Unused argument 'auth_service' (unused-argument)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:17:49: W0613: Unused argument 'id_respuesta' (unused-argument)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:6:0: C0411: standard import "from typing import Text, Union" should be placed before "from dms2223frontend.data.clases.respuesta import Respuesta" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:12:0: C0411: standard import "from datetime import datetime" should be placed before "from dms2223frontend.data.clases.respuesta import Respuesta" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:10:0: C0412: Imports from package dms2223frontend are not grouped (ungrouped-imports)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:7:0: W0611: Unused redirect imported from flask (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:7:0: W0611: Unused url_for imported from flask (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:7:0: W0611: Unused session imported from flask (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:9:0: W0611: Unused Role imported from dms2223common.data (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/respuestasendpoints.py:11:0: W0611: Unused WebAuth imported from webauth (unused-import)
+************* Module dms2223frontend.presentation.web.commonendpoints
+components/dms2223frontend/dms2223frontend/presentation/web/commonendpoints.py:36:43: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/commonendpoints.py:37:22: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/commonendpoints.py:44:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/commonendpoints.py:51:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223frontend/dms2223frontend/presentation/web/commonendpoints.py:10:0: C0411: third party import "from dms2223frontend.data.clases.pregunta import Pregunta" should be placed before "from .webauth import WebAuth" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/commonendpoints.py:11:0: C0411: standard import "from datetime import datetime" should be placed before "from flask import redirect, url_for, session, render_template, current_app" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/commonendpoints.py:10:0: W0611: Unused Pregunta imported from dms2223frontend.data.clases.pregunta (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/commonendpoints.py:11:0: W0611: Unused datetime imported from datetime (unused-import)
+************* Module dms2223frontend.presentation.web.moderatorendpoints
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:3:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:49:36: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:66:21: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:68:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:76:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:90:21: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:113:21: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:115:0: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:138:25: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:152:37: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:153:34: C0303: Trailing whitespace (trailing-whitespace)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:55:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:79:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:102:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:125:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:131:8: W0612: Unused variable 'name' (unused-variable)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:151:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:151:4: E0213: Method 'get_report_form' should have "self" as first argument (no-self-argument)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:11:0: C0411: third party import "from dms2223common.data.rest import ResponseData" should be placed before "from .webauth import WebAuth" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:12:0: C0411: third party import "from dms2223frontend.presentation.web.commonendpoints import CommonEndpoints" should be placed before "from .webauth import WebAuth" (wrong-import-order)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:11:0: C0412: Imports from package dms2223common are not grouped (ungrouped-imports)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:12:0: C0412: Imports from package dms2223frontend are not grouped (ungrouped-imports)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:4:0: W0611: Unused Text imported from typing (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:4:0: W0611: Unused Union imported from typing (unused-import)
+components/dms2223frontend/dms2223frontend/presentation/web/moderatorendpoints.py:6:0: W0611: Unused Response imported from werkzeug.wrappers (unused-import)
+************* Module dms2223frontend.presentation.web.VotosEndpoints
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:9:0: C0304: Final newline missing (missing-final-newline)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:1:0: C0103: Module name "VotosEndpoints" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:2:0: E0401: Unable to import 'components.dms2223frontend.dms2223frontend.data.clases.votos' (import-error)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:5:0: C0115: Missing class docstring (missing-class-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:7:4: C0116: Missing function or method docstring (missing-function-docstring)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:7:45: C0103: Argument name "idPregunta" doesn't conform to snake_case naming style (invalid-name)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:7:18: W0613: Unused argument 'auth_service' (unused-argument)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:7:45: W0613: Unused argument 'idPregunta' (unused-argument)
+components/dms2223frontend/dms2223frontend/presentation/web/VotosEndpoints.py:2:0: W0611: Unused Voto imported from components.dms2223frontend.dms2223frontend.data.clases.votos (unused-import)
+************* Module dms2223frontend.presentation.web.__init__
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[55:114]
+==dms2223frontend.data.rest.authservice:[80:139]
+        response_data: ResponseData = ResponseData()
+        if not token:
+            response_data.set_successful(False)
+            return response_data
+
+        response: requests.Response = requests.post(
+            self.__base_url() + '/auth',
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.content.decode('ascii'))
+        else:
+            response_data.add_message('Session expired')
+        return response_data
+
+    def list_users(self, token: Optional[str]) -> ResponseData:
+        """ Requests a list of registered users.
+
+        Args:
+            token (Optional[str]): The user session token.
+
+        Returns:
+            - ResponseData: If successful, the contents hold a list of user data dictionaries.
+              Otherwise, the contents will be an empty list.
+        """
+        response_data: ResponseData = ResponseData()
+        response: requests.Response = requests.get(
+            self.__base_url() + '/users',
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+            response_data.set_content([])
+        return response_data
+
+    def get_user_roles(self, token: Optional[str], username: str) -> ResponseData:
+        """ Requests the list of roles assigned to a user.
+
+        Args:
+            - token (Optional[str]): The user session token.
+            - username (str): The name of the queried user.
+
+        Returns:
+            - ResponseData: If successful, the contents hold a list of role names. Otherwise an
+              empty list.
+        """
+        response_data: ResponseData = ResponseData() (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223auth.data.config.authconfiguration:[41:131]
+==dms2223backend.data.config.BackendConfiguration:[46:146]
+        ServiceConfiguration._set_values(self, values)
+
+        if 'db_connection_string' in values:
+            self.set_db_connection_string(values['db_connection_string'])
+        if 'salt' in values:
+            self.set_password_salt(values['salt'])
+        if 'jws_secret' in values:
+            self.set_jws_secret(values['jws_secret'])
+        if 'jws_ttl' in values:
+            self.set_jws_ttl(values['jws_ttl'])
+
+    def set_db_connection_string(self, db_connection_string: str) -> None:
+        """ Sets the db_connection_string configuration value.
+
+        Args:
+            - db_connection_string: A string with the configuration value.
+
+        Raises:
+            - ValueError: If validation is not passed.
+        """
+        self._values['db_connection_string'] = str(db_connection_string)
+
+    def get_db_connection_string(self) -> str:
+        """ Gets the db_connection_string configuration value.
+
+        Returns:
+            - str: A string with the value of db_connection_string.
+        """
+
+        return str(self._values['db_connection_string'])
+
+    def set_password_salt(self, salt: str) -> None:
+        """ Sets the password salt configuration value.
+
+        Args:
+            - salt: A string with the configuration value.
+
+        Raises:
+            - ValueError: If validation is not passed.
+        """
+        self._values['salt'] = str(salt)
+
+    def get_password_salt(self) -> str:
+        """ Gets the password salt configuration value.
+
+        Returns:
+            - str: A string with the value of salt.
+        """
+
+        return str(self._values['salt'])
+
+    def set_jws_secret(self, secret: str) -> None:
+        """ Sets the JWS secret key configuration value.
+
+        Args:
+            - secret: A string with the configuration value.
+
+        Raises:
+            - ValueError: If validation is not passed.
+        """
+        self._values['jws_secret'] = str(secret)
+
+    def get_jws_secret(self) -> str:
+        """ Gets the JWS secret key configuration value.
+
+        Returns:
+            - str: A string with the value of jws_secret.
+        """
+
+        return str(self._values['jws_secret'])
+
+    def set_jws_ttl(self, ttl: int) -> None:
+        """ Sets the jws_ttl configuration value.
+
+        Args:
+            - ttl: An integer with the configuration value.
+
+        Raises:
+            - ValueError: If validation is not passed.
+        """
+        self._values['jws_ttl'] = int(ttl)
+
+    def get_jws_ttl(self) -> int:
+        """ Gets the jws_ttl configuration value.
+
+        Returns:
+            - int: An integer with the value of jws_ttl.
+        """
+
+        return int(self._values['jws_ttl'])
+
+    def set_auth_service(self, auth_service: Dict) -> None:
+        """Sets the connection parameters for the authentication service.
+
+        Args:
+            auth_service (Dict): Parameters to connect to the authentication service.
+
+        Raises:
+            - ValueError: If validation is not passed.
+        """ (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[116:132]
+==dms2223frontend.data.rest.authservice:[113:139]
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+            response_data.set_content([])
+        return response_data
+
+    def create_user(self, token: Optional[str], username: str, password: str) -> ResponseData:
+        """ Requests a user creation.
+
+        Args:
+            - token (Optional[str]): The user session token.
+            - username (str): The new user's name.
+            - password (str): The new user's password.
+
+        Returns:
+            - ResponseData: If successful, the contents hold the new user's data.
+        """
+        response_data: ResponseData = ResponseData() (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[88:113]
+==dms2223frontend.data.rest.authservice:[172:199]
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+            response_data.set_content([])
+        return response_data
+
+    def grant_user_role(self,
+                        token: Optional[str], username: str, role: Union[Role, str]
+                        ) -> ResponseData:
+        """ Requests to grant a role to a user.
+
+        Args:
+            - token (Optional[str]): The user session token.
+            - username (str): The user to be granted the role.
+            - role (Union[Role, str]): The role to be granted.
+
+        Returns:
+            - ResponseData: Useful to know whether the operation succeeded and its messages.
+        """ (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[135:147]
+==dms2223frontend.data.rest.authservice:[115:138]
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+            response_data.set_content([])
+        return response_data (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[88:99]
+==dms2223frontend.data.rest.authservice:[145:156]
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii')) (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[135:145]
+==dms2223frontend.data.rest.authservice:[147:156]
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii')) (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[100:131]
+==dms2223frontend.data.rest.authservice:[156:199]
+        return response_data
+
+    def get_user_roles(self, token: Optional[str], username: str) -> ResponseData:
+        """ Requests the list of roles assigned to a user.
+
+        Args:
+            - token (Optional[str]): The user session token.
+            - username (str): The name of the queried user.
+
+        Returns:
+            - ResponseData: If successful, the contents hold a list of role names. Otherwise an
+              empty list.
+        """
+        response_data: ResponseData = ResponseData()
+        response: requests.Response = requests.get(
+            self.__base_url() + f'/users/{username}/roles',
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+            response_data.set_content([])
+        return response_data
+
+    def grant_user_role(self,
+                        token: Optional[str], username: str, role: Union[Role, str]
+                        ) -> ResponseData:
+        """ Requests to grant a role to a user.
+
+        Args:
+            - token (Optional[str]): The user session token.
+            - username (str): The user to be granted the role.
+            - role (Union[Role, str]): The role to be granted.
+
+        Returns:
+            - ResponseData: Useful to know whether the operation succeeded and its messages.
+        """ (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[88:96]
+==dms2223frontend.data.rest.authservice:[87:95]
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful(): (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[62:70]
+==dms2223frontend.data.rest.authservice:[113:121]
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok)
+        if response_data.is_successful(): (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.servicioreportes:[198:216]
+==dms2223backend.service.serviciorespuestas:[157:172]
+            "reason":res.razon_reporte,
+            "status":res.estado.name,
+            "owner":{"username":res.autor.nombre},
+            "timestamp":res.fecha
+        }
+
+        schema.remove_session()
+        return reporte_dict
+
+    @staticmethod
+    def get_reports(schema:Schema, estados:List[Estado_moderacion]) -> List[Dict]:
+        """ Transforma los reportes en una lista
+            ! Deprcado
+        """
+        session: Session = schema.new_session() (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.servicioreportes:[118:169]
+==dms2223backend.service.serviciorespuestas:[124:172]
+        session: Session = schema.new_session()
+
+        # Obtencion de datos previos inyeccion, de depnendencias
+
+        resp = RespuestaFuncs.get(
+            session=session,
+            aid=reporte["aid"])
+
+        if resp is None:
+            return None
+
+        usuario = UsuarioFuncs.get_or_create(
+            session=session,
+            nombre=reporte["autor"])
+
+        # Construccion de respuesta
+
+        rep:ReporteRespuesta = ReporteRespuesta(
+            respuesta=resp,
+            razon_reporte=reporte["razon_reporte"],
+            autor=usuario
+        )
+
+        # Se introduce el reporte en la bdd
+
+        res:ReporteRespuesta = ReporteFuncs.create_rep(
+            session=session,
+            reporte=rep
+        )
+
+        reporte_dict:Dict = {
+            "id":res.id_reporte,
+            "aid":res.id_respuesta,
+            "reason":res.razon_reporte,
+            "status":res.estado.name,
+            "owner":{"username":res.autor.nombre},
+            "timestamp":res.fecha
+        }
+
+        schema.remove_session()
+        return reporte_dict
+
+    @staticmethod
+    def set_report_comment(schema:Schema,reporte:Dict) -> Dict:
+        """ Construye un reporte para introducirlo en la bdd
+            TODO: que exista el comentario
+        """
+        session: Session = schema.new_session()
+
+        # Obtencion de datos previos inyeccion, de depnendencias
+ (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223frontend.data.rest.authservice:[151:170]
+==dms2223frontend.data.rest.backendservice:[71:80]
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii'))
+        return response_data
+
+    def get_user_roles(self, token: Optional[str], username: str) -> ResponseData:
+        """ Requests the list of roles assigned to a user.
+
+        Args:
+            - token (Optional[str]): The user session token.
+            - username (str): The name of the queried user.
+
+        Returns:
+            - ResponseData: If successful, the contents hold a list of role names. Otherwise an
+              empty list.
+        """
+        response_data: ResponseData = ResponseData() (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[88:95]
+==dms2223frontend.data.rest.authservice:[233:240]
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok) (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[62:69]
+==dms2223frontend.data.rest.authservice:[204:211]
+            headers={
+                'Authorization': f'Bearer {token}',
+                self.__apikey_header: self.__apikey_secret
+            },
+            timeout=60
+        )
+        response_data.set_successful(response.ok) (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[9:55]
+==dms2223frontend.data.rest.authservice:[9:54]
+class AuthService():
+    """ REST client to connect to the authentication service.
+    """
+
+    def __init__(self,
+                 host: str, port: int,
+                 api_base_path: str = '/api/v1',
+                 apikey_header: str = 'X-ApiKey-Auth',
+                 apikey_secret: str = ''
+                 ):
+        """ Constructor method.
+
+        Initializes the client.
+
+        Args:
+            - host (str): The authentication service host string.
+            - port (int): The authentication service port number.
+            - api_base_path (str): The base path that is prepended to every request's path.
+            - apikey_header (str): Name of the header with the API key that identifies this client.
+            - apikey_secret (str): The API key that identifies this client.
+        """
+        self.__host: str = host
+        self.__port: int = port
+        self.__api_base_path: str = api_base_path
+        self.__apikey_header: str = apikey_header
+        self.__apikey_secret: str = apikey_secret
+
+    def __base_url(self) -> str:
+        """ Constructs the base URL for the requests.
+
+        Returns:
+            - str: The base URL.
+        """
+        return f'http://{self.__host}:{self.__port}{self.__api_base_path}'
+
+    def login(self, username: str, password: str) -> ResponseData:
+        """ Performs a login request to the authentication service.
+
+        Args:
+            - username (str): The username.
+            - password (str): The password.
+
+        Returns:
+            - ResponseData: If successful, the contents hold a string with the user session token.
+        """ (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.data.db.Elemento.pregunta:[38:44]
+==dms2223backend.data.db.Elemento.respuesta:[41:47]
+        contenido={self.contenido!r}, \
+        fecha={self.fecha!r}, \
+        autor={self.autor!r},\
+        visibilidad={str(self.visibilidad)!r} \
+            votos={str(self.votos)}\
+        )" (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223auth.presentation.rest.user:[37:43]
+==dms2223auth.presentation.rest.userrole:[79:85]
+    with current_app.app_context():
+        if not RoleServices.has_role(
+                token_info['user_token']['user'],
+                Role.ADMINISTRATION, current_app.db
+            ):
+            return ( (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223frontend.presentation.web.moderatorendpoints:[156:163]
+==dms2223frontend.presentation.web.preguntasendpoints:[59:64]
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.ADMINISTRATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
+
+ (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223frontend.presentation.web.moderatorendpoints:[125:131]
+==dms2223frontend.presentation.web.preguntasendpoints:[93:99]
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.DISCUSSION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+
+        name = session['user'] (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223frontend.presentation.web.discussionendpoints:[24:29]
+==dms2223frontend.presentation.web.preguntasendpoints:[22:28]
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.DISCUSSION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user'] (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[94:99]
+==dms2223frontend.data.rest.backendservice:[71:76]
+        response_data.set_successful(response.ok)
+        if response_data.is_successful():
+            response_data.set_content(response.json())
+        else:
+            response_data.add_message(response.content.decode('ascii')) (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.service.authservice:[31:43]
+==dms2223frontend.data.rest.backendservice:[30:39]
+        self.__host: str = host
+        self.__port: int = port
+        self.__api_base_path: str = api_base_path
+        self.__apikey_header: str = apikey_header
+        self.__apikey_secret: str = apikey_secret
+
+    def __get_data(self,token:Optional[str],url:str) -> ResponseData:
+        """ Funcion template para hacer consultas de un diccionario determindao
+        """ (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0801: Similar lines in 2 files
+==dms2223backend.presentation.rest.comentarios:[48:56]
+==dms2223backend.presentation.rest.respuestas:[66:74]
+    with current_app.app_context():
+        status:List = []
+
+        # Permite modificaciones de los estados de moderacion
+        for estado in Estado_moderacion:
+            if estado.name in kwargs and kwargs[estado.name]:
+                status.append(estado.name)
+ (duplicate-code)
+components/dms2223frontend/dms2223frontend/presentation/web/__init__.py:1:0: R0401: Cyclic import (dms2223backend.data.db -> dms2223backend.data.db.schema) (cyclic-import)
+
+------------------------------------------------------------------
+Your code has been rated at 7.61/10 (previous run: 7.50/10, +0.11)
+

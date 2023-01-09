@@ -1,23 +1,19 @@
 """REST API controllers responsible of handling the server operations about answers
 """
+import logging
 from typing import Dict, Tuple, Optional, List
 from http import HTTPStatus
-from flask import current_app
-
 from dms2223backend.service import RespuestasServicio, VotosServicio, ReportesServicio
 from dms2223backend.data.db import Pregunta, Respuesta, Estado_moderacion,\
      ReporteRespuesta, Voto, Elemento
-
 from flask import current_app
-
 from dms2223backend.service import AuthService
-
-import logging
 
 def set_respuesta_comentario(aid:int, body: Dict, token_info: Dict) -> Tuple[Dict,Optional[int]]:
     """ Crea un comentario en una respuesta
     """
     with current_app.app_context():
+        comment = None
         try:
             comm:Dict = {
                 "body": body["body"],
@@ -31,19 +27,20 @@ def set_respuesta_comentario(aid:int, body: Dict, token_info: Dict) -> Tuple[Dic
                 comentario=comm
             )
         except:
-            logging.exception(f"No se ha podido obtener la respuesta {aid} por motivos desconocidos")
+            logging.exception(f"No se ha podido obtener la respuesta \
+                {aid} por motivos desconocidos")
             return ({},HTTPStatus.INTERNAL_SERVER_ERROR)
         finally:
             if comment is None:
                 reporte = f"The answer with aid {aid} does not exist."
                 return (reporte, HTTPStatus.NOT_FOUND)
-            else:
-                return (comment, HTTPStatus.CREATED)
+            return (comment, HTTPStatus.CREATED)
 
 def set_respuesta_reporte(aid:int,body: Dict, token_info: Dict):
     """ Crea un reporte para una respuesta
     """
     with current_app.app_context():
+        rep = {}
         try:
             rep:Dict = {
                 "razon_reporte":body["reason"],

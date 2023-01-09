@@ -1,5 +1,8 @@
 # Memoria
 
+## Indice
+
+
 ### 1. Propuesta general de diseño
  Propuesta de una interfaz sencilla estilo *stackoverflow* pero con comentarios de estilo *reddit* en varios niveles según quien responde a quien. 
  
@@ -154,6 +157,8 @@ En cuanto a la implementacion a pesar que el almacenamiento y la gestión de mé
 > Los problemas de la opcion 1 se dan porque la implementación de las funciónes de cración de objetos en el ORM no permite la inclusion de nuevas funciónalidades. en un futuro seria interesante modificarlas de forma que permitan su extensión mediante inyección de dependencias.
 
 Otra posibilidad, gracias al bajo acoplamiento del servicio, sería la posibilidad de utilizar estas puntuaciones, si se da el caso, para otras aplicaciónes que se hagan en un futuro, que no tengan preguntas o respuestas, pero donde se quiera conocer la reputación de los usuarios.
+
+> Seria practico implementar un patrón observador, pero para ello seria necesario modificar las clases originales para añadir metodos de notificacion.
 
 Una posibilidad de diseño seria esta:
 ![Propuesta de datos](/imagenes/propuesta.png "Diagrama propuesto")

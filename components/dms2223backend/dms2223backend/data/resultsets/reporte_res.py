@@ -1,15 +1,10 @@
-from typing import List, Dict, Optional
-from datetime import datetime
-
-from dms2223backend.data.db.Usuario import Usuario
-from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
-from dms2223backend.data.db import Reporte, ReportePregunta, ReporteRespuesta, ReporteComentario, Estado_moderacion
-from dms2223backend.data.db.Voto import Voto
+""" Modulo de para acceder a la BDD sobre reportes
+"""
+from typing import List, Optional
+from dms2223backend.data.db import Reporte, ReportePregunta, Estado_moderacion
 
 from sqlalchemy.orm.session import Session  # type: ignore
 from sqlalchemy import select # type: ignore
-
-import sys
 
 class ReporteFuncs():
 
@@ -49,7 +44,6 @@ class ReporteFuncs():
         """ Obtiene todos los reportes de un tipo
             Permite expandir los estados de moderacion
         """
-        print(tipo,file=sys.stderr)
         reps = session.query(tipo).filter(tipo.estado.in_(estados)).all()
         return reps
 
@@ -64,9 +58,8 @@ class ReporteFuncs():
         return reporte
 
     @staticmethod
-    def get_rep(session:Session,tipo:type ,rid:int) -> Reporte:
+    def get_rep(session:Session,tipo:type ,rid:int) -> Optional[Reporte]:
         """ Obtiene un reporte segun su id
         """
-        print(tipo,file=sys.stderr)
         return session.query(tipo).filter(tipo.id_reporte == rid).first()
 

@@ -1,18 +1,16 @@
-from typing import List, Dict, Optional
+""" Funciones para el acceso a la BDD de rrespuestas 
+"""
+from typing import Optional
 from datetime import datetime
-
 
 from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
 from dms2223backend.data.db.Voto import Voto
 
 from sqlalchemy.orm.session import Session  # type: ignore
-from sqlalchemy import select # type: ignore
-
-
-import sys
 
 class RespuestaFuncs():
-
+    """ Clase con funciones estaticas relativas a respeustas
+    """
     @staticmethod
     def create(session:Session, resp:Respuesta) -> Respuesta:
         """ Crea una nueva respuesta a una pregunta y devulve la classe

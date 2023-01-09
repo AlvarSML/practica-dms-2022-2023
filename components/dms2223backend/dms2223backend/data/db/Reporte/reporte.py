@@ -1,21 +1,21 @@
+""" todas las clases derivadas de reporte
+"""
 import enum
-from sqlalchemy import Column,String,Text,Boolean,DateTime, \
-    ForeignKey, Integer, Enum
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column,String,Text,DateTime, \
+    ForeignKey, Integer, Enum # type: ignore
 from datetime import datetime
 from dms2223backend.data.db.Usuario.usuario import Usuario
-from dms2223backend.data.db.Elemento.elemento import Elemento
 from dms2223backend.data.db.Elemento.pregunta import Pregunta
 from dms2223backend.data.db.Elemento.respuesta import Respuesta
 from dms2223backend.data.db.Elemento.comentario import Comentario
 from ..base import Base #Base declarativa
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship # type: ignore
 
 class Estado_moderacion(enum.Enum):
     pending = 0
     accepted = 1
     rejected = 2
-    discarded = 3 # Ni se ha leido
+    discarded = 3
 
 class Reporte(Base):
     __tablename__= 'reporte'
@@ -26,7 +26,7 @@ class Reporte(Base):
     fecha = Column(DateTime, default=datetime.now())
 
     razon_reporte = Column(Text)
-    resultado_moderacion = Column(String(100))  
+    resultado_moderacion = Column(String(100))
     estado = Column(Enum(Estado_moderacion), default=Estado_moderacion.pending, index=True)
 
     type = Column(String(50)) #Especifica el tipo de reporte que es
@@ -47,11 +47,11 @@ class ReportePregunta(Reporte):
     id_pregunta = Column(Integer, ForeignKey("pregunta.id_pregunta"))
     pregunta = relationship("Pregunta",
         back_populates="reportes")
-    
+
     autor = relationship("Usuario",
         back_populates="reportesPregs",
         primaryjoin="Reporte.id_autor == Usuario.id_usuario")
-    
+
     __mapper_args__ = {
         "polymorphic_identity": "reporte_pregunta",
     }

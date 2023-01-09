@@ -1,14 +1,8 @@
-import json
-import time
+""" Puntos de entrada de las peticiones de usuarios
+"""
 from typing import Dict, Tuple, Optional, List
 from http import HTTPStatus
-from flask import current_app
-
-from sqlalchemy.orm.session import Session # type: ignore
-
-from dms2223backend.data.resultsets.pregunta_res import PreguntaRes, PreguntaFuncs
-from dms2223backend.service import PreguntasServicio, UsuariosServicio
-from dms2223backend.data.db import Pregunta
+from dms2223backend.service import UsuariosServicio
 
 from flask import current_app
 

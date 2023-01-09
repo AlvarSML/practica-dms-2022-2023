@@ -17,7 +17,7 @@ cfg: BackendConfiguration = BackendConfiguration()
 cfg.load_from_file(cfg.default_config_file())
 db: Schema = Schema(base=Base,config=cfg)
 
-db.clear_database(cfg)
+db.clear_database()
 session:Session = db.new_session()
 
 

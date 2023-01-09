@@ -1,21 +1,12 @@
 """ Schema class module.
 """
-from datetime import datetime
-
 from sqlalchemy import create_engine, event  # type: ignore
 from sqlalchemy.engine import Engine  # type: ignore
 from sqlalchemy.orm import sessionmaker, scoped_session, registry  # type: ignore
 from sqlalchemy.orm.session import Session  # type: ignore
 from dms2223backend.data.config import BackendConfiguration
-from dms2223backend.data.db.Usuario.usuario import Usuario
-from dms2223backend.data.db.Elemento.elemento import Elemento 
-from dms2223backend.data.db.Elemento.respuesta import  Respuesta
-from dms2223backend.data.db.Elemento.comentario import Comentario
-from dms2223backend.data.db.Elemento.pregunta import Pregunta
-from dms2223backend.data.db.Feedback.feedback import Feedback
-
 from dms2223backend.data.db import Base
-from sqlalchemy import select, MetaData
+from sqlalchemy import MetaData
 
 
 # Required for SQLite to enforce FK integrity when supported
@@ -51,8 +42,7 @@ class Schema():
         self.__session_maker = scoped_session(sessionmaker(bind=self.__create_engine))
         base.metadata.create_all(bind=self.__create_engine)
         self.__metadata: MetaData = MetaData()
-        self.__dec_base: Base = base 
-
+        self.__dec_base: Base = base
 
     def new_session(self) -> Session:
         """ Constructs a new session.
@@ -67,10 +57,9 @@ class Schema():
         """
         self.__session_maker.remove()
 
-    def clear_database(self, cfg:BackendConfiguration) -> None:
+    def clear_database(self) -> None:
         """ !! ELIMINA TODOS LOS DATOS DE LA BASE DE DATOS
             !! SOLO PARA PRUEBAS
-        """ 
-        
+        """
         self.__dec_base.metadata.drop_all(bind=self.__create_engine)
         self.__dec_base.metadata.create_all(bind=self.__create_engine)

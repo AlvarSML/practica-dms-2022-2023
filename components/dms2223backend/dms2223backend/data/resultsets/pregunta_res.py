@@ -1,12 +1,11 @@
+""" Modulo para acceder a las funciones ORM de pregunta
+"""
 from typing import List, Dict, Optional
 from datetime import datetime
-
 from dms2223backend.data.db.Usuario import Usuario
 from dms2223backend.data.db.Elemento import Pregunta, Respuesta, Comentario
 from dms2223backend.data.db.Voto import Voto
-
 from sqlalchemy.orm.session import Session  # type: ignore
-from sqlalchemy import select # type: ignore
 
 class PreguntaRes():
     """ Clase de alto nivel que va a contener los datos completos de una pregunta
@@ -30,9 +29,8 @@ class PreguntaFuncs():
     def list_all(max:Optional[int], session: Session) -> List[Dict]:
         """ Se obtienen todos los registros de pregunta, con un limite si se especifica
         """
-
         listaPreguntas: List[PreguntaRes] = []
-        pregs = session.query(Pregunta).filter(Pregunta.visibilidad).all()   
+        pregs = session.query(Pregunta).filter(Pregunta.visibilidad).all()
 
         for preg in pregs:
             p = {
@@ -44,7 +42,6 @@ class PreguntaFuncs():
                 #,"vis":preg.visibilidad
             }
             listaPreguntas.append(p)
-
         # Esto tiene que devolver la lista bien formateada
         return listaPreguntas
 
@@ -56,7 +53,6 @@ class PreguntaFuncs():
         session.commit()
         # ! Importante, se recuperoa la pregunta creada, con id fecha y demas datos
         session.refresh(pregunta)
-
         return pregunta
 
     @staticmethod

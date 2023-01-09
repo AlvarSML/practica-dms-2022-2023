@@ -1,7 +1,6 @@
-from sqlalchemy import Column,String,Text,Boolean,DateTime,ForeignKey, Integer
-from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
-from dms2223backend.data.db.Usuario.usuario import Usuario
+""" Clase de la bdd de respuesta
+"""
+from sqlalchemy import Column, ForeignKey, Integer
 from dms2223backend.data.db.Elemento.elemento import Elemento
 from dms2223backend.data.db.Elemento.pregunta import Pregunta
 from sqlalchemy.orm import relationship
@@ -14,11 +13,11 @@ class Respuesta(Elemento):
     id_pregunta = Column(Integer, ForeignKey("pregunta.id_pregunta"))
 
     pregunta = relationship("Pregunta", 
-        back_populates="respuestas", 
+        back_populates="respuestas",
         primaryjoin="Respuesta.id_pregunta == Pregunta.id_pregunta")
 
     comentarios = relationship(
-        "Comentario", 
+        "Comentario",
         primaryjoin="Respuesta.id_respuesta == Comentario.id_respuesta")
 
     reportes = relationship("ReporteRespuesta",
@@ -37,9 +36,9 @@ class Respuesta(Elemento):
         super().__init__(contenido=contenido,autor=autor)
         self.pregunta = pregunta
     
-    def __repr__(self) -> str:        
-        return  f"Respuesta\
-        (id_respuesta={self.id_respuesta!r}, \
+    def __repr__(self) -> str:
+        return f"Respuesta\
+        (id_respuesta={self.id_respuesta!r},\
         contenido={self.contenido!r}, \
         fecha={self.fecha!r}, \
         autor={self.autor!r},\
