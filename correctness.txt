@@ -1,0 +1,8 @@
+[dms2223common]
+Success: no issues found in 8 source files
+[dms2223auth]
+Found 18 errors in 4 files (checked 33 source files)
+[dms2223backend]
+Found 81 errors in 25 files (checked 55 source files)
+[dms2223frontend]
+Found 22 errors in 3 files (checked 32 source files)

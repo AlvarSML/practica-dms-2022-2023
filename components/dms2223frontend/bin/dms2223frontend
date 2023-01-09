@@ -127,7 +127,7 @@ def get_crear_preguntas():
 @app.route("/crear_pregunta", methods=['POST'])
 def post_crear_preguntas():
     current_app.logger.debug("crear_pregunta")
-    return PreguntasEndpoints.post_new_question(
+    return PreguntasEndpoints.post_quest(
         auth_service=auth_service,
         back_service=backend_service
     )
