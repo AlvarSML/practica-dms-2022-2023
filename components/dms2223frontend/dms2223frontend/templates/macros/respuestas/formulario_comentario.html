@@ -3,7 +3,7 @@
 <script src="/static/scripts/editor_texto.js" ></script>
 
 <div class="contenedor_comentario">
-    <form action="/respuesta/<id_resp>/crear_comentario" method="post">
+    <form action="/respuesta/{{ respuesta_anterior }}/crear_comentario" method="post">
         <input type="hidden" name="aid" id="aid" value="{{respuesta_anterior}}">
         <div id="editor_respuesta">
             <div class="marco_texto">

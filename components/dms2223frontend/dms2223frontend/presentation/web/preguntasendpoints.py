@@ -148,14 +148,17 @@ class PreguntasEndpoints():
         return render_template(
             'preguntas/comentar_respuesta.html',
             name = name,
-            aid=aid,
+            respuesta_anterior=aid,
             sentiments = {
                 "positive":"POSITIVE",
                 "negative":"NEGATIVE",
                 "neutral":"NEUTRAL"})
 
     @staticmethod
-    def post_new_comment(back_service: BackendService, auth_service: AuthService):
+    def post_new_comment(
+        back_service: BackendService,
+        auth_service: AuthService,
+        aid: str):
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
         """ # ! DEBUG no deberia estar en el front end
@@ -163,7 +166,6 @@ class PreguntasEndpoints():
             return redirect(url_for('get_home'))
         """
 
-        aid = request.form.get('aid')
         body = request.form.get('cbody')
         sentiment = request.form.get('sentiment')
 

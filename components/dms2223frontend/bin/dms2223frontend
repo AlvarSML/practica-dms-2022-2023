@@ -162,7 +162,7 @@ def crear_pregunta_post(id_preg):
 def crear_comentario_get(id_resp):
     """ Formulario de comentario
     """
-    return PreguntasEndpoints.get_report_form(
+    return PreguntasEndpoints.get_crear_comentario(
         auth_service=auth_service,
         back_service=backend_service,
         aid=id_resp)
@@ -175,7 +175,8 @@ def crear_comentario_post(id_resp):
     current_app.logger.debug("crear_comentario")
     return PreguntasEndpoints.post_new_comment(
         auth_service=auth_service,
-        back_service=backend_service
+        back_service=backend_service,
+        aid=id_resp
     )
 
 """ REPORTES
