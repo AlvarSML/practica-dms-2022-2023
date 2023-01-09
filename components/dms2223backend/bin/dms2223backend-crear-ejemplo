@@ -87,14 +87,14 @@ session.refresh(fpos)
 session.refresh(fneg)
 
 c1 = Comentario(
-    contenido="Hmmm bien hecho",
+    contenido="Me gusta la respuesta 😲",
     autor=us1,
     feedback=fpos,
     respuesta=r1
 )
 
 c2 = Comentario(
-    contenido="Hmmm mal hecho",
+    contenido="No me gusta la respuesta 😡",
     autor=us1,
     feedback=fneg,
     respuesta=r1
@@ -107,13 +107,13 @@ session.commit()
 re1 = ReportePregunta(
     pregunta=p1,
     autor=us1,
-    razon_reporte="no me gusta"
+    razon_reporte="Descripcion muy corta"
 )
 
 re2 = ReporteComentario(
     comentario=c1,
     autor=us1,
-    razon_reporte="mal comentario"
+    razon_reporte="No aporta nada"
 )
 
 session.add(re1)
