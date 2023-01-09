@@ -68,10 +68,8 @@ class PreguntasEndpoints():
     def post_quest(back_service: BackendService, auth_service: AuthService) -> Union[Response, Text]:
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        """ # ! DEBUG no deberia estar en el front end
         if Role.DISCUSSION.name not in session['roles']:
             return redirect(url_for('get_home'))
-        """
 
         title = request.form.get('qtitle')
         body = request.form.get('qbody')
@@ -115,10 +113,8 @@ class PreguntasEndpoints():
     def post_new_answer(back_service: BackendService, auth_service: AuthService):
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        """ # ! DEBUG no deberia estar en el front end
         if Role.DISCUSSION.name not in session['roles']:
             return redirect(url_for('get_home'))
-        """
 
         qid = request.form.get('qid')
         body = request.form.get('abody')
@@ -162,10 +158,8 @@ class PreguntasEndpoints():
         aid: str):
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        """ # ! DEBUG no deberia estar en el front end
         if Role.DISCUSSION.name not in session['roles']:
             return redirect(url_for('get_home'))
-        """
 
         body = request.form.get('cbody')
         sentiment = request.form.get('sentiment')

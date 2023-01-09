@@ -15,6 +15,11 @@ from datetime import datetime
 class RespuestasEndpoints():
     @staticmethod
     def get_respuesta(auth_service: AuthService, id_respuesta: int) -> Union[Response, Text]:
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.DISCUSSION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+
         resp = Respuesta(
             "1",
             "20",

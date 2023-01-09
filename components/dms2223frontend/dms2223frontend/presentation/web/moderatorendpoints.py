@@ -147,7 +147,8 @@ class ModeratorEndpoints():
             auth_service=auth_service,
             back_service=back_service
         )
-
+        
+    @staticmethod
     def get_report_form(
         back_service: BackendService, 
         auth_service: AuthService, 
@@ -156,7 +157,7 @@ class ModeratorEndpoints():
 
         if not WebAuth.test_token(auth_service):
             return redirect(url_for('get_login'))
-        if Role.ADMINISTRATION.name not in session['roles']:
+        if Role.DISCUSSION.name not in session['roles']:
             return redirect(url_for('get_home'))
         name = session['user']
 
