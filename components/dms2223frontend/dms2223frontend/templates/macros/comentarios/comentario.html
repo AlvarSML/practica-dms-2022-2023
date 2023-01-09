@@ -14,6 +14,7 @@
         <div class="metadatos_comentario">
             <p class="autor_comentario">{{comentario.owner.username}}</p>
             <p>{{comentario.timestamp}}</p>
+            {{ button("redbg","/comentario/"+(comentario.id|string)+"/reporte","Reportar",()) }}
         </div>
     </div>
 {% endmacro %}

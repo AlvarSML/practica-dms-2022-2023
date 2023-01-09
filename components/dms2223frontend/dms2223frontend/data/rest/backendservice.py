@@ -204,8 +204,19 @@ class BackendService():
             'reason':reason
         }
 
+        traduccion = {
+            "pregunta":"questions",
+            "respuesta":"answers",
+            "comentario":"comments"
+        }
+
+        current_app.logger.debug(f"tipo {traduccion[tipo]} - eid {eid}")
+
+        url = f'/{traduccion[tipo]}/{eid}/reports'
+        current_app.logger.debug(url)
+
         return self.__post_data(
             token=token,
-            url=f'/{tipo}/{eid}/reportes',
+            url=url,
             json=json
         )

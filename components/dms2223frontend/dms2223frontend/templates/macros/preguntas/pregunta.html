@@ -30,6 +30,8 @@
     {{datosPregunta(pregunta.owner.username,pregunta.timestamp)}}
       
     {{ button("greenbg","/pregunta/"+(pregunta.qid|string)+"/crear_respuesta","Responder",()) }}
+    {{ button("redbg","/pregunta/"+(pregunta.qid|string)+"/reporte","Reportar",()) }}
+
 </div>
 {% endmacro %}
 

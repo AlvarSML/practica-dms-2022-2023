@@ -162,7 +162,7 @@ def crear_pregunta_post(id_preg):
 def crear_comentario_get(id_resp):
     """ Formulario de comentario
     """
-    return PreguntasEndpoints.get_crear_comentario(
+    return PreguntasEndpoints.get_report_form(
         auth_service=auth_service,
         back_service=backend_service,
         aid=id_resp)
@@ -185,7 +185,12 @@ def crear_comentario_post(id_resp):
 def crear_reporte_preg_get(id_preg:int):
     """ Formulario de creacion de reporte
     """
-    return 0
+    return ModeratorEndpoints.get_report_form(
+        auth_service=auth_service,
+        back_service=backend_service,
+        eid=id_preg,
+        tipo="pregunta"
+    )
 
 @app.route("/pregunta/<id_preg>/reporte", methods=['POST'])
 def crear_reporte_preg_post(id_preg:int):
@@ -200,36 +205,41 @@ def crear_reporte_preg_post(id_preg:int):
 def crear_reporte_resp_get(id_resp:int):
     """ Formulario de creacion de reporte
     """
-    return 0
+    return ModeratorEndpoints.get_report_form(
+        auth_service=auth_service,
+        back_service=backend_service,
+        eid=id_resp,
+        tipo="respuesta"
+    )
 
 @app.route("/respuesta/<id_resp>/reporte", methods=['POST'])
 def crear_reporte_resp_post(id_resp:int):
     """ Envio de creacion de reporte
     """
-    return 0
+    return ModeratorEndpoints.post_report(
+        auth_service=auth_service,
+        back_service=backend_service
+    )
 
 @app.route("/comentario/<id_comm>/reporte", methods=['GET'])
 def crear_reporte_comm_get(id_comm:int):
     """ Formulario de creacion de reporte
     """
-    return 0
+    return ModeratorEndpoints.get_report_form(
+        auth_service=auth_service,
+        back_service=backend_service,
+        eid=id_comm,
+        tipo="comentario"
+    )
 
 @app.route("/comentario/<id_comm>/reporte", methods=['POST'])
 def crear_reporte_comm_post(id_comm:int):
     """ Envio de creacion de reporte
     """
-    return 0
-
-@app.route("/preguntas/reportes", methods=['GET'])
-def reportes_preguntas_get():
-    return 0
-
-
-@app.route("/crear_reporte", methods=['POST'])
-def reportes_preguntas_get():
-    return ModeratorEndpoints.get_reps_respuestas(
+    return ModeratorEndpoints.post_report(
         auth_service=auth_service,
-        back_service=backend_service)
+        back_service=backend_service
+    )
 
 @app.route("/respuestas/reportes", methods=['GET'])
 def reportes_respuestas_get():

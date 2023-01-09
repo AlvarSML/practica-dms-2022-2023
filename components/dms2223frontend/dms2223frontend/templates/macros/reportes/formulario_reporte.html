@@ -1,9 +1,9 @@
-{% macro formulario_reporte() %}
+{% macro formulario_reporte(elemento_id,tipo) %}
 {% from "macros/buttons.html" import submit_button, button %}
 <script src="/static/scripts/editor_texto.js" ></script>
 
 <div class="contenedor_pregutna">
-    <form action="/{{tipo}}/{{elemento_id}}/report" method="post">
+    <form action="/{{tipo}}/{{elemento_id}}/reporte" method="post">
         <input type="hidden" name="eid" id="eid" value="{{elemento_id}}">
         <input type="hidden" name="tipo" id="tipo" value="{{tipo}}">
         <p>Reportando el elemento con id: {{elemento_id}}</p>

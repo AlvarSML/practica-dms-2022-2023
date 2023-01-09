@@ -141,11 +141,29 @@ class ModeratorEndpoints():
 
         current_app.logger.debug("nuevo reporte")
         current_app.logger.debug(response.get_messages())
+        current_app.logger.debug(response.get_content())
 
         return CommonEndpoints.get_home(
             auth_service=auth_service,
             back_service=back_service
         )
 
+    def get_report_form(
+        back_service: BackendService, 
+        auth_service: AuthService, 
+        eid:int,
+        tipo:str):
+
+        if not WebAuth.test_token(auth_service):
+            return redirect(url_for('get_login'))
+        if Role.ADMINISTRATION.name not in session['roles']:
+            return redirect(url_for('get_home'))
+        name = session['user']
 
 
+        return render_template(
+            'preguntas/reportar_pregunta.html',
+            name = name,
+            elemento_id=eid,
+            tipo=tipo
+        )

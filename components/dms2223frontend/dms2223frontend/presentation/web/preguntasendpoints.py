@@ -182,24 +182,3 @@ class PreguntasEndpoints():
 
         return redirect(url_for('get_home'))
 
-    @staticmethod
-    def get_crear_reporte(
-        back_service: BackendService, 
-        auth_service: AuthService, 
-        aid:int):
-
-        if not WebAuth.test_token(auth_service):
-            return redirect(url_for('get_login'))
-        if Role.ADMINISTRATION.name not in session['roles']:
-            return redirect(url_for('get_home'))
-        name = session['user']
-
-
-        return render_template(
-            'preguntas/reportar_pregunta.html',
-            name = name,
-            aid=aid,
-            sentiments = {
-                "positive":"POSITIVE",
-                "negative":"NEGATIVE",
-                "neutral":"NEUTRAL"})
