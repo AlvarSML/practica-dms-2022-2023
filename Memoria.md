@@ -129,6 +129,12 @@ Vamos a distinguir 3 partes importantes en cuanto a las decisiones de diseño, l
 - **Reportes**: Inicialmente solo iba a existir una clase de reporte con una relaccion a elemento que sirviese para cualquier tipo de elemento pero por agilidad en las consultas, especialmente cuando hay que obtener todos los reportes a x tipo de elemento, separar los reportes en tipos simplifica las consultas pero provoca que sea mas complicado hacer funciones que sirvan para todos los tipos de elemento. A pesar del polimorfismo es sencillo trabajar sobre los campos comunes, como el estado donde las fucniones pueden recibir todos lo tipos de reporte.
 - **Votos**: El modelo de voto es similar a como era el reporte en un inicio, se relacciona con elemento y asi sera posible votar todos los tipos de elemento. Se ha decidido hacer todos lo elementos votables a pesar que las preguntas no se requiere que lo sean, siendo estrictos habria que haber creado una clase mas hija de elemento, *ElementoVotable* con el que estuviese relaccionado voto, pero se ha considerado que no implementar las funcionalidades de voto en pregunta es mas sencillo y permite mas flexibilidad a la hora de hacer cambios en un futuro si se permitiese votar las preguntas.
 
+<div style="text-align: center;">
+
+![Propuesta de datos](/imagenes/diagrama_capas.png "Diagrama propuesto")
+
+</div>
+
 ### 4. Trabajo futuro
 
 Se propone crear un sistema de *recompensas* que a modo de servicio independiente, como *Auth* lleve la cuenta de los votos que reciben sus elementos, cuanto se le reporta o cuantas veces hace respuestas que hayan sido útiles u otras metricas que se puedan añadir para representar como de util es un usuario en la comunidad.
