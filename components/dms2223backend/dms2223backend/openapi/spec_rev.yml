@@ -1267,7 +1267,7 @@ components:
       description: |
         Secret shared between both the requestor and the service.
       type: apiKey
-      name: X-ApiKey-Auth
+      name: X-ApiKey-Backend
       in: header
       x-apikeyInfoFunc: dms2223backend.presentation.rest.security.verify_api_key
 

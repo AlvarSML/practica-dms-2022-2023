@@ -3,24 +3,22 @@
 <script src="/static/scripts/editor_texto.js" ></script>
 
 <div class="contenedor_respuesta">
-    <form action="comentario" method="post">
-    <h3>Tu respuesta:</h3>
-        <input type="hidden" id="pregunta_anterior" value="{{ pregunta_anterior }}">
+    <form action="/pregunta/<id_preg>/crear_respuesta" method="post">
+        <input type="hidden" name="qid" id="qid" value="{{pregunta_anterior}}">
         <div id="editor_respuesta">
-            <!-- Convertir en macro? -->
+            <!-- Convertir en macro? 
             <div id="controles_texto">
-                <!-- Botones de negrita, cursiva etc.. -->
                 {{ button("yellowbg","","Negrita","boton1()") }}
                 {{ button("yellowbg","","Cursiva") }}
                 {{ button("yellowbg","","Subrallado") }}
                 {{ button("yellowbg","","Imagen") }}
             </div>
-            <!--  -->
-            <div class="marco_texto">*
+             -->
+            <div class="marco_texto">
             <textarea 
                 id="texti" 
                 class="texto_formulario" 
-                name="texto"
+                name="abody"
                 rows="10"
                 cols="100"
                 placeholder="Tu respuesta aqui"></textarea>

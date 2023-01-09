@@ -1,8 +1,25 @@
+{% from "macros/reportes/contenedor_reportes.html" import contenedor_reportes %}
+
 {% extends "base_logged_in.html" %}
 {% block title %}{% block subtitle %}{% endblock %}Moderator{% endblock %}
 {% block contentheading %}Moderators panel{% endblock %}
 {% block maincontent %}
     {% block moderatorcontent %}
-    <p class="yellowbg">Under construction</p>
+    <div class="3cols">
+        <div class="conReportes">
+            <h3>Reportes Preguntas</h3>
+            {{ contenedor_reportes("pregunta",reportes_preguntas,"qid",statuses) }}
+        </div>
+
+        <div class="conReportes">
+            <h3>Reportes Respuestas</h3>
+            {{ contenedor_reportes("respuesta",reportes_respuestas,"aid",statuses) }}
+        </div>
+
+        <div class="conReportes">
+            <h3>Reportes comentarios</h3>
+            {{ contenedor_reportes("comentario",reportes_comentarios,"cid",statuses) }}
+        </div>
+    </div>
     {% endblock %}
 {% endblock %}

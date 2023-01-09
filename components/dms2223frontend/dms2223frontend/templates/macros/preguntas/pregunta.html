@@ -1,5 +1,5 @@
 <!--Imports de los botones de votacion-->
-{% from 'macros/buttons.html' import voteUp_button, voteDown_button %}
+{% from 'macros/buttons.html' import button, voteUp_button, voteDown_button %}
 
 <!--Pregunta en formato de titulo-->
 {% macro tituloPregunta(titulo,id_pregunta) %}
@@ -7,16 +7,12 @@
 {% endmacro %}
 
 <!--Macro de los datos de pregunta(quien pregunto, fecha...)-->
-{% macro datosPregunta(usuario,fecha_creacion) %}
+{% macro datosPregunta(usuario,timestamp) %}
 <div class="datosPregunta">
     <p>Preguntado por:{{usuario}}</p>
-    <p>Fecha de la pregunta:{{ fecha_creacion.strftime('%d-%m-%Y') }}</p>
+    <p>Fecha de la pregunta:{{ timestamp }}</p>
 </div>
 {% endmacro %}
-
-<!--Implementacion de los botones de votacion-->
-{{ voteUp_button }}
-{{ voteDown_button }}
 
 <!--Macro del cuerpo de la pregunta-->
 {% macro cuepoPregunta(descripcion) %}
@@ -28,16 +24,31 @@
 <!--Macro de la pregunta completa-->
 {% macro pregunta(pregunta) %}
 <div class="questiondiv">
-    {{tituloPregunta(pregunta.tituloPregunta,pregunta.id)}}
-    {{datosPregunta(pregunta.autor,pregunta.fecha_creacion)}}
-    {{cuepoPregunta(pregunta.contenidoPregunta)}}
+    {{tituloPregunta(pregunta.title,pregunta.qid)}}
+    {{cuepoPregunta(pregunta.body)}}
+
+    {{datosPregunta(pregunta.owner.username,pregunta.timestamp)}}
+      
+    {{ button("greenbg","/pregunta/"+(pregunta.qid|string)+"/crear_respuesta","Responder",()) }}
+    {{ button("redbg","/pregunta/"+(pregunta.qid|string)+"/reporte","Reportar",()) }}
+
+</div>
+{% endmacro %}
+
+<!--Macro de la pregunta completa sin opcion de responder-->
+{% macro pregunta_sinboton(pregunta) %}
+<div class="questiondiv">
+    {{tituloPregunta(pregunta.title,pregunta.qid)}}
+    {{cuepoPregunta(pregunta.body)}}
+
+    {{datosPregunta(pregunta.owner.username,pregunta.timestamp)}}
 </div>
 {% endmacro %}
 
 <!--Macro de la pregunta completa-->
 {% macro pregunta_simple(pregunta) %}
 <div class="questiondiv">
-    {{tituloPregunta(pregunta.tituloPregunta,pregunta.id)}}
-    {{datosPregunta(pregunta.autor,pregunta.fecha_creacion)}}
+    {{ tituloPregunta(pregunta.title,pregunta.qid) }}
+    {{ datosPregunta(pregunta.autor,pregunta.timestamp) }}
 </div>
 {% endmacro %}

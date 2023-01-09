@@ -71,6 +71,7 @@ def cambia_estado_reporte(crid: int, body: Dict, token_info: Dict):
                 "rid":crid,
                 "autor":token_info["user_token"]["username"],
                 "estado":body["status"].lower()
-            }
+            },
+            tipo=ReporteComentario
         )
     return (reporte, HTTPStatus.OK)

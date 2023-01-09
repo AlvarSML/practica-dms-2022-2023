@@ -1,19 +1,20 @@
 {% from "macros/buttons.html" import button, submit_button, voto_positivo_button, voto_negativo_button %}
 
-{% macro comentario(comentario) %}
-    <div class="comentario_div">
+{% macro comentario(comentario,preg_id) %}
+    <div class="comentario_div" style="border-color:{{comentario.color}};">
         <div class="datos_comentario container2cols">
             <div id="votos">
-                {{ voto_positivo_button(comentario.votos_positivos) }}
-                {{ voto_negativo_button(comentario.votos_negativos) }}
+                {{ voto_positivo_button(comentario.votes,"comentario",comentario.id,preg_id) }}
+                {{ voto_negativo_button(comentario.neg_votes) }}
             </div>
             <div class="contenido_comentario">
-                <p class="texto_comentario">{{comentario.contenido_comentario}}</p>
+                <p class="texto_comentario">{{comentario.body}}</p>
             </div>
         </div>
         <div class="metadatos_comentario">
-            <p class="autor_comentario">{{comentario.autor}}</p>
-            <p>{{comentario.fecha_creacion.strftime('%Y-%m-%d')}}</p>
+            <p class="autor_comentario">{{comentario.owner.username}}</p>
+            <p>{{comentario.timestamp}}</p>
+            {{ button("redbg","/comentario/"+(comentario.id|string)+"/reporte","Reportar",()) }}
         </div>
     </div>
 {% endmacro %}

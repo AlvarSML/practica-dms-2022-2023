@@ -7,9 +7,10 @@
 {% endmacro %}
 
 <!--MACRO PARA CREAR BOTON DE VOTO POSITIVO (FALTA IMPLEMENTAR QUE DETECTE SI YA SE PULSÓ ANTERIORMENTE)-->
-{% macro voto_positivo_button(votos_positivos) %}
+{% macro voto_positivo_button(votos_positivos,tipo,id_elem,id_preg) %}
 {% set nombre = "👍 "+(votos_positivos|string) %}
-{{ button(greenbg, '#', nombre, 'this.voteUp()') }}
+{% set url = "/"+ tipo +"/"+(id_elem|string)+"/voto/"+(id_preg|string) %}
+{{ button(greenbg, url, nombre, '()') }}
 {% endmacro %}
 
 

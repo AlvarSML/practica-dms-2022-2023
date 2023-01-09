@@ -1,9 +1,9 @@
 {% from 'macros/comentarios/comentario.html' import comentario %}
 
-{% macro contenedor_comentarios(comentarios) %}
+{% macro contenedor_comentarios(comentarios,preg_id) %}
 <div id="contenedor_comentarios">
 {% for com in comentarios %}
-    {{ comentario(com) }}
+    {{ comentario(com,preg_id) }}
 {% endfor %}
 </div>
 {% endmacro %}
